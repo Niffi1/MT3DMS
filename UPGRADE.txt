@@ -1,0 +1,66 @@
+
+MT3DMS UPGRADE INFORMATION
+
+
+Version History
+
+DoD_3.00.A: June 1998, initial release
+DoD_3.00.B: May 1999
+DoD_3.50.A: November 1999
+
+
+Release [DoD_3.00.A] June 1998
+
+Initial release.
+
+
+Release [DoD_3.00.B] May 1999
+
+Bug Fixes:
+1.	Fix an 'array out of bound' error in subroutine MIC of the GCG package.  
+This error has no effect if the array bound-checking option of the Fortran 
+compiler is not turned on.
+2.	Fix a problem related to the assignment of initial concentrations for the 
+sorbed/immobile phase in the RCT package.  When the nonequilibrium 
+sorption is simulated, by default the initial concentrations for the 
+sorbed phase are assumed to be in equilibrium with the dissolved phase.  
+When the dual-domain mass transfer is simulated, by default the initial 
+concentrations for the immobile phase are assumed to be zero.  The user 
+has the option to override the default values by specifying their own 
+values in the RCT input file.  However, because of a bug in the previous 
+version, the default values are always used regardless of user input.
+3.	Fix a potential minor problem in determining the transport stepsize 
+required for explicit solution of the dual-domain mass transfer reaction.
+
+Enhancements:
+1.	Reorganize the main program slightly to facilitate the addition of 
+multispecies reaction packages into MT3DMS.
+
+
+Release [DoD_3.50.A] November 1999
+
+Bug Fixes:
+1.	Fix a problem with may lead to inaccurate solutions when first-order 
+irreversible reaction (radioactive decay or biodegradation) is used in 
+conjunction with nonequilibrium sorption or dual-domain mass transfer.
+2.	Fix a potential floating point overflow error in determining the maximum 
+transport stepsize required for explicit solution of the dispersion term.
+
+Enhancements:
+1.	Add a new option for simulating dual-domain mass transfer in the presence 
+of linear sorption (refer to the User's Manual, revised November 1999).  
+This option is implemented as ISOTHM=6 in the reaction (RCT) package, and 
+replaces the original dual-domain mass transfer option ISOTHM=5.  While 
+ISOTHM=5 is kept in the program for compatibility considerations, ISOTHM=5 
+is equivalent to ISOTHM=6 with the first sorption constant SP1 (Kd) set to 
+zero.
+2.	Add a new option for specifying fluid sources directly through a mass-
+loading rate [QC] (M/T) instead of a concentration [C] (M/L^3) for the 
+source flux (refer to the User's Manual, revised November 1999).  This 
+option allows the user to specify a source for the transport model without 
+first specifying a flow rate [Q] in the flow model.
+3.	Improve the program structure for keeping track of global mass budgets and 
+reporting mass balance information, particularly for transport simulation 
+in dual-domain systems or under transient flow conditions.
+4.	Improve the performance of the Generalized Conjugate-Gradient (GCG) matrix 
+solver.
