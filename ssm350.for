@@ -96,7 +96,6 @@ C--REAL ARRAYS
       IF(FEVT) ISUM=ISUM+NCR * NCOMP
       LCSS=ISUM
       ISUM=ISUM+6*MXSS
-
       LCSSMC=ISUM
       ISUM=ISUM+NCOMP*MXSS
 C
@@ -118,7 +117,7 @@ C ********************************************************************
 C THIS SUBROUTINE READS CONCENTRATIONS OF SOURCES OR SINKS NEEDED BY
 C THE SINK AND SOURCE MIXING (SSM) PACKAGE.
 C ********************************************************************
-C last modified: 11-15-99
+C last modified: 08-15-00
 C
       IMPLICIT  NONE
       INTEGER   IN,IOUT,KPER,NCOL,NROW,NLAY,NCOMP,ICBUND,
@@ -196,7 +195,19 @@ C
      & ' WILL BE READ IN STRESS PERIOD',I3)
 C
 C--READ AND ECHO POINT SINKS/SOURCES OF SPECIFIED CONCENTRATIONS
-   20 READ(IN,'(I10)') NTMP
+C--(RESET BEFORE READING IF NOT 1ST STRESS PERIOD)
+   20 CONTINUE
+C
+      IF(KPER.GT.1) THEN
+        DO NUM=1,NSS
+          SS(4,NUM)=0.
+          DO INDEX=1,NCOMP
+            SSMC(INDEX,NUM)=0.
+          ENDDO
+        ENDDO
+      ENDIF
+C
+      READ(IN,'(I10)') NTMP
       IF(NTMP.GT.MXSS) THEN
         WRITE(*,30)
         STOP
@@ -212,7 +223,7 @@ C--READ AND ECHO POINT SINKS/SOURCES OF SPECIFIED CONCENTRATIONS
       ENDIF
       WRITE(IOUT,60)
       DO NUM=1,NSS
-
+C
         IF(NCOMP.EQ.1) THEN
           READ(IN,'(3I10,F10.0,I10)') KK,II,JJ,CSS,IQ
           SSMC(1,NUM)=CSS
@@ -220,7 +231,7 @@ C--READ AND ECHO POINT SINKS/SOURCES OF SPECIFIED CONCENTRATIONS
           READ(IN,'(3I10,F10.0,I10)',ADVANCE='NO') KK,II,JJ,CSS,IQ
           READ(IN,*) (SSMC(INDEX,NUM),INDEX=1,NCOMP)
         ENDIF
-
+C
         IF(IQ.EQ.-1) THEN
           DO INDEX=1,NCOMP
             IF(SSMC(INDEX,NUM).GE.0) THEN
@@ -229,7 +240,7 @@ C--READ AND ECHO POINT SINKS/SOURCES OF SPECIFIED CONCENTRATIONS
             ENDIF
           ENDDO
         ELSEIF(IQ.EQ.15) THEN
-          SS(5,NUM)=1.0
+          SS(5,NUM)=0.
         ELSEIF(IQ.LT.1.OR.IQ.GT.5) THEN
           WRITE(*,80)
           STOP
@@ -239,13 +250,13 @@ C--READ AND ECHO POINT SINKS/SOURCES OF SPECIFIED CONCENTRATIONS
         SS(3,NUM)=JJ
         SS(4,NUM)=CSS
         SS(6,NUM)=IQ
-
+C
         DO INDEX=1,NCOMP
           CSS=SSMC(INDEX,NUM)
           IF(CSS.GT.0 .OR. ICBUND(JJ,II,KK,INDEX).LT.0)
      &     WRITE(IOUT,70) NUM,KK,II,JJ,CSS,TYPESS(IQ),INDEX
         ENDDO
-
+C
       ENDDO
    30 FORMAT(/1X,'ERROR: MAXIMUM NUMBER OF POINT SINKS/SOURCES',
      & ' EXCEEDED'/1X,'INCREASE [MXSS] IN SSM INPUT FILE')
@@ -271,7 +282,7 @@ C ******************************************************************
 C THIS SUBROUTINE CALCULATES THE CHANGE IN CELL CONCENTRATIONS
 C DUE TO FLUID SOURCE AND SINK MIXING.
 C ******************************************************************
-C last modified: 11-15-99
+C last modified: 08-15-00
 C
       IMPLICIT  NONE
       INTEGER   NCOL,NROW,NLAY,NCOMP,ICOMP,ICBUND,IRCH,IEVT,
@@ -378,6 +389,7 @@ C--ACCUMULATE MASS IN OR OUT THROUGH THE SOURCE OR SINK
       ENDDO
 C
 C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
+C--[RESET QSS FOR MASS-LOADING SOURCES (IQ=15)]
   200 DO NUM=1,NTSS
         K=SS(1,NUM)
         I=SS(2,NUM)
@@ -385,6 +397,7 @@ C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
         CTMP=SS(4,NUM)
         QSS=SS(5,NUM)
         IQ=SS(6,NUM)
+        IF(IQ.EQ.15) QSS=1./(DELR(J)*DELC(I)*DH(J,I,K))
         IF(ICBUND(J,I,K,ICOMP).GT.0.AND.IQ.GT.0) THEN
           IF(QSS.LT.0) THEN
             CTMP=CNEW(J,I,K,ICOMP)
@@ -424,7 +437,7 @@ C ******************************************************************
 C THIS SUBROUTINE CALCULATES THE CHANGE IN CELL CONCENTRATIONS
 C DUE TO FLUID SOURCE/SINK MIXING WITH THE FINITE DIFFERENCE SCHEME.
 C ******************************************************************
-C last modified: 11-15-99
+C last modified: 08-15-00
 C
       IMPLICIT  NONE
       INTEGER   NCOL,NROW,NLAY,ICBUND,IRCH,IEVT,MXSS,NTSS,NSS,
@@ -508,6 +521,7 @@ C
       ENDDO
 C
 C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
+C--[RESET QSS FOR MASS-LOADING SOURCES (IQ=15)]
   200 DO NUM=1,NTSS
         K=SS(1,NUM)
         I=SS(2,NUM)
@@ -515,6 +529,7 @@ C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
         CTMP=SS(4,NUM)
         QSS=SS(5,NUM)
         IQ=SS(6,NUM)
+        IF(IQ.EQ.15) QSS=1./(DELR(J)*DELC(I)*DH(J,I,K))
         IF(ICBUND(J,I,K).GT.0.AND.IQ.GT.0) THEN
           IF(QSS.LT.0) CTMP=COLD(J,I,K)
           DCSSM=QSS/(RETA(J,I,K)*PRSITY(J,I,K))*CTMP*DTRANS
@@ -541,7 +556,7 @@ C ******************************************************************
 C THIS SUBROUTINE FORMULATES MATRIX COEFFICIENTS FOR THE SINK/
 C SOURCE TERMS IF THE IMPLICIT SCHEME IS USED.
 C ******************************************************************
-C last modified: 06-23-98
+C last modified: 08-15-00
 C
       IMPLICIT  NONE
       INTEGER   NCOL,NROW,NLAY,NCOMP,ICOMP,ICBUND,IRCH,IEVT,MXSS,
@@ -609,6 +624,7 @@ C
       ENDDO
 C
 C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
+C--[RESET QSS FOR MASS-LOADING SOURCES (IQ=15)]
    20 DO NUM=1,NTSS
         K=SS(1,NUM)
         I=SS(2,NUM)
@@ -617,6 +633,7 @@ C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
         IF(NCOMP.GT.1) CTMP=SSMC(ICOMP,NUM)
         QSS=SS(5,NUM)
         IQ=SS(6,NUM)
+        IF(IQ.EQ.15) QSS=1./(DELR(J)*DELC(I)*DH(J,I,K))
         IF(ICBUND(J,I,K,ICOMP).GT.0.AND.IQ.GT.0) THEN
           N=(K-1)*NCOL*NROW+(I-1)*NCOL+J
           IF(QSS.LT.0) THEN
@@ -663,6 +680,7 @@ C
       ENDDO
 C
 C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
+C--[RESET QSS FOR MASS-LOADING SOURCES (IQ=15)]
    40 DO NUM=1,NTSS
         K=SS(1,NUM)
         I=SS(2,NUM)
@@ -671,6 +689,7 @@ C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
         IF(NCOMP.GT.1) CTMP=SSMC(ICOMP,NUM)
         QSS=SS(5,NUM)
         IQ=SS(6,NUM)
+        IF(IQ.EQ.15) QSS=1./(DELR(J)*DELC(I)*DH(J,I,K))
         IF(ICBUND(J,I,K,ICOMP).GT.0.AND.IQ.GT.0.AND.QSS.GT.0) THEN
           N=(K-1)*NCOL*NROW+(I-1)*NCOL+J
           IF(UPDLHS) A(N)=A(N)-QSS*DELR(J)*DELC(I)*DH(J,I,K)
@@ -693,7 +712,7 @@ C ********************************************************************
 C THIS SUBROUTINE CALCULATES MASS BUDGETS ASSOCIATED WITH ALL SINK/
 C SOURCE TERMS.
 C ********************************************************************
-C last modified: 11-15-99
+C last modified: 08-15-00
 C
       IMPLICIT  NONE
       INTEGER   NCOL,NROW,NLAY,NCOMP,ICOMP,ICBUND,IRCH,IEVT,MXSS,
@@ -779,6 +798,7 @@ C
       ENDDO
 C
 C--POINT SINK/SOURCE TERMS (CONST-HEAD, WELL, DRAIN, RIVER & G-H-B)
+C--[RESET QSS FOR MASS-LOADING SOURCES (IQ=15)]
   200 DO NUM=1,NTSS
 C
         K=SS(1,NUM)
@@ -786,6 +806,7 @@ C
         J=SS(3,NUM)
         QSS=SS(5,NUM)
         IQ=SS(6,NUM)
+        IF(IQ.EQ.15) QSS=1./(DELR(J)*DELC(I)*DH(J,I,K))
         CTMP=SS(4,NUM)
         IF(NCOMP.GT.1) CTMP=SSMC(ICOMP,NUM)
         IF(QSS.LT.0) CTMP=CNEW(J,I,K,ICOMP)

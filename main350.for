@@ -5,7 +5,7 @@ C                               MT3DMS                                 %
 C      a modular three-dimensional multi-species transport model       %
 C    for simulation of advection, dispersion and chemical reactions    %
 C                of contaminants in groundwater systems                %
-C                        (Release DoD_3.50.A)                          %
+C                        (Release DoD_3.50.B)                          %
 C                                                                      %
 C                  For Technical Information Contact                   %
 C                           Chunmiao Zheng                             %
@@ -25,7 +25,7 @@ C with the iterative solver routine by Tsun-Zee Mai.
 C Funding for MT3DMS development is provided, in part, by
 C U.S. Army Corps of Engineers Waterways Experiment Station.
 C
-C Copyright, 1998-99, The University of Alabama. All rights reserved.
+C Copyright, 1998-2000, The University of Alabama. All rights reserved.
 C
 C This program is provided without any warranty.
 C No author or distributor accepts any responsibility
@@ -39,6 +39,7 @@ C=======================================================================
 C last modified: 06-23-98 (3.00.A)
 C                05-10-99 (3.00.B)
 C                11-15-99 (3.50.A)
+C                08-15-00 (3.50.B)
 C
 C--SET MAXIMUM ARRAY DIMENSIONS AND FORTRAN UNIT NUMBERS FOR I/O FILES.
 C--LENX AND LENIX: MAXIMUM DIMENSION OF STORAGE ARRAYS X AND IX;
@@ -100,7 +101,7 @@ C
 C--WRITE AN IDENTIFIER TO SCREEN
       WRITE(*,101)
   101 FORMAT('+','MT3DMS - Modular 3D Multi-Species Transport Model',
-     & ' [Release DoD_3.50.A]',
+     & ' [Release DoD_3.50.B]',
      & /1x,'Developed at University of Alabama',
      & ' for the U.S. Department of Defense.'/)
 C

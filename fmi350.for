@@ -113,14 +113,14 @@ C INTERFACES, AND FLOW RATE TO OR FROM TRANSIENT STORAGE
 C FROM AN UNFORMATTED FILE SAVED BY THE FLOW MODEL, AND PREPARES THEM
 C IN THE FORMS NEEDED BY THE TRANSPORT MODEL.
 C **********************************************************************
-C last modified: 06-23-98
+C last modified: 08-15-00
 C
       IMPLICIT  NONE
       INTEGER   INUF,IOUT,NCOL,NROW,NLAY,LAYCON,ICBUND,J,I,K,KPER,KSTP,
      &          JTRACK,ITRACK,KTRACK,IVER,ISS,NCOMP,INDEX
       REAL      DH,PRSITY,DELR,DELC,DZ,XBC,YBC,ZBC,HORIGN,QX,QY,QZ,WW,
      &          WTBL,THKSAT,DTRACK,TK,CNEW,COLD,RETA,CTMP,CREWET,QSTO,
-     &          THKMIN,DTRACK2
+     &          THKMIN,THKMIN0,DTRACK2
       CHARACTER FPRT*1,TEXT*16
       DIMENSION LAYCON(NLAY),ICBUND(NCOL,NROW,NLAY,NCOMP),
      &          DH(NCOL,NROW,NLAY),
@@ -192,9 +192,9 @@ C
                 IF(LAYCON(K).EQ.0 .OR. INT(DH(J,I,K)).EQ.-111) THEN
                   DH(J,I,K)=DZ(J,I,K)
                 ENDIF
-                IF(THKMIN.LE.0.) THKMIN=0.01*DZ(J,I,K)
-                IF(DH(J,I,K).LE.THKMIN) THEN
-                  WRITE(IOUT,105) K,I,J
+                THKMIN0=THKMIN*DZ(J,I,K)
+                IF(DH(J,I,K).LT.THKMIN0) THEN
+                  WRITE(IOUT,105) DH(J,I,K),K,I,J,THKMIN0
                   ICBUND(J,I,K,1)=0
                 ENDIF
               ENDIF
@@ -223,10 +223,10 @@ C
                 ELSE
                   DH(J,I,K)=THKSAT
                 ENDIF
-                IF(THKMIN.LE.0.) THKMIN=0.01*DZ(J,I,K)
-                IF(DH(J,I,K).LE.THKMIN) THEN
-                  WRITE(IOUT,105) K,I,J
-                  ICBUND(J,I,K,1)=0
+                THKMIN0=THKMIN*DZ(J,I,K)
+                IF(DH(J,I,K).LT.THKMIN0) THEN
+                  WRITE(IOUT,105) DH(J,I,K),K,I,J,THKMIN0
+                  ICBUND(J,I,K,1)=0    
                 ENDIF
               ENDIF
 C
@@ -236,9 +236,8 @@ C
 C
       ENDIF
 C
-  105 FORMAT(1X,'SATURATED THICKNESS LESS THAN MINIMUM ',
-     & 'AT LAYER=',I3,' ROW=',I5,' COLUMN=',I5,
-     & /1X,' CONCENTRATION NOT CALCULATED AT THIS LOCATION.')
+  105 FORMAT(/1X,'SATURATED THICKNESS =',G13.5,'AT CELL (K,I,J):',3I5,
+     & /1X,'BELOW SPECIFIED MINIMUM =',G13.5,'CELL RESET AS INACTIVE')
   355 FORMAT(/1X,'ERROR: SATURATED THICKNESS CALCULATED TO BE ZERO',
      &  ' OR NEGATIVE FOR ACTIVE CELL'/1X,'       AT LAYER=',I2,
      &  '  ROW=',I4,'  COLUMN=',I4,

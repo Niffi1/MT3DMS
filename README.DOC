@@ -3,6 +3,7 @@ MT3DMS README FILE
 Release [DoD_3.00.A]: June 1998
 Release [DoD_3.00.B]: May 1999
 Release [DoD_3.50.A]: November 1999
+Release [DoD_3.50.B]: August 2000
 --------------------------------------------------------
 
 --------
@@ -21,15 +22,14 @@ GENERAL INFORMATION
 MT3DMS is a new version of MT3D developed at the University of Alabama
 for the US Army Corps of Engineers Waterways Experiment Station.
 Detailed information on MT3DMS can be found in MT3DMS Documentation
-and User's Guide (Zheng and Wang, 1998), available at
+and User's Guide (Zheng and Wang, 1998, Revised 1999), available at
 http://hydro.geo.ua.edu.  To report any program errors, please contact,
 
 Chunmiao Zheng
-Hydrogeology Group
 Department of Geological Sciences
-University of Alabama
+The University of Alabama
 202 Bevill Research Building
-Tuscaloosa, Alabama 35487
+Tuscaloosa, AL 35487, USA
 Phone: (205) 348-0579
 E-mail: czheng@ua.edu
 http://hydro.geo.ua.edu
