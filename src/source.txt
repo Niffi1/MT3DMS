@@ -1,0 +1,9 @@
+
+Subdirectory \standard contains the source code for MT3DMS 4.5 using 
+standard FORTRAN file specifiers for unformatted files.
+
+Subdirectory \true-binary contains the source code for MT3DMS 4.5 using 
+nonstandard FORTRAN file specifiers for unstructured binary files.
+
+The only difference between the two versions is in the include file
+'filespec.inc'.

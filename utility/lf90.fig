@@ -1,0 +1,9 @@
+# LF90.FIG: user default options for Lahey Fortran 90.
+#
+# debug
+# -tp -chk -g -trace -pca -sav -stchk -co -wo -w -fullwarn -f90 -bind
+####  -lst (l=57, i=y)
+
+# production
+  -tp -nap -ndal -nchk -ntrace -inln -pca -sav -nstchk -o1 -nw -nwo -nomap
+  -bind
