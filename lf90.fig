@@ -1,0 +1,5 @@
+# LF90.FIG: user default options for Lahey Fortran 90.
+#
+# production
+  -tp -nap -ndal -nchk -ntrace -inln -pca -sav -nstchk -o1 -nw -nwo
+  -bind

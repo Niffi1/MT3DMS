@@ -1,4 +1,180 @@
 C
+      SUBROUTINE NAMEFILE(INUNIT,TRNOP,IOUT,INBTN,
+     &                INADV,INDSP,INSSM,INRCT,INGCG,INUHF)
+C ******************************************************************
+C OPEN FILES, USING THE METHOD OF MODFLOW-96 & 2000.
+c NOTE: THE STYLE OF UNFORMATTED FILES IS SPECIFIED IN THE
+C INCLUDE FILE 'FILESPEC.INC'
+C ******************************************************************
+C Last modified: 05-25-2001
+c
+      LOGICAL TRNOP(10),LOP
+      INTEGER INUNIT,IOUT,INBTN,INADV,INDSP,INSSM,INRCT,INGCG,INUHF,
+     &        ILIST,IFTL,IFLEN,IFTLFMT
+      CHARACTER*200 LINE,FNAME
+      CHARACTER*20  FMTARG,ACCARG,FILACT
+      CHARACTER*7   FILSTAT
+      COMMON   /FTL/IFTLFMT
+C
+      INCLUDE 'FILESPEC.INC'
+C
+C--INITIALIZE.
+      ILIST=0
+      IFTL=0
+      DO I=1,10
+        TRNOP(I)=.FALSE.
+      ENDDO
+C
+C--READ A LINE; IGNORE BLANK LINES AND PRINT COMMENT LINES.
+   10 READ(INUNIT,'(A)',END=1000) LINE
+      IF(LINE.EQ.' ') GOTO 10
+      IF(LINE(1:1).EQ.'#') THEN
+        IF(ILIST.NE.0) WRITE(IOUT,'(A)') LINE
+        GOTO 10
+      ENDIF
+C
+C--DECODE THE FILE TYPE AND UNIT NUMBER.
+      LLOC=1
+      CALL URWORD(LINE,LLOC,ITYP1,ITYP2,1,N,R,IOUT,INUNIT)
+      CALL URWORD(LINE,LLOC,ISTART,ISTOP,2,IU,R,IOUT,INUNIT)
+C
+C--DECODE THE FILE NAME.
+      CALL URWORD(LINE,LLOC,INAM1,INAM2,0,N,R,IOUT,INUNIT)
+      IFLEN=INAM2-INAM1+1
+      FNAME(1:IFLEN)=LINE(INAM1:INAM2)
+C
+C--CHECK FOR A VALID FILE TYPE.
+      FMTARG='FORMATTED'
+      ACCARG='SEQUENTIAL'
+      FILSTAT='UNKNOWN'
+      FILACT=ACTION(2)
+C
+C--FIRST ENTRY MUST BE FILE-TYPE "LIST".
+      IF(ILIST.EQ.0) THEN
+        IF(LINE(ITYP1:ITYP2).NE.'LIST') THEN
+          WRITE(*,11)
+   11     FORMAT(1X,'FIRST ENTRY IN NAME FILE MUST BE "LIST".')
+          STOP
+        ENDIF
+C
+C--IGNORE UNIT NUMBER FROM INPUT AND ASSIGN PRE-DEFINED VALUE
+        IU=IOUT
+C
+C--CHECK FOR "BTN" FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'BTN') THEN
+        IU=INBTN
+        FILSTAT='OLD    '
+        FILACT=ACTION(1)
+C
+C--CHECK FOR "ADV" FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'ADV') THEN
+        TRNOP(1)=.TRUE.
+        IU=INADV
+        FILSTAT='OLD    '
+        FILACT=ACTION(1)
+C
+C--CHECK FOR "DSP" FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'DSP') THEN
+        TRNOP(2)=.TRUE.
+        IU=INDSP
+        FILSTAT='OLD    '
+        FILACT=ACTION(1)
+C
+C--CHECK FOR "SSM" FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'SSM') THEN
+        TRNOP(3)=.TRUE.
+        IU=INSSM
+        FILSTAT='OLD    '
+        FILACT=ACTION(1)
+C
+C--CHECK FOR "RCT" FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'RCT') THEN
+        TRNOP(4)=.TRUE.
+        IU=INRCT
+        FILSTAT='OLD    '
+        FILACT=ACTION(1)
+C
+C--CHECK FOR "GCG" FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'GCG') THEN
+        TRNOP(5)=.TRUE.
+        IU=INGCG
+        FILSTAT='OLD    '
+        FILACT=ACTION(1)
+C
+C--CHECK FOR "FTL" FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'FTL') THEN
+C
+C--DECODE THE OPTIONAL FORMAT KEYWORD
+        CALL URWORD(LINE,LLOC,ISTART,ISTOP,1,N,R,IOUT,INUNIT)
+C
+        IFTL=1
+        IU=INUHF
+        IFTLFMT=0
+        FILSTAT='OLD    '
+        FILACT=ACTION(1)
+        FMTARG=FORM
+        ACCARG=ACCESS
+        IF(LINE(ISTART:ISTOP).EQ.'FREE') THEN
+          IFTLFMT=1
+          FMTARG='FORMATTED'
+          ACCARG='SEQUENTIAL'
+        ENDIF
+C               
+C--CHECK FOR "UNFORMATTED" FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'DATA(BINARY)') THEN
+        FMTARG=FORM
+        ACCARG=ACCESS
+C
+C--CHECK FOR "FORMATTED FILE TYPE.
+      ELSEIF(LINE(ITYP1:ITYP2).EQ.'DATA') THEN
+        FMTARG='FORMATTED'
+        ACCARG='SEQUENTIAL'
+C
+C--STOP IF INVALID FILE TYPE
+      ELSE
+        WRITE(IOUT,21) LINE(ITYP1:ITYP2)
+   21   FORMAT(1X,'INVALID FILE TYPE IN NAME FILE: ',A)
+        STOP
+      ENDIF
+
+C--WRITE THE FILE NAME IF THE FILE IS NOT THE
+C--LISTING FILE.  THEN OPEN THE FILE.
+      INQUIRE(UNIT=IU,OPENED=LOP)
+      IF(LOP) CLOSE(UNIT=IU)
+      IF(ILIST.NE.0) WRITE(IOUT,36) LINE(INAM1:INAM2),
+     &     LINE(ITYP1:ITYP2),IU
+   36 FORMAT(1X,/1X,'OPENING ',A,/
+     &     1X,'FILE TYPE:',A,'   UNIT',I4)
+      OPEN(UNIT=IU,FILE=FNAME(1:IFLEN),STATUS=FILSTAT,
+     &     FORM=FMTARG,ACCESS=ACCARG,ACTION=FILACT)
+C
+C--IF THE OPENED FILE IS THE LISTING FILE, WRITE ITS NAME.
+C--GO BACK AND READ NEXT RECORD.
+      IF(ILIST.EQ.0) WRITE(IOUT,37) LINE(INAM1:INAM2),IU
+   37 FORMAT(1X,'LISTING FILE: ',A,/25X,'UNIT',I4)
+      ILIST=1
+      GOTO 10
+C
+C--END OF NAME FILE.  RETURN PROVIDED THAT LISTING FILE,
+C--FTL and BTN FILES HAVE BEEN OPENED.
+ 1000 IF(ILIST.EQ.0) THEN
+        WRITE(*,1001)
+        STOP
+      ELSEIF(IFTL.EQ.0) THEN
+        WRITE(IOUT,1002)
+        STOP
+      ELSEIF(inBtn.EQ.0) THEN
+        WRITE(IOUT,1003)
+        STOP
+      ENDIF
+ 1001 format(1x,'NAME FILE IS EMPTY.')
+ 1002 format(1x,'FLow-Transport Link FILE HAS NOT BEEN OPENED.')
+ 1003 format(1x,'BTN PACKAGE FILE HAS NOT BEEN OPENED.')
+c
+      RETURN
+      END
+C
+C
       SUBROUTINE OPENFL(IN,ISTAT,FLNAME,IDFL,FINDEX)
 C ******************************************************************
 C THIS SUBROUTINE OPENS AN INPUT/OUTPUT FILE ASSOCIATED WITH
@@ -8,28 +184,39 @@ C FILE STATUS IS 'OLD' IF [ISTAT]>0; 'NEW' IF <0; 'UNKNOWN' IF =0.
 C IF [IDFL]>0, FILE WILL BE GIVEN THE DEFAULT NAME [FLNAME],
 C OTHERWISE, THE SUBROUTINE WILL PROPMT FOR THE FILE NAME.
 C THE CONTENT OF THE PROMPT IS IN [FINDEX].
+c NOTE: THE STYLE OF UNFORMATTED FILES IS SPECIFIED IN THE
+C INCLUDE FILE 'FILESPEC.INC'
 C ******************************************************************
-C last modified: 05-27-96
+C last modified: 08-12-2001
 C
       IMPLICIT  NONE
       INTEGER   IN,ISTAT,I,IDFL
-      CHARACTER FINDEX*30,FLNAME*50,FLFORM*15,FLSTAT*15
+      LOGICAL   LOP
+      CHARACTER FINDEX*30,FLNAME*50,FLFORM*15,FLSTAT*15,FILACT*20,
+     &          ACCARG*20
+C
+      INCLUDE  'FILESPEC.INC'
 C
 C--DETERMINE FILE FORM AND STATUS
       IF(IN.GT.0) THEN
         FLFORM='FORMATTED'
+        ACCARG='SEQUENTIAL'
       ELSEIF(IN.LT.0) THEN
-        FLFORM='UNFORMATTED'
+        FLFORM=FORM
+        ACCARG=ACCESS
       ELSE
         WRITE(*,100)
         STOP
       ENDIF
       IF(ISTAT.GT.0) THEN
         FLSTAT='OLD'
+        FILACT=ACTION(1)
       ELSEIF(ISTAT.LT.0) THEN
         FLSTAT='NEW'
+        FILACT=ACTION(2)
       ELSEIF(ISTAT.EQ.0) THEN
         FLSTAT='UNKNOWN'
+        FILACT=ACTION(2)
       ENDIF
   100 FORMAT(/1X,'ERROR: FILE CANNOT BE OPENED ON UNIT 0.')
 C
@@ -53,9 +240,12 @@ C
   103 FORMAT(1X,'Enter Name for ',A30)
 C
 C--OPEN FILE
-  200 I=INDEX(FLNAME,' ')-1
-      OPEN(ABS(IN),FILE=FLNAME(1:I),ERR=20,
-     &  FORM=FLFORM,STATUS=FLSTAT)
+  200 INQUIRE(UNIT=ABS(IN),OPENED=LOP)
+      IF(.NOT.LOP) THEN
+        I=INDEX(FLNAME,' ')-1
+        OPEN(ABS(IN),FILE=FLNAME(1:I),ERR=20,
+     &   FORM=FLFORM,STATUS=FLSTAT,ACCESS=ACCARG,ACTION=FILACT)
+      ENDIF
       GOTO 30
    20 IF(IDFL.GT.0) THEN
         WRITE(*,2) FLNAME
@@ -80,7 +270,7 @@ C THIS SUBROUTINE IS USED TO INPUT 1 OR 2D INTEGER ARRAYS
 C BY BLOCK, ZONAL, LIST-DIRECTED, UNFORMATTED,
 C OR ANY USER-SPECIFIED FORMAT.
 C ************************************************************
-C last modified: 05-27-96
+C last modified: 05-27-1996
 C
       IMPLICIT  NONE
       INTEGER   NZMAX
@@ -263,7 +453,7 @@ C THIS SUBROUTINE IS USED TO INPUT 1 OR 2D REAL ARRAYS,
 C BY BLOCK, ZONAL, LIST-DIRECTED, UNFORMATTED,
 C OR ANY USER-SPECIFIED FORMAT.
 C ********************************************************
-C last modified: 05-27-96
+C last modified: 05-27-1996
 C
       IMPLICIT  NONE
       INTEGER   NZMAX
@@ -447,7 +637,7 @@ C ************************************************************
 C PRINT AN INTEGER 1 OR 2D ARRAY IN WRAP OR STRIP FORM.
 C [MODIFIED FROM MCDONALD AND HARBAUGH (1988)].
 C ************************************************************
-C last modified: 05-27-96
+C last modified: 05-27-1996
 C
       IMPLICIT  NONE
       INTEGER   IA,KTRN,KSTP,KPER,NCOL,NROW,ILAY,IPRN,IOUT,
@@ -575,7 +765,7 @@ C ****************************************************************
 C PRINT A REAL 1 OR 2D ARRAY IN WRAP OR STRIP FORM.
 C [MODIFIED FROM MCDONALD AND HARBAUGH (1988)].
 C ****************************************************************
-C last modified: 05-27-96
+C last modified: 05-27-1996
 C
       IMPLICIT  NONE
       INTEGER   KTRN,KSTP,KPER,NCOL,NROW,ILAY,IPRN,IOUT,IP,J,I,
@@ -742,7 +932,7 @@ C ****************************************************************
 C OUTPUT COLUMN NUMBERS ABOVE A MATRIX PRINTOUT.
 C [MODIFIED FROM MCDONALD AND HARBAUGH (1988)].
 C ****************************************************************
-C last modified: 05-27-96
+C last modified: 05-27-1996
 C
       IMPLICIT  NONE
       INTEGER   NLBL1,NLBL2,NSPACE,NCPL,NDIG,IOUT,N,
@@ -819,4 +1009,149 @@ C--PRINT A LINE OF DOTS (FOR ESTHETIC PURPOSES ONLY).
 C
 C--RETURN
       RETURN
+      END
+C
+C
+      SUBROUTINE URWORD(LINE,ICOL,ISTART,ISTOP,NCODE,N,R,IOUT,IN)
+C ******************************************************************
+C ROUTINE TO EXTRACT A WORD FROM A LINE OF TEXT, AND OPTIONALLY
+C CONVERT THE WORD TO A NUMBER.
+C    ISTART AND ISTOP WILL BE RETURNED WITH THE STARTING AND
+C      ENDING CHARACTER POSITIONS OF THE WORD.
+C    THE LAST CHARACTER IN THE LINE IS SET TO BLANK SO THAT IF ANY
+C      PROBLEMS OCCUR WITH FINDING A WORD, ISTART AND ISTOP WILL
+C      POINT TO THIS BLANK CHARACTER.  THUS, A WORD WILL ALWAYS BE
+C      RETURNED UNLESS THERE IS A NUMERIC CONVERSION ERROR.  BE SURE
+C      THAT THE LAST CHARACTER IN LINE IS NOT AN IMPORTANT CHARACTER
+C      BECAUSE IT WILL ALWAYS BE SET TO BLANK.
+C    A WORD STARTS WITH THE FIRST CHARACTER THAT IS NOT A SPACE OR
+C      COMMA, AND ENDS WHEN A SUBSEQUENT CHARACTER THAT IS A SPACE
+C      OR COMMA.  NOTE THAT THESE PARSING RULES DO NOT TREAT TWO
+C      COMMAS SEPARATED BY ONE OR MORE SPACES AS A NULL WORD.
+C    FOR A WORD THAT BEGINS WITH "'", THE WORD STARTS WITH THE
+C      CHARACTER AFTER THE QUOTE AND ENDS WITH THE CHARACTER
+C      PRECEDING A SUBSEQUENT QUOTE.  THUS, A QUOTED WORD CAN
+C      INCLUDE SPACES AND COMMAS.  THE QUOTED WORD CANNOT CONTAIN
+C      A QUOTE CHARACTER.
+C    IF NCODE IS 1, THE WORD IS CONVERTED TO UPPER CASE.
+C    IF NCODE IS 2, THE WORD IS CONVERTED TO AN INTEGER.
+C    IF NCODE IS 3, THE WORD IS CONVERTED TO A REAL NUMBER.
+C    NUMBER CONVERSION ERROR IS WRITTEN TO UNIT IOUT IF IOUT IS
+C      POSITIVE; ERROR IS WRITTEN TO DEFAULT OUTPUT IF IOUT IS 0;
+C      NO ERROR MESSAGE IS WRITTEN IF IOUT IS NEGATIVE.
+C ******************************************************************
+C MODIFIED FROM MODFLOW-96 by HARBAUGH and McDONALD.
+C VERSION 1003 05AUG1992 URWORD
+C
+      CHARACTER*(*) LINE
+      CHARACTER*20 RW,STRING
+C
+C1------Set last char in LINE to blank and set ISTART and ISTOP to point
+C1------to this blank as a default situation when no word is found.  If
+C1------starting location in LINE is out of bounds, do not look for a
+C1------word.
+      LINLEN=LEN(LINE)
+      LINE(LINLEN:LINLEN)=' '
+      ISTART=LINLEN
+      ISTOP=LINLEN
+      LINLEN=LINLEN-1
+      IF(ICOL.LT.1 .OR. ICOL.GT.LINLEN) GO TO 100
+C
+C2------Find start of word, which is indicated by first character that
+C2------is not a blank and not a comma.
+      DO 10 I=ICOL,LINLEN
+      IF(LINE(I:I).NE.' ' .AND. LINE(I:I).NE.',') GO TO 20
+10    CONTINUE
+      ICOL=LINLEN+1
+      GO TO 100
+C
+C3------Found start of word.  Look for end.
+C3A-----When word is quoted, only a quote can terminate it.
+20    IF(LINE(I:I).EQ.'''') THEN
+         I=I+1
+         IF(I.LE.LINLEN) THEN
+            DO 25 J=I,LINLEN
+            IF(LINE(J:J).EQ.'''') GO TO 40
+25          CONTINUE
+         END IF
+C
+C3B-----When word is not quoted, space or comma will terminate.
+      ELSE
+         DO 30 J=I,LINLEN
+         IF(LINE(J:J).EQ.' ' .OR. LINE(J:J).EQ.',') GO TO 40
+30       CONTINUE
+      END IF
+C
+C3C-----End of line without finding end of word; set end of word to
+C3C-----end of line.
+      J=LINLEN+1
+C
+C4------Found end of word; set J to point to last character in WORD and
+C-------set ICOL to point to location for scanning for another word.
+40    ICOL=J+1
+      J=J-1
+      IF(J.LT.I) GO TO 100
+      ISTART=I
+      ISTOP=J
+C
+C5------Convert word to upper case and RETURN if NCODE is 1.
+      IF(NCODE.EQ.1) THEN
+         IDIFF=ICHAR('a')-ICHAR('A')
+         DO 50 K=ISTART,ISTOP
+            IF(LINE(K:K).GE.'a' .AND. LINE(K:K).LE.'z')
+     1             LINE(K:K)=CHAR(ICHAR(LINE(K:K))-IDIFF)
+50       CONTINUE
+         RETURN
+      END IF
+C
+C6------Convert word to a number if requested.
+100   IF(NCODE.EQ.2 .OR. NCODE.EQ.3) THEN
+         RW=' '
+         L=20-ISTOP+ISTART
+         IF(L.LT.1) GO TO 200
+         RW(L:20)=LINE(ISTART:ISTOP)
+         IF(NCODE.EQ.2) READ(RW,'(I20)',ERR=200) N
+         IF(NCODE.EQ.3) READ(RW,'(F20.0)',ERR=200) R
+      END IF
+      RETURN
+C
+C7------Number conversion error.
+200   IF(NCODE.EQ.3) THEN
+         STRING= 'A REAL NUMBER'
+         L=13
+      ELSE
+         STRING= 'AN INTEGER'
+         L=10
+      END IF
+C
+C7A-----If output unit is negative, set last character of string to 'E'.
+      IF(IOUT.LT.0) THEN
+         N=0
+         R=0.
+         LINE(LINLEN+1:LINLEN+1)='E'
+         RETURN
+C
+C7B-----If output unit is positive; write a message to output unit.
+      ELSE IF(IOUT.GT.0) THEN
+         IF(IN.GT.0) THEN
+            WRITE(IOUT,201) IN,LINE(ISTART:ISTOP),STRING(1:L),LINE
+         ELSE
+            WRITE(IOUT,202) LINE(ISTART:ISTOP),STRING(1:L),LINE
+         END IF
+201      FORMAT(1X,/1X,'FILE UNIT',I4,' : ERROR CONVERTING "',A,
+     1       '" TO ',A,' IN LINE:',/1X,A)
+202      FORMAT(1X,/1X,'KEYBOARD INPUT : ERROR CONVERTING "',A,
+     1       '" TO ',A,' IN LINE:',/1X,A)
+C
+C7C-----If output unit is 0; write a message to default output.
+      ELSE
+         IF(IN.GT.0) THEN
+            WRITE(*,201) IN,LINE(ISTART:ISTOP),STRING(1:L),LINE
+         ELSE
+            WRITE(*,202) LINE(ISTART:ISTOP),STRING(1:L),LINE
+         END IF
+      END IF
+C
+C7D-----STOP after writing message.
+      STOP
       END

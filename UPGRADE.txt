@@ -1,5 +1,6 @@
 
 MT3DMS UPGRADE INFORMATION
+
 Chunmiao Zheng (czheng@ua.edu)
 Department of Geological Sciences
 University of Alabama
@@ -8,124 +9,182 @@ Tuscaloosa, AL 35487, USA
 
 Version History
 
-DoD_3.00.A: June 1998, initial release
-DoD_3.00.B: May 1999
-DoD_3.50.A: November 1999
-DoD_3.50.B: August 2000
+3.00.A: June 1998, initial release
+3.00.B: May 1999
+3.50.A: November 1999
+3.50.B: August 2000
+4.00:   August 2001
 
 
-Release [DoD_3.00.A] June 1998
+
+Release [3.00.A] June 1998
 
 Initial release.
 
 
-Release [DoD_3.00.B] May 1999
+Release [3.00.B] May 1999
 
 Bug Fixes:
-1.	Fix an 'array out of bound' error in subroutine MIC of the GCG package.  
-This error has no effect if the array bound-checking option of the Fortran 
-compiler is not turned on.
-2.	Fix a problem related to the assignment of initial concentrations for the 
-sorbed/immobile phase in the RCT package.  When the nonequilibrium 
-sorption is simulated, by default the initial concentrations for the 
-sorbed phase are assumed to be in equilibrium with the dissolved phase.  
-When the dual-domain mass transfer is simulated, by default the initial 
-concentrations for the immobile phase are assumed to be zero.  The user 
-has the option to override the default values by specifying their own 
-values in the RCT input file.  However, because of a bug in the previous 
-version, the default values are always used regardless of user input.
-3.	Fix a potential minor problem in determining the transport stepsize 
-required for explicit solution of the dual-domain mass transfer reaction.
+
+1. Fix an 'array out of bound' error in subroutine MIC of the GCG package.
+   This error has no effect if the array bound-checking option of the Fortran
+   compiler is not turned on.
+
+2. Fix a problem related to the assignment of initial concentrations for
+   the sorbed/immobile phase in the RCT package.  When the nonequilibrium
+   sorption is simulated, by default the initial concentrations for the
+   sorbed phase are assumed to be in equilibrium with the dissolved phase.
+   When the dual-domain mass transfer is simulated, by default the initial
+   concentrations for the immobile phase are assumed to be zero.  The user
+   has the option to override the default values by specifying their own
+   values in the RCT input file.  However, because of a bug in the previous
+   version, the default values are always used regardless of user input.
+
+3. Fix a potential minor problem in determining the transport stepsize
+   required for explicit solution of the dual-domain mass transfer reaction.
 
 Enhancements:
-1.	Reorganize the main program slightly to facilitate the addition of 
-multispecies reaction packages into MT3DMS.
+
+1. Reorganize the main program slightly to facilitate the addition of
+   multispecies reaction packages into MT3DMS.
 
 
-Release [DoD_3.50.A] November 1999
+Release [3.50.A] November 1999
 
 Bug Fixes:
-1.	Fix a problem which may lead to inaccurate solutions when first-order 
-irreversible reaction (radioactive decay or biodegradation) is used in 
-conjunction with nonequilibrium sorption or dual-domain mass transfer.
-2.	Fix a potential floating point overflow error in determining the maximum 
-transport stepsize required for explicit solution of the dispersion term.
+
+1. Fix a problem which may lead to inaccurate solutions when first-order
+   irreversible reaction (radioactive decay or biodegradation) is used in
+   conjunction with nonequilibrium sorption or dual-domain mass transfer.
+
+2. Fix a potential floating point overflow error in determining the maximum
+   transport stepsize required for explicit solution of the dispersion term.
 
 Enhancements:
-1.	Add a new option for simulating dual-domain mass transfer in the presence 
-of linear sorption (refer to the User's Manual, revised November 1999).  
-This option is implemented as ISOTHM=6 in the reaction (RCT) package, and 
-replaces the original dual-domain mass transfer option ISOTHM=5.  While 
-ISOTHM=5 is kept in the program for compatibility considerations, ISOTHM=5 
-is equivalent to ISOTHM=6 with the first sorption constant SP1 (Kd) set to 
-zero.
-2.	Add a new option for specifying fluid sources directly through a mass-
-loading rate [QC] (M/T) instead of a concentration [C] (M/L^3) for the 
-source flux (refer to the User's Manual, revised November 1999).  This 
-option allows the user to specify a source for the transport model without 
-first specifying a flow rate [Q] in the flow model.
-3.	Improve the program structure for keeping track of global mass budgets and 
-reporting mass balance information, particularly for transport simulation 
-in dual-domain systems or under transient flow conditions.
-4.	Improve the performance of the Generalized Conjugate-Gradient (GCG) matrix 
-solver.
+
+1. Add a new option for simulating dual-domain mass transfer in the presence
+   of linear sorption (refer to the User's Manual, revised November 1999).
+   This option is implemented as ISOTHM=6 in the reaction (RCT) package, and
+   replaces the original dual-domain mass transfer option ISOTHM=5.  While
+   ISOTHM=5 is kept in the program for compatibility considerations, ISOTHM=5
+   is equivalent to ISOTHM=6 with the first sorption constant SP1 (Kd) set to
+   zero.
+
+2. Add a new option for specifying fluid sources directly through a mass-
+   loading rate [QC] (M/T) instead of a concentration [C] (M/L^3) for the
+   source flux (refer to the User's Manual, revised November 1999).  This
+   option allows the user to specify a source for the transport model without
+   first specifying a flow rate [Q] in the flow model.
+
+3. Improve the program structure for keeping track of global mass budgets and
+   reporting mass balance information, particularly for transport simulation
+   in dual-domain systems or under transient flow conditions.
+
+4. Improve the performance of the Generalized Conjugate-Gradient (GCG) matrix
+   solver.
 
 
-Release [DoD_3.50.B] August 2000
+Release [3.50.B] August 2000
 
 Bug Fixes:
-1.	Fix a problem related to the first-order kinetic reaction.  In Version 
-3.50.A, when the first-order kinetic reaction is simulated (IREACT=1) but 
-no sorption (or dual-domain mass transfer) is included in the simulation 
-(ISOTHM=0), the concentration change due to the reaction is not properly 
-updated if the user chooses the explicit solution scheme, i.e., the GCG 
-solver package is not turned on.  This bug only occurs with Version 
-3.50.A, and has no effect if the user turns on the GCG solver package, or 
-if the sorption or mass transfer is simulated along with the kinetic 
-reaction.
-2.	Fix a potential problem related to the mass-loading point source 
-(ITYPE=15) implemented since Version 3.50.A.  The problem causes more mass 
-to be added than the specified mass loading rate after the first stress 
-period.  This bug only occurs when the flow model is steady state but the 
-transport model has multiple stress periods to accommodate the changes in 
-the mass loading rate.  
+
+1. Fix a problem related to the first-order kinetic reaction.  In Version
+   3.50.A, when the first-order kinetic reaction is simulated (IREACT=1) but
+   no sorption (or dual-domain mass transfer) is included in the simulation
+   (ISOTHM=0), the concentration change due to the reaction is not properly
+   updated if the user chooses the explicit solution scheme, i.e., the GCG
+   solver package is not turned on.  This bug only occurs with Version
+   3.50.A, and has no effect if the user turns on the GCG solver package, or
+   if the sorption or mass transfer is simulated along with the kinetic
+   reaction.
+
+2. Fix a potential problem related to the mass-loading point source
+   (ITYPE=15) implemented since Version 3.50.A.  The problem causes more mass
+   to be added than the specified mass loading rate after the first stress
+   period.  This bug only occurs when the flow model is steady state but the
+   transport model has multiple stress periods to accommodate the changes in
+   the mass loading rate.
 
 Other Modifications:
-1.	Modify the use of the "minimum saturated thickness [THKMIN]" option.  The 
-THKMIN option is used to turn off (made inactive) those cells in the 
-unconfined model layers where the saturated thickness is negligible 
-relative to the total thickness of the cell (DZ).  The purpose for using 
-this option to avoid the situation in which a cell with a negligible 
-saturated thickness severely restricts the transport step size for the 
-entire model.  When the saturated thickness is above the specified minimum 
-in a new flow time step, the cell that has been turned off is re-activated 
-(made active).  In this version, the THKMIN option is not used by default.  
-In other words, if the user does not specify any value for THKMIN, it is 
-equivalent to setting THKMIN=0, i.e., the cell is turned off only if the 
-hydraulic head at the cell is below or equal to the bottom elevation of 
-the cell.  The user can specify any value between 0 and 0.05 for THKMIN, 
-i.e., when the saturated thickness at any cell is below 0 to 5% of the 
-total cell thickness (DZ), the cell would be made inactive.  If the user 
-specifies a value greater than 0.05 (5%), the user-specified value is 
-reset to the default value of 0.01 (1%).
-2.	Modify the method for assigning the non-default concentration of point 
-sources (wells, rivers, etc.) in simulations with multiple stress periods.  
-In previous versions, the concentration of a point source, once specified 
-for a particular stress period, will stay the same for the remaining 
-stress periods.  Therefore, to turn off a user-specified point source in a 
-subsequent stress period, it is necessary to re-define the source in the 
-input file with its concentration set to zero.  In this version, the 
-concentration of any source specified for a stress period is only valid 
-for that stress period alone.  In a simulation with multiple stress 
-periods, the user can either choose the 'REUSE' option to reuse all point 
-source information from a previous stress period, or specify all the point 
-sources for each stress period.  Note that an exception to the above 
-general rule is the handling of time-varying constant-concentration cells.  
-A constant-concentration cell, once defined, will remain a constant-
-concentration cell for the entire duration of the simulation.  The user 
-can assign different concentration values for a constant-concentration 
-cell at different stress periods, but cannot change a constant-
-concentration cell back to a regular active cell.
+
+1. Modify the use of the 'minimum saturated thickness [THKMIN]' option.
+   The THKMIN option is used to turn off (made inactive) those cells in the
+   unconfined model layers where the saturated thickness is negligible
+   relative to the total thickness of the cell (DZ).  The purpose for using
+   this option to avoid the situation in which a cell with a negligible
+   saturated thickness severely restricts the transport step size for the
+   entire model.  When the saturated thickness is above the specified minimum
+   in a new flow time step, the cell that has been turned off is re-activated
+   (made active).  In this version, the THKMIN option is not used by default.
+   In other words, if the user does not specify any value for THKMIN, it is
+   equivalent to setting THKMIN=0, i.e., the cell is turned off only if the
+   hydraulic head at the cell is below or equal to the bottom elevation of
+   the cell.  The user can specify any value between 0 and 0.05 for THKMIN,
+   i.e., when the saturated thickness at any cell is below 0 to 5% of the
+   total cell thickness (DZ), the cell would be made inactive.  If the user
+   specifies a value greater than 0.05 (5%), the user-specified value is
+   reset to the default value of 0.01 (1%).
+
+2. Modify the method for assigning the non-default concentration of point
+   sources (wells, rivers, etc.) in simulations with multiple stress periods.
+   In previous versions, the concentration of a point source, once specified
+   for a particular stress period, will stay the same for the remaining
+   stress periods.  Therefore, to turn off a user-specified point source in a
+   subsequent stress period, it is necessary to re-define the source in the
+   input file with its concentration set to zero.  In this version, the
+   concentration of any source specified for a stress period is only valid
+   for that stress period alone.  In a simulation with multiple stress
+   periods, the user can either choose the ‘REUSE’ option to reuse all point
+   source information from a previous stress period, or specify all the point
+   sources for each stress period.  Note that an exception to the above
+   general rule is the handling of time-varying constant-concentration cells.
+   A constant-concentration cell, once defined, will remain a constant-
+   concentration cell for the entire duration of the simulation.  The user
+   can assign different concentration values for a constant-concentration
+   cell at different stress periods, but cannot change a constant-
+   concentration cell back to a regular active cell.
 
 
-2
+Release [4.00] August 2001
+
+Bug Fixes and Other Modifications:
+
+1. Fix problems related to the third-order TVD solver (subroutine CFACE in
+   the source file of the Advection Package).  In previous versions, the TVD
+   solver may become unstable or result in large negative concentration
+   values, particularly when applied to field-scale problems with irregular
+   model geometries.  In the current version, the performance of the TVD
+   solver is improved by making adjustments near the inactive cells and by
+   implementing a more robust form of the flux limiter.
+
+Enhancements:
+
+1. Support MODFLOW-2000 through a new version of the Link-MT3DMS Package
+   (LMT6).  Information on the LMT6 Package for MODFLOW-2000 is provided in
+   the U.S. Geological Survey Open-File Report 01-82 by Zheng, Hill and Hsieh
+   (2001), available at http://water.usgs.gov/software/ground_water.html.
+
+2. Add support for additional MODFLOW sink/source packages.  The MODFLOW
+   sink/source packages supported by the previous versions of MT3DMS (prior
+   to 4.00) include Well (WEL), Drain (DRN), Recharge (RCH),
+   Evapotranspiration (EVT), River (RIV), General-Head-Dependent Boundary
+   (GHB), and Time-Varying Constant-Head Boundary (CHD).  In addition, the
+   Streamflow-Routing Package (STR) can be supported through the River option
+   if the two are not used in the flow simulation simultaneously.  MT3DMS 4.0
+   supports two new packages, the Reservoir (RES) and Specified Flow and Head
+   Boundary (FHB).  Furthermore, it allows the simultaneous use of the RIV
+   and STR Packages in the flow simulation.  Finally, MT3DMS 4.0 includes new
+   options which make it simple and easy to support more MODFLOW sink/source
+   packages in the future.
+
+3. Add a new method to start a MT3DMS simulation through a name file that is
+   similar to the name file used by MODFLOW-2000.  The name file contains the
+   names of most input and output files used in a model simulation and
+   controls the parts of the model program that are active.  In addition, it
+   is possible to override the default names assigned to several MT3DMS
+   optional output files (e.g., MT3D001.UCN, MT3D001.OBS, and MT3D001.MAS)
+   through the name file.  For more information on the MT3DMS name file, see
+   Zheng, Hill and Hsieh (2001) and the file ‘readme.txt’ included with the
+   MT3DMS 4.0 distribution files.
+
+

@@ -17,7 +17,7 @@ AND
 FILES=*.FOR
 AND
 FILES=*.F
-TARGET=MT3DMS.EXE
+TARGET=MT3DMS4.EXE
 
 #=========================================================================
 #  If you use the LF90 keyword, the following COMPILE= and LINK= commands
