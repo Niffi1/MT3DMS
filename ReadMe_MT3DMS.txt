@@ -1,11 +1,17 @@
-..........................
-README FILE FOR MT3DMS 4.5
-..........................
 
+
+
+
+
+
+..........................
+README FILE FOR MT3DMS 5.0
+..........................
+ 
 Chunmiao Zheng (czheng@ua.edu)
 University of Alabama
-Last revision: 05-28-2003
-
+Last revision: 02-15-2005
+ 
 -----------------
 TABLE OF CONTENTS
 -----------------
@@ -17,23 +23,24 @@ RUNNING THE SOFTWARE
 INTERFACE WITH MODFLOW-96 AND MODFLOW-88
 INTERFACE WITH MODFLOW-2000
 LIST OF FILES
-
-
+ 
+ 
 GENERAL INFORMATION
 -------------------
-
-MT3DMS is a 3-D multispecies contaminant fate and transport model 
-developed at the University of Alabama for the US Army Corps of 
-Engineers Research and Development Center.  Detailed information on 
-MT3DMS can be found in MT3DMS Documentation and User's Guide (Zheng and 
-Wang, 1999), available at http://hydro.geo.ua.edu/mt3d.
-
-Additional information specific to MT3DMS since version 4.0 can be found 
-in U.S. Geological Survey Open-File Report 01-82 by Zheng, Hill and 
-Hsieh (2001), also available at http://hydro.geo.ua.edu/mt3d.
-
-To report any program errors, please contact 
-
+ 
+MT3DMS is a 3-D multispecies contaminant fate and transport model developed at
+the University of Alabama for the US Army Corps of Engineers Research and
+Development Center.  Detailed information on MT3DMS can be found in MT3DMS
+Documentation and User's Guide (Zheng and Wang, 1999) and Version 5
+Supplemental User’s Guide (Zheng, 2005), both available at http://
+hydro.geo.ua.edu/mt3d.
+ 
+Additional information specific to MT3DMS since version 4.0 can be found in
+U.S. Geological Survey Open-File Report 01-82 by Zheng, Hill and Hsieh (2001),
+also available at http://hydro.geo.ua.edu/mt3d.
+ 
+To report any program errors, please contact
+ 
 Chunmiao Zheng
 Department of Geological Sciences
 University of Alabama
@@ -42,271 +49,254 @@ Tuscaloosa, AL 35487, USA
 Phone: (205) 348-0579
 E-mail: czheng@ua.edu
 http://hydro.geo.ua.eduu/mt3d
-
-
-EXECUTABLE PROGRAMS AND SYSTEM REQUIREMENTS 
+ 
+ 
+EXECUTABLE PROGRAMS AND SYSTEM REQUIREMENTS
 -------------------------------------------
-
-Two MT3DMS executables, mt3dms4s.exe and mt3dms4b.exe, are included with 
-the distribution files (the differences between the two are explained in 
-the next section). The executable programs were compiled with Lahey 
-FORTRAN 95 compiler (LF95) Version 5.7 to run on PCs with Pentium or 
-higher CPUs.  MT3DMS allows dynamic memory allocation and will allocate 
-the exact amount of memory that is required for a particular problem at 
-run-time.  If the memory required by the problem exceeds the total 
-amount of physical memory (RAM) that is available, MT3DMS will 
-automatically use hard-drive space as virtual memory.  However, this 
-slows down computations dramatically. Thus, it is best to have 
-sufficient RAM to run any particular model.  MT3DMS runs under any 
-recent version of Microsoft Windows in a command-prompt window.
-
-
+ 
+Two MT3DMS executables, mt3dms5s.exe and mt3dms5b.exe, are included with the
+distribution files (the differences between the two are explained in the next
+section). The executable programs were compiled with Lahey FORTRAN 95 compiler
+(LF95) Version 5.7 to run on PCs with Pentium or higher CPUs.  MT3DMS allows
+dynamic memory allocation and will allocate the exact amount of memory that is
+required for a particular problem at run-time.  If the memory required by the
+problem exceeds the total amount of physical memory (RAM) that is available,
+MT3DMS will automatically use hard-drive space as virtual memory.  However,
+this slows down computations dramatically. Thus, it is best to have sufficient
+RAM to run any particular model.  MT3DMS runs under any recent version of
+Microsoft Windows in a command-prompt window.
+ 
+ 
 NOTES ON THE UNFORMATTED FLOW-TRANSPORT LINK FILE
 -------------------------------------------------
-
-The interface between MODFLOW and MT3DMS is through a flow-transport 
-link file saved by the Link-MT3DMS (LMT) Package added to MODFLOW.  The 
-flow-transport link file is usually saved as unformatted (binary 
-characters).  (An option available in the LMT6 Package for MODFLOW-2000 
-allows the link file to be saved as an ascii text file, but the file 
-size may be so large that the option is generally limited to small 
-models.)  Different FORTRAN compilers or even different versions of the 
-same compiler may use different file structures and styles for the 
-unformatted binary files.  For this reason, the MT3DMS code compiled by 
-a particular compiler may not be able to read the unformatted flow-
-transport link file saved by a MODFLOW code that was compiled with a 
-different compiler, and vice versa.
-
-Two versions of MT3DMS executable are included with the distribution 
-files.  Both versions were compiled using Lahey Fortran 95 compiler 
-(LF95).  The only difference between the two versions is in the style of 
-unformatted files as specified in the source include file �filespec.inc�.
-
-The standard version, mt3dms4s.exe, was compiled with standard Fortran 
-file specifiers for the unformatted files, i.e.,
-
-FORM=�unformatted� and ACCESS=�sequential�
-
-The resulting unformatted files are compatible with those of Visual 
-Fortran from HP/Compaq.  However, they are not compatible with those of 
-earlier Lahey compilers including LF77 and LF90.  Thus, an existing 
-flow-transport link file generated by a MODFLOW code compiled by LF77 
-and LF90 needs to be regenerated for use by mt3dms4s.exe.  A utility 
-program, LF90to95.exe, could also be used to convert the LF77/LF90-
-styled unformatted file to the LF95-styled.  Since MODFLOW-96 and 
-MODFLOW-88 included with the MT3DMS distribution files were also 
-compiled with the same standard file specifiers, the version of MT3DMS 
-executable for use with MODFLOW-96 and MODFLOW-88 should be mt3dms4s.exe.
-
-The other executable, mt3dms4b.exe, was compiled with the following file 
+ 
+The interface between MODFLOW and MT3DMS is through a flow-transport link file
+saved by the Link-MT3DMS (LMT) Package added to MODFLOW.  The flow-transport
+link file is usually saved as unformatted (binary characters).  (An option
+available in the LMT6 Package for MODFLOW-2000 allows the link file to be saved
+as an ascii text file, but the file size may be so large that the option is
+generally limited to small models.)  Different FORTRAN compilers or even
+different versions of the same compiler may use different file structures and
+styles for the unformatted binary files.  For this reason, the MT3DMS code
+compiled by a particular compiler may not be able to read the unformatted flow-
+transport link file saved by a MODFLOW code that was compiled with a different
+compiler, and vice versa.
+ 
+Two versions of MT3DMS executable are included with the distribution files. 
+Both versions were compiled using Lahey Fortran 95 compiler (LF95).  The only
+difference between the two versions is in the style of unformatted files as
+specified in the source include file ‘filespec.inc’.
+ 
+The standard version, mt3dms5s.exe, was compiled with standard Fortran file
+specifiers for the unformatted files, i.e.,
+ 
+FORM=‘unformatted’ and ACCESS=‘sequential’
+ 
+The resulting unformatted files are compatible with those of Visual Fortran
+from HP/Compaq.  However, they are not compatible with those of earlier Lahey
+compilers including LF77 and LF90.  Thus, an existing flow-transport link file
+generated by a MODFLOW code compiled by LF77 and LF90 needs to be regenerated
+for use by mt3dms5s.exe.  A utility program, LF90to95.exe, could also be used
+to convert the LF77/LF90-styled unformatted file to the LF95-styled.  Since
+MODFLOW-96 and MODFLOW-88 included with the MT3DMS distribution files were also
+compiled with the same standard file specifiers, the version of MT3DMS
+executable for use with MODFLOW-96 and MODFLOW-88 should be mt3dms5s.exe.
+ 
+The other executable, mt3dms5b.exe, was compiled with the following file
 specifiers for the unformatted files:
-
-FORM=�binary� and ACCESS=�sequential�
-
-where FORM=�binary� is a non-standard Fortran feature that may or may 
-not be available to a specific compiler. The resulting unformatted files 
-are also referred to as unstructured, true binary files.  An 
-unstructured, true binary file is not compiler specific, thus, it makes 
-it possible for the resulting MT3DMS code to read unformatted files that 
-are generated by non-Lahey compilers, as long as they are also of the 
-unstructured, true binary nature.  The same non-standard file specifier 
-has been used for MODFLOW-2000 since version 1.2.  Thus, the version of 
-MT3DMS executable for use with MODFLOW-2000 should be mt3dms4b.exe.
-
-
+ 
+FORM=‘binary’ and ACCESS=‘sequential’
+ 
+where FORM=‘binary’ is a non-standard Fortran feature that may or may not be
+available to a specific compiler. The resulting unformatted files are also
+referred to as unstructured,_true_binary_files.  An unstructured, true binary
+file is not compiler specific, thus, it makes it possible for the resulting
+MT3DMS code to read unformatted files that are generated by non-Lahey
+compilers, as long as they are also of the unstructured, true binary nature. 
+The same non-standard file specifier has been used for MODFLOW-2000 since
+version 1.2.  Thus, the version of MT3DMS executable for use with MODFLOW-2000
+should be mt3dms5b.exe.
+ 
+ 
 INSTALLATION AND RE-COMPILING
 -----------------------------
-
-The distribution file is a self-extracting program.  Execution of the 
-distribution file creates numerous individual files.  The extraction 
-program allows you to specify the directory in which the files should be 
-restored.  The installation instructions assume that the files are 
-restored into directory C:\MT3DMS4.  The following directory structure 
-will be created in C:\MT3DMS4:
-
+ 
+The distribution file is a self-extracting program.  Execution of the
+distribution file creates numerous individual files.  The extraction program
+allows you to specify the directory in which the files should be restored.  The
+installation instructions assume that the files are restored into directory C:
+\MT3DMS5.  The following directory structure will be created in C:\MT3DMS5:
+ 
 |
-|--MT3DMS4
-|      |--bin       ; compiled executables
-|      |--doc       ; documentation files
-|      |--src       ; source code
-|      |--examples  ; benchmark test problems      
-|      |--utility   ; utility programs
-
-To make the executable programs in �\MT3DMS4\bin� accessible from any 
-directory, the path of the subdirectory �\MT3DMS4\bin� should be 
-included in the PATH environment variable.  For example, you could add a 
-line similar to the following to the AUTOEXEC.BAT file:
-
-  PATH=%PATH%;C:\MT3DMS4\bin
-
-Make sure to substitute the appropriate drive letter and pathname if not 
-C:\ as shown above.  Reboot your system after modifying AUTOEXEC.BAT.
-
-On Windows 2000/NT/XP systems, from the Start menu, find and select 
-Control Panel.  Then edit the PATH Environment Variable to include 
-�C:\MT3DMS4\bin".  Initiate and use a new MS-DOS Command Prompt window 
-after making this change.
-
-To re-compile this version MT3DMS with Lahey LF95, copy all source files 
-to a temporary subdirectory and type 'AM' to start the AUTOMAKE utility.  
-The compiler options that should be used for recompiling are contained 
-in the file Automake.fig. MT3DMS was written in standard ANSI FORTRAN 77 
-plus some elements of FORTRAN 90, and can be compiled by most FORTRAN 77, 
-90 or 95 compilers with little or no modification.
-
-
+|--MT3DMS5
+|      |--bin       ; compiled executables
+|      |--doc       ; documentation files
+|      |--src       ; source code
+|      |--examples  ; benchmark test problems     
+|      |--utility   ; utility programs
+ 
+To make the executable programs in “\MT3DMS5\bin” accessible from any
+directory, the path of the subdirectory “\MT3DMS5\bin” should be included in
+the PATH environment variable.  For example, you could add a line similar to
+the following to the AUTOEXEC.BAT file:
+ 
+  PATH=%PATH%;C:\MT3DMS5\bin
+ 
+Make sure to substitute the appropriate drive letter and pathname if not C:\ as
+shown above.  Reboot your system after modifying AUTOEXEC.BAT.
+ 
+On Windows 2000/NT/XP systems, from the Start menu, find and select Control
+Panel.  Then edit the PATH Environment Variable to include “C:
+\MT3DMS5\bin&quot;.  Initiate and use a new MS-DOS Command Prompt window after
+making this change.
+ 
+To re-compile this version MT3DMS with Lahey LF95, copy all source files to a
+temporary subdirectory and type 'AM' to start the AUTOMAKE utility.  The
+compiler options that should be used for recompiling are contained in the file
+Automake.fig. MT3DMS was written in standard ANSI FORTRAN 77 plus some elements
+of FORTRAN 90, and can be compiled by most FORTRAN 77, 90 or 95 compilers with
+little or no modification.
+ 
+ 
 RUNNING THE SOFTWARE
 --------------------
-
-To run MT3DMS 4.5 using the Name-File method, enter the command
-
-mt3dms4s [name-file]
-
-where the command-line argument [name-file] is the name of the MT3DMS 
-name-file as described in Zheng, Hill and Hsieh (2001).  If no command-
-line argument is given, the user is prompted to enter the name of the 
-name-file.  If the file name ends with the extension ".nam", it can be 
-specified without including the extension.  For example, if the name-
-file is named "project.nam", the simulation can be run by entering:
-
-mt3dms4s project
-
-If the user hits the Enter key when prompted to enter the name of the 
-name-file, MT3DMS will proceed to prompt the user for the various 
-input/output file names, as in all versions prior to 4.0.  It is still 
-possible to put all these file names in a response file and run MT3DMS 
-4.5 by entering
-
-mt3dms4s < response.fil
-
-where response.fil is the name of the response file.  Note that the 
-first line of the response file needs to be left blank.
-
-
+ 
+To run MT3DMS v5 using the Name-File method (which is the only method since
+version 5), enter the command
+ 
+mt3dms5s [name-file]
+ 
+where the command-line argument [name-file] is the name of the MT3DMS name-file
+as described in Zheng (2005) and Zheng, Hill and Hsieh (2001).  If no command-
+line argument is given, the user is prompted to enter the name of the name-
+file.  If the file name ends with the extension &quot;.nam&quot;, it can be
+specified without including the extension.  For example, if the name-file is
+named &quot;project.nam&quot;, the simulation can be run by entering:
+ 
+mt3dms5s project
+ 
+ 
 INTERFACE WITH MODFLOW-96 AND MODFLOW-88
 ----------------------------------------
-
-A version of the standard USGS MODFLOW-96 code implemented with the 
-Link-MT3D Package v5 is included with the MT3DMS distribution files.  
-This version of MODFLOW-96 is named mf96.exe.  To activate the LMT 
-Package to save the flow-transport file needed by MT3DMS, insert a line 
-(shown in capital letters) into the MODFLOW-96 NAME file as in the 
-following example:
-
+ 
+A version of the standard USGS MODFLOW-96 code implemented with the Link-MT3D
+Package v5 is included with the MT3DMS distribution files.  This version of
+MODFLOW-96 is named mf96.exe.  To activate the LMT Package to save the flow-
+transport file needed by MT3DMS, insert a line (shown in capital letters) into
+the MODFLOW-96 NAME file as in the following example:
+ 
 An example of MODFLOW-96 NAME file:
 list 6 test1.lst
-bas  1 test1.bas
+bas  1 test1.bas
 bcf 11 test1.bcf
 sip 13 test1.sip
-oc  14 test1.oc
+oc  14 test1.oc
 LMT 32 TEST1.FTL
 data(binary) 93 test1.ufh
-
-where LMT is the name of the Link-MT3D package, integer 32 is the 
-FORTRAN unit on which the MODFLOW-MT3D link file will be saved, and 
-TEST1.FTL is the name of the MODFLOW-MT3D link file containing the flow 
-model information needed by MT3DMS.  The unit for LMT can be any 
-positive integer as long as it has not been used for any other files.  
-Any valid file name can be specified by the user for the MODFLOW-MT3D 
-link file.  When running MT3DMS, make sure to enter the same file name, 
-e.g., TEST1.FTL in this example.
-
-More information on using MODFLOW-96 with MT3DMS can be found in the 
-document README_MF96LMT.pdf.  The source code for MODFLOW-96 with the 
-Link-MT3D interface can be downloaded from http://hydro.geo.ua.edu/mt3d.
-
-A version of the standard USGS MODFLOW-88 code implemented with the 
-Link-MT3D Package v3 is also included with the MT3DMS distribution files.  
-This version of MODFLOW-88 is named mf88.exe.  For more information on 
-using MODFLOW-88 with MT3DMS, refer to the document README_MF88LMT.pdf.  
-The source code for MODFLOW-88 with the Link-MT3D interface can also be 
-downloaded from http://hydro.geo.ua.edu/mt3d.
-
-
+ 
+where LMT is the name of the Link-MT3D package, integer 32 is the FORTRAN unit
+on which the MODFLOW-MT3D link file will be saved, and TEST1.FTL is the name of
+the MODFLOW-MT3D link file containing the flow model information needed by
+MT3DMS.  The unit for LMT can be any positive integer as long as it has not
+been used for any other files.  Any valid file name can be specified by the
+user for the MODFLOW-MT3D link file.  When running MT3DMS, make sure to enter
+the same file name, e.g., TEST1.FTL in this example.
+ 
+More information on using MODFLOW-96 with MT3DMS can be found in the document
+README_MF96LMT.pdf.  The source code for MODFLOW-96 with the Link-MT3D
+interface can be downloaded from http://hydro.geo.ua.edu/mt3d.
+ 
+A version of the standard USGS MODFLOW-88 code implemented with the Link-MT3D
+Package v3 is also included with the MT3DMS distribution files.  This version
+of MODFLOW-88 is named mf88.exe.  For more information on using MODFLOW-88 with
+MT3DMS, refer to the document README_MF88LMT.pdf.  The source code for MODFLOW-
+88 with the Link-MT3D interface can also be downloaded from http://
+hydro.geo.ua.edu/mt3d.
+ 
+ 
 INTERFACE WITH MODFLOW-2000
 ---------------------------
-
-The linkage between MT3DMS and MODFLOW-2000 is through the Link-MT3DMS 
-(LMT6) Package (LMT6) added to MODFLOW-2000 since version 1.4.  The 
-input file for the LMT6 Package is associated with the file type "LMT6"  
-To activate the LMT6 Package in MODFLOW-2000, the user needs to insert a 
-line as shown below into the Name file of MODFLOW-2000:
-    
+ 
+The linkage between MT3DMS and MODFLOW-2000 is through the Link-MT3DMS (LMT6)
+Package (LMT6) added to MODFLOW-2000 since version 1.4.  The input file for the
+LMT6 Package is associated with the file type &quot;LMT6&quot;  To activate the
+LMT6 Package in MODFLOW-2000, the user needs to insert a line as shown below
+into the Name file of MODFLOW-2000:
+   
 #
 # Link-MT3DMS input file
-lmt6     66     test1.lmt
+lmt6     66     test1.lmt
 #
-
-where "test1.lmt" is the name of the input file for the LMT6 Package 
-which specifies the name of the flow-transport like file and how it 
-should be saved by MODFLOW-2000 for use by MT3DMS.  It is noteworthy 
-that, with MODFLOW-96, the name of the flow-transport link file is 
-directly specified in the NAME file of MODFLOW-96 following the �LMT� 
-keyword, while with MODFLOW-2000, the name of flow-transport link file 
-is specified in an input file to the LMT6 Package.  It is the name of 
-the LMT6 input file that follows the keyword �LMT6�.  The details of the 
-MODFLOW-2000 and MT3DMS linkage and the input instructions for the LMT6 
-Package input file are provided in Zheng, Hill and Hsieh (2001).
-
-
+ 
+where &quot;test1.lmt&quot; is the name of the input_file for the LMT6 Package
+which specifies the name of the flow-transport like file and how it should be
+saved by MODFLOW-2000 for use by MT3DMS.  It is noteworthy that, with MODFLOW-
+96, the name of the flow-transport link file is directly specified in the NAME
+file of MODFLOW-96 following the “LMT” keyword, while with MODFLOW-2000, the
+name of flow-transport link file is specified in an input file to the LMT6
+Package.  It is the name of the LMT6 input file that follows the keyword
+“LMT6”.  The details of the MODFLOW-2000 and MT3DMS linkage and the input
+instructions for the LMT6 Package input file are provided in Zheng, Hill and
+Hsieh (2001).
+ 
+ 
 LIST OF FILES
 -------------
-
-Readme_MT3DMS.txt:	latest readme file (this file)
-Readme_MT3DMS.pdf:	latest readme file in PDF format
-      upgrade.pdf:	bug fixes, enhancements, and version history
-      upgrade.htm:	upgrade.txt in HTML format
-
-
+ 
+Readme_MT3DMS.txt:    latest readme file (this file)
+Readme_MT3DMS.pdf:    latest readme file in PDF format
+      upgrade.pdf:    bug fixes, enhancements, and version history
+      upgrade.htm:    upgrade.txt in HTML format
+ 
+ 
 Subdirectory \bin
-
-mt3dms4s.exe:	MT3DMS executable (for use with standard unformatted 
-flow-transport link files)
-mt3dms4b.exe:	MT3DMS executable (for use with unstructured true-binary 
-flow-transport link files)
-    mf2k.exe:	modflow-2000 executable (v. 1.11)
-    mf96.exe:	modflow-96 executable
-    mf88.exe:	modflow-88 executable
-      pm.exe:	PostMT3DMS utility
-savelast.exe:	SaveLast utility
-LF90to95.exe:	LF90-style to LF95-style unformatted file converter
-LF95to90.exe:	LF95-style to LF90-style unformatted file converter
- Bin2Unf.exe:	True-binary to LF95-style unformatted file converter
- Unf2Bin.exe:	LF95-style to true-binary unformatted file converter
-
+ 
+mt3dms5s.exe:   MT3DMS executable (for use with standard unformatted flow-
+transport link files)
+mt3dms5b.exe:   MT3DMS executable (for use with unstructured true-binary flow-
+transport link files)
+    mf2k.exe:   modflow-2000 executable (v. 1.15)
+    mf96.exe:   modflow-96 executable
+    mf88.exe:   modflow-88 executable
+      pm.exe:   PostMT3DMS utility
+savelast.exe:   SaveLast utility
+LF90to95.exe:   LF90-style to LF95-style unformatted file converter
+LF95to90.exe:   LF95-style to LF90-style unformatted file converter
+ Bin2Unf.exe:   True-binary to LF95-style unformatted file converter
+ Unf2Bin.exe:   LF95-style to true-binary unformatted file converter
+ 
 Subdirectory \doc
-
-   MT3DMS_manual.pdf:	MT3DMS User�s Manual (Zheng and Wang, 1999)
-  OFR01-82(LMT6).pdf:	User�s Guide for Link-MT3DMS (LMT6) Package for 
-MODFLOW-200
-  Readme_MF96LMT.pdf:	Readme file for MODFLOW-96 with Link-MT3D 
-interface 5.0
-  Readme_MF88LMT.pdf:	Readme file for MODFLOW-88 with Link-MT3D 
-interface 3.0
-Readme_Utilities.pdf:	Readme file for MT3DMS utilities
-
+ 
+   MT3DMS_manual.pdf:  MT3DMS User’s Manual (Zheng and Wang, 1999)
+MT3DMS_v5_manual.pdf:  MT3DMS v5 Supplemental User’s Guide (Zheng, 2005)
+  OFR01-82(LMT6).pdf:  User’s Guide for Link-MT3DMS (LMT6) Package for MODFLOW-
+2000
+  Readme_MF96LMT.pdf:  Readme file for MODFLOW-96 with Link-MT3D interface 5.0
+  Readme_MF88LMT.pdf:  Readme file for MODFLOW-88 with Link-MT3D interface 3.0
+Readme_Utilities.pdf:  Readme file for MT3DMS utilities
+ 
 Subdirectory \src
-
- mt3dms4.for:	source file for MT3DMS main program
- mt_btn4.for:	source file for MT3DMS Basic Transport package
- mt_adv4.for:	source file for MT3DMS Advection package
- mt_dsp4.for:	source file for MT3DMS Dispersion package
- mt_ssm4.for:	source file for MT3DMS Sink & Source Mixing package
- mt_rct4.for:	source file for MT3DMS Chemical Reaction package
- mt_gcg4.for:	source file for MT3DMS GCG Solver package
- mt_fmi4.for:	source file for MT3DMS Flow Model Interface package
- mt_utl4.for:	source file for MT3DMS Utility package
-filespec.inc:	�include� file with file specifiers
-automake.fig:	LF95 compiler options
-
+ 
+ mt3dms5.for:   source file for MT3DMS main program
+ mt_btn5.for:   source file for MT3DMS Basic Transport package
+ mt_adv5.for:   source file for MT3DMS Advection package
+ mt_dsp5.for:   source file for MT3DMS Dispersion package
+ mt_ssm5.for:   source file for MT3DMS Sink &amp; Source Mixing package
+ mt_rct5.for:   source file for MT3DMS Chemical Reaction package
+ mt_gcg5.for:   source file for MT3DMS GCG Solver package
+ mt_tob5.for:   source file for MT3DMS Transport Observation package
+ mt_fmi5.for:   source file for MT3DMS Flow Model Interface package
+ mt_utl5.for:   source file for MT3DMS Utility package
+filespec.inc:   ‘include’ file with file specifiers
+automake.fig:   LF95 compiler options
+ 
 Subdirectory \examples
-
-    pxmt.nam:	MT3DMS Name file for benchmark test problem mo. x.
-    pxmf.nam:	MODFLOW Name file for benchmark test problem no. x.
-
+ 
+    pxmt.nam:   MT3DMS Name file for benchmark test problem mo. x.
+    pxmf.nam:   MODFLOW Name file for benchmark test problem no. x.
+ 
 Subdirectory \utility
-
-      pm.for:	source file for PostMT3DMS utility
-savelast.for:	source file for SaveLast utility
-
-1
+ 
+      pm.for:   source file for PostMT3DMS utility
+savelast.for:   source file for SaveLast utility
+ 

@@ -238,12 +238,11 @@
                             INITIAL TIME STEP SIZE =   912.5000    
 
 
-     2 WELLS
+     1 WELLS
 
  LAYER   ROW   COL   STRESS RATE   WELL NO.
  ------------------------------------------
-    1     16    16     43200.          1
-    1     16    16     43200.          2
+    1     16    16     86400.          1
 
     60 ITERATIONS FOR TIME STEP   1 IN STRESS PERIOD  1
 
@@ -439,12 +438,11 @@
                             INITIAL TIME STEP SIZE =   2737.500    
 
 
-     2 WELLS
+     1 WELLS
 
  LAYER   ROW   COL   STRESS RATE   WELL NO.
  ------------------------------------------
-    1     16    16    -43200.          1
-    1     16    16    -43200.          2
+    1     16    16    -86400.          1
 
     60 ITERATIONS FOR TIME STEP   1 IN STRESS PERIOD  2
 

@@ -1,2 +1,5 @@
 *.pdf
 *.exe
+# Files have been converted to .txt using html2text
+examples/examples.htm
+ReadMe_MT3DMS.htm

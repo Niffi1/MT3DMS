@@ -31,7 +31,7 @@ C  FORM specifier --
 C
 C    Standard Fortran, which results in vender dependent (non-portable)
 C    files.  Use unless there is a reason to do otherwise.
-C     DATA FORM/'UNFORMATTED'/
+C     DATA FORM/'UNFORMATTED'/           
 C
 C    Non-standard Fortran that causes code compiled by Compaq Visual
 C    Fortran or Lahey Fortran 95 to use unstructured non-formatted
