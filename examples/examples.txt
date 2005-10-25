@@ -6,7 +6,7 @@
 
 MT3DMS Benchmark Test Problems
 Chunmiao Zheng (czheng@ua.edu)
-2/15/2005
+10/25/2005
  
  
 TABLE OF CONTENTS
@@ -86,7 +86,7 @@ command prompt mode under Microsoft Windows:
 C:\MT3DMS5\Bin\mf2k  p7mf2k.nam
  
 where “mf2k” is the name of the executable code for MODFLOW-2000 version 1.15
-(dated 08/06/2004) with Link-MT3DMS Package 6.2, and [C:\MT3DMS5\Bin] is the
+or later with Link-MT3DMS Package 6.2 or later, and [C:\MT3DMS5\Bin] is the
 subdirectory where MT3DMS and MODFLOW executables are located. If the
 subdirectory name has already been added to the command prompt configuration
 file AUTOEXEC.bat or the Windows PATH environment variable, enter the command

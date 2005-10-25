@@ -202,8 +202,8 @@
                                        DIFFUSION COEFFICIENT    =   0.000000    
 
 
- SORPTION AND 1ST ORDER RATE REACTION PARAMETERS
- -----------------------------------------------
+ SORPTION AND 1ST/0TH ORDER REACTION PARAMETERS
+ ----------------------------------------------
 
                                        BULK DENSITY (RHOB)      =  0.2500000     FOR LAYER  1
                                        1ST SORP. COEF. COMP. 01 =   4.000000     FOR LAYER  1
@@ -436,7 +436,7 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    156.0609                    0.000000    
                                         CONSTANT HEAD:    0.000000                  -0.6935703E-38
-                              DECAY OR BIODEGRADATION:    0.000000                   -118.8381    
+                               1ST/0TH ORDER REACTION:    0.000000                   -118.8381    
                                 MASS STORAGE (SOLUTE):    0.000000                   -7.444536    
                                 MASS STORAGE (SORBED):    0.000000                   -29.77814    
                             ---------------------------------------------------------------------------

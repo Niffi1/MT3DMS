@@ -5,12 +5,12 @@
 
 
 ..........................
-README FILE FOR MT3DMS 5.0
+README FILE FOR MT3DMS 5.1
 ..........................
  
 Chunmiao Zheng (czheng@ua.edu)
 University of Alabama
-Last revision: 02-15-2005
+Last revision: 10-25-2005
  
 -----------------
 TABLE OF CONTENTS
@@ -31,7 +31,7 @@ GENERAL INFORMATION
 MT3DMS is a 3-D multispecies contaminant fate and transport model developed at
 the University of Alabama for the US Army Corps of Engineers Research and
 Development Center.  Detailed information on MT3DMS can be found in MT3DMS
-Documentation and User's Guide (Zheng and Wang, 1999) and Version 5
+Documentation and User's Guide (Zheng and Wang, 1999) and Version 5.x
 Supplemental User’s Guide (Zheng, 2005), both available at http://
 hydro.geo.ua.edu/mt3d.
  
@@ -46,7 +46,6 @@ Department of Geological Sciences
 University of Alabama
 202 Bevill Building
 Tuscaloosa, AL 35487, USA
-Phone: (205) 348-0579
 E-mail: czheng@ua.edu
 http://hydro.geo.ua.eduu/mt3d
  
@@ -191,7 +190,7 @@ bas  1 test1.bas
 bcf 11 test1.bcf
 sip 13 test1.sip
 oc  14 test1.oc
-LMT 32 TEST1.FTL
+LMT32 TEST1.FTL
 data(binary) 93 test1.ufh
  
 where LMT is the name of the Link-MT3D package, integer 32 is the FORTRAN unit
@@ -229,7 +228,7 @@ lmt6     66     test1.lmt
 #
  
 where &quot;test1.lmt&quot; is the name of the input_file for the LMT6 Package
-which specifies the name of the flow-transport like file and how it should be
+which specifies the name of the flow-transport link file and how it should be
 saved by MODFLOW-2000 for use by MT3DMS.  It is noteworthy that, with MODFLOW-
 96, the name of the flow-transport link file is directly specified in the NAME
 file of MODFLOW-96 following the “LMT” keyword, while with MODFLOW-2000, the
@@ -243,10 +242,10 @@ Hsieh (2001).
 LIST OF FILES
 -------------
  
-Readme_MT3DMS.txt:    latest readme file (this file)
 Readme_MT3DMS.pdf:    latest readme file in PDF format
+Readme_MT3DMS.htm:    above file in HTML format
       upgrade.pdf:    bug fixes, enhancements, and version history
-      upgrade.htm:    upgrade.txt in HTML format
+      upgrade.htm:    above file in HTML format
  
  
 Subdirectory \bin
@@ -268,9 +267,10 @@ LF95to90.exe:   LF95-style to LF90-style unformatted file converter
 Subdirectory \doc
  
    MT3DMS_manual.pdf:  MT3DMS User’s Manual (Zheng and Wang, 1999)
-MT3DMS_v5_manual.pdf:  MT3DMS v5 Supplemental User’s Guide (Zheng, 2005)
+MT3DMS_v5_manual.pdf: MT3DMS v5.x Supplemental User’s Guide (Zheng, 2005)
   OFR01-82(LMT6).pdf:  User’s Guide for Link-MT3DMS (LMT6) Package for MODFLOW-
 2000
+   Readme_MT3DMS.pdf:  Readme file for MT3DMS latest version
   Readme_MF96LMT.pdf:  Readme file for MODFLOW-96 with Link-MT3D interface 5.0
   Readme_MF88LMT.pdf:  Readme file for MODFLOW-88 with Link-MT3D interface 3.0
 Readme_Utilities.pdf:  Readme file for MT3DMS utilities
@@ -292,8 +292,9 @@ automake.fig:   LF95 compiler options
  
 Subdirectory \examples
  
-    pxmt.nam:   MT3DMS Name file for benchmark test problem mo. x.
-    pxmf.nam:   MODFLOW Name file for benchmark test problem no. x.
+    xxmt.nam:   MT3DMS Name file for benchmark test problem xx.
+    xxmf.nam:   MODFLOW-96 Name file for benchmark test problem xx.
+  xxmf2k.nam:  MODFLOW-2000 Name file for benchmark test problem xx.
  
 Subdirectory \utility
  

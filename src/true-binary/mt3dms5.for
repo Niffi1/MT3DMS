@@ -42,6 +42,7 @@ C                  08-15-2000 (3.50.B)
 C                  08-12-2001 (4.00)
 C                  05-27-2003 (4.50)
 C                  02-15-2005 (5.00)   
+C                  10-25-2005 (5.10)
 C
 C--SET MAXIMUM ARRAY DIMENSIONS
 C--MXTRNOP: MAXIMUM NUMBER OF TRANSPORT OPTIONS (PACKAGES)
@@ -52,6 +53,7 @@ C--MXCOMP:  MAXIMUM NUMBER OF CHEMICAL COMPONENTS
 C  =====================================================================
 C
       IMPLICIT  NONE
+      CHARACTER,PARAMETER :: VID*14='[Version 5.10]'
       INTEGER,PARAMETER :: MXTRNOP=50,MXCOMP=100,
      &                     MXPRS=1000,MXSTP=1000,MXOBS=200     
       INTEGER   IX,ISUMX,ISUMIX,ISUM,ISUM2,NCOL,NROW,NLAY,NCOMP,MCOMP,
@@ -120,10 +122,9 @@ C--Get CPU time at the start of simulation
       Call CPU_TIME(start_time)
 C
 C--WRITE AN IDENTIFIER TO SCREEN
-      WRITE(*,101)
-  101 FORMAT(1X,'MT3DMS - Modular 3-D Multi-Species Transport Model',
-     & ' [Version 5.00]',
-     & /1X,'Developed at University of Alabama',
+      WRITE(*,101) VID
+  101 FORMAT(1X,'MT3DMS - Modular 3-D Multi-Species Transport Model ',
+     & A14/1X,'Developed at University of Alabama',
      & ' for U.S. Department of Defense'/)
 C
 C--INITIALIZE CHARACTER VARIABLES
@@ -219,8 +220,8 @@ C--ALLOCATE STORAGE SPACE FOR DATA ARRAYS
 C
 C--CHECK WHETHER ARRAYS X AND IX ARE DIMENSIONED LARGE ENOUGH.
 C--IF NOT STOP
-      ISUMX=ISUM                         
-      ISUMIX=ISUM2                       
+      ISUMX=ISUM                                  
+      ISUMIX=ISUM2                        
       WRITE(IOUT,20) ISUMX,ISUMIX
    20 FORMAT(1X,42('.')/1X,'ELEMENTS OF THE  X ARRAY USED =',I10,
      & /1X,'ELEMENTS OF THE IX ARRAY USED =',I10,

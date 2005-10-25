@@ -181,8 +181,8 @@
                                        DIFFUSION COEFFICIENT    =   0.000000    
 
 
- SORPTION AND 1ST ORDER RATE REACTION PARAMETERS
- -----------------------------------------------
+ SORPTION AND 1ST/0TH ORDER REACTION PARAMETERS
+ ----------------------------------------------
 
                                        BULK DENSITY (RHOB)      =   1.587000     FOR LAYER  1
                                        1ST SORP. COEF. COMP. 01 =  0.3000000     FOR LAYER  1
@@ -2337,7 +2337,7 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:   0.2961087                    0.000000    
-                              DECAY OR BIODEGRADATION:    0.000000                    0.000000    
+                               1ST/0TH ORDER REACTION:    0.000000                    0.000000    
                                 MASS STORAGE (SOLUTE):   0.5647251E-36              -0.6318095E-01
                                 MASS STORAGE (SORBED):   0.6587186E-33              -0.2329227    
                             ---------------------------------------------------------------------------
@@ -18971,7 +18971,7 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:   0.2961087                  -0.2391074    
-                              DECAY OR BIODEGRADATION:    0.000000                    0.000000    
+                               1ST/0TH ORDER REACTION:    0.000000                    0.000000    
                                 MASS STORAGE (SOLUTE):   0.1239420                  -0.1294238    
                                 MASS STORAGE (SORBED):   0.4606797                  -0.5120854    
                             ---------------------------------------------------------------------------

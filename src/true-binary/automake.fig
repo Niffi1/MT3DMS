@@ -3,7 +3,6 @@ QUITONERROR
 FILES=*.for
 
 COMPILE=@lf95 -c -trace -trap dio -nchkglobal -o1 -f95 -nsav -stchk -nw %fi
-
 LINK=@lf95 @%rf -exe %ex -WINCONSOLE -WARN -NOMAP
 
 TARGET=mt3dms5b.exe
