@@ -6,7 +6,7 @@ C **********************************************************************
 C THIS SUBROUTINE ALLOCATES SPACE FOR ARRAYS NEEDED BY THE TRANSPORT
 C OBSERVATION (TOB) PACKAGE.
 C **********************************************************************
-C last modified: 02-15-2005
+C last modified: 10-30-2006
 C
       IMPLICIT  NONE
       INTEGER   INTOB,IOUT,ISUM,ISUM2,ISOLD,ISOLD2,ISUMX,ISUMIX,
@@ -19,7 +19,7 @@ C
 C--PRINT PACKAGE NAME AND VERSION NUMBER
       WRITE(IOUT,1030) INTOB
  1030 FORMAT(1X,'TOB5 -- TRANSPORT OBSERVATION PACKAGE,',
-     & ' VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT',I3)
+     & ' VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT',I3)
 C
 C--READ INPUT LINE AS A TEXT STRING
     2 READ(INTOB,'(A)') LINE
@@ -579,7 +579,7 @@ C This subroutine gets calculated mass fluxes at user specified
 C locations and computes residual errors between calculated and
 C observed if necessary
 C **********************************************************************
-C last modified: 02-15-2005
+C last modified: 10-30-2006
 C
       IMPLICIT  NONE
       INTEGER   NCOL,NROW,NLAY,ntrans,inFluxObs,iout,n,iGroup,
@@ -686,9 +686,9 @@ c--if recharge flux
             ctmp=crch(jp,ip,icomp)
             qss=rech(jp,ip)
             if(qss.lt.0) ctmp=cnew(jp,ip,kp,icomp)
-c--get volumetric Q*C and Q            
-            QC=qss*delr(j)*delc(i)*dh(j,i,k)*ctmp
-            Q =qss*delr(j)*delc(i)*dh(j,i,k)
+c--get volumetric Q*C and Q                      
+            QC=qss*delr(jp)*delc(ip)*dh(jp,ip,kp)*ctmp
+            Q =qss*delr(jp)*delc(ip)*dh(jp,ip,kp)
 c--cumulate in GroupData
             GroupData(6,n) = GroupData(6,n) + QC * fraction
             GroupData(7,n) = GroupData(7,n) + Q  * fraction                   
@@ -709,8 +709,8 @@ c--if evapotranspiration flux
               ctmp=0.
             endif  
 c--get volumetric Q*C and Q            
-            QC=qss*delr(j)*delc(i)*dh(j,i,k)*ctmp
-            Q =qss*delr(j)*delc(i)*dh(j,i,k)            
+            QC=qss*delr(jp)*delc(ip)*dh(jp,ip,kp)*ctmp
+            Q =qss*delr(jp)*delc(ip)*dh(jp,ip,kp)            
 c--cumulate in GroupData
             GroupData(6,n) = GroupData(6,n) + QC * fraction
             GroupData(7,n) = GroupData(7,n) + Q  * fraction                   
@@ -951,7 +951,7 @@ C
       INTEGER,PARAMETER :: MAXIT=100
       REAL,PARAMETER :: EPS=3.e-7,FPMIN=1.e-30
       INTEGER m,m2            
-      REAL betacf,a,b,x,EPS,FPMIN,
+      REAL betacf,a,b,x,
      & aa,c,d,del,h,qab,qam,qap
 C     
       qab=a+b

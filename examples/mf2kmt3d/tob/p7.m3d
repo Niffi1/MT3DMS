@@ -59,7 +59,7 @@
   o GCG   ON UNIT  9
   o TOB   ON UNIT 12
 
- BTN5 -- BASIC TRANSPORT PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  1
+ BTN5 -- BASIC TRANSPORT PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  1
       38187 ELEMENTS OF THE  X ARRAY USED BY THE BTN PACKAGE
        2528 ELEMENTS OF THE IX ARRAY USED BY THE BTN PACKAGE
 
@@ -73,11 +73,11 @@
           0 ELEMENTS OF THE  X ARRAY USED BY THE ADV PACKAGE
           0 ELEMENTS OF THE IX ARRAY USED BY THE ADV PACKAGE
 
- DSP5 -- DISPERSION PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  3
-      25224 ELEMENTS OF THE  X ARRAY USED BY THE DSP PACKAGE
+ DSP5 -- DISPERSION PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  3
+      27736 ELEMENTS OF THE  X ARRAY USED BY THE DSP PACKAGE
           0 ELEMENTS OF THE IX ARRAY USED BY THE DSP PACKAGE
 
- SSM5 -- SINK & SOURCE MIXING PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  4
+ SSM5 -- SINK & SOURCE MIXING PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  4
  HEADER LINE OF THE SSM PACKAGE INPUT FILE:
   T F F F F F      FWEL,FDRN,FRCH,FEVT,FRIV,FGHB                                                                                                                                                         
  MAJOR STRESS COMPONENTS PRESENT IN THE FLOW MODEL:
@@ -94,7 +94,7 @@
       55640 ELEMENTS OF THE  X ARRAY USED BY THE GCG PACKAGE
         600 ELEMENTS OF THE IX ARRAY USED BY THE GCG PACKAGE
 
- TOB5 -- TRANSPORT OBSERVATION PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT 12
+ TOB5 -- TRANSPORT OBSERVATION PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT 12
 #                                                                                                                                                                                                       
 # TOB package input file                                                                                                                                                                                
 #                                                                                                                                                                                                       
@@ -105,7 +105,7 @@
         800 ELEMENTS OF THE IX ARRAY USED BY THE TOB PACKAGE
 
  ..........................................
- ELEMENTS OF THE  X ARRAY USED =    138152
+ ELEMENTS OF THE  X ARRAY USED =    140664
  ELEMENTS OF THE IX ARRAY USED =      3929
  ..........................................
 
@@ -285,8 +285,8 @@
  COURANT NUMBER ALLOWED IN SOLVING THE ADVECTION TERM =  1.00    
 
 
- DISPERSION PARAMETERS
- ---------------------
+ DISPERSION INPUT PARAMETERS
+ ---------------------------
 
                                        LONG. DISPERSIVITY (AL)  =   10.00000     FOR LAYER  1
                                        LONG. DISPERSIVITY (AL)  =   10.00000     FOR LAYER  2

@@ -5,12 +5,12 @@
 
 
 ..........................
-README FILE FOR MT3DMS 5.1
+README FILE FOR MT3DMS 5.2
 ..........................
  
 Chunmiao Zheng (czheng@ua.edu)
 University of Alabama
-Last revision: 10-25-2005
+Last revision: 10-30-2006
  
 -----------------
 TABLE OF CONTENTS
@@ -32,7 +32,7 @@ MT3DMS is a 3-D multispecies contaminant fate and transport model developed at
 the University of Alabama for the US Army Corps of Engineers Research and
 Development Center.  Detailed information on MT3DMS can be found in MT3DMS
 Documentation and User's Guide (Zheng and Wang, 1999) and Version 5.x
-Supplemental User’s Guide (Zheng, 2005), both available at http://
+Supplemental User’s Guide (Zheng, 2006), both available at http://
 hydro.geo.ua.edu/mt3d.
  
 Additional information specific to MT3DMS since version 4.0 can be found in
@@ -166,7 +166,7 @@ version 5), enter the command
 mt3dms5s [name-file]
  
 where the command-line argument [name-file] is the name of the MT3DMS name-file
-as described in Zheng (2005) and Zheng, Hill and Hsieh (2001).  If no command-
+as described in Zheng (2006) and Zheng, Hill and Hsieh (2001).  If no command-
 line argument is given, the user is prompted to enter the name of the name-
 file.  If the file name ends with the extension &quot;.nam&quot;, it can be
 specified without including the extension.  For example, if the name-file is
@@ -242,32 +242,32 @@ Hsieh (2001).
 LIST OF FILES
 -------------
  
-Readme_MT3DMS.pdf:    latest readme file in PDF format
-Readme_MT3DMS.htm:    above file in HTML format
-      upgrade.pdf:    bug fixes, enhancements, and version history
-      upgrade.htm:    above file in HTML format
+Readme_MT3DMS.pdf:   latest readme file in PDF format
+Readme_MT3DMS.htm:   above file in HTML format
+      upgrade.pdf:   bug fixes, enhancements, and version history
+      upgrade.htm:   above file in HTML format
  
  
 Subdirectory \bin
  
-mt3dms5s.exe:   MT3DMS executable (for use with standard unformatted flow-
+mt3dms5s.exe:  MT3DMS executable (for use with standard unformatted flow-
 transport link files)
-mt3dms5b.exe:   MT3DMS executable (for use with unstructured true-binary flow-
+mt3dms5b.exe:  MT3DMS executable (for use with unstructured true-binary flow-
 transport link files)
-    mf2k.exe:   modflow-2000 executable (v. 1.15)
-    mf96.exe:   modflow-96 executable
-    mf88.exe:   modflow-88 executable
-      pm.exe:   PostMT3DMS utility
-savelast.exe:   SaveLast utility
-LF90to95.exe:   LF90-style to LF95-style unformatted file converter
-LF95to90.exe:   LF95-style to LF90-style unformatted file converter
- Bin2Unf.exe:   True-binary to LF95-style unformatted file converter
- Unf2Bin.exe:   LF95-style to true-binary unformatted file converter
+    mf2k.exe:  modflow-2000 executable (v. 1.15)
+    mf96.exe:  modflow-96 executable
+    mf88.exe:  modflow-88 executable
+      pm.exe:  PostMT3DMS utility
+savelast.exe:  SaveLast utility
+LF90to95.exe:  LF90-style to LF95-style unformatted file converter
+LF95to90.exe:  LF95-style to LF90-style unformatted file converter
+ Bin2Unf.exe:  True-binary to LF95-style unformatted file converter
+ Unf2Bin.exe:  LF95-style to true-binary unformatted file converter
  
 Subdirectory \doc
  
    MT3DMS_manual.pdf:  MT3DMS User’s Manual (Zheng and Wang, 1999)
-MT3DMS_v5_manual.pdf: MT3DMS v5.x Supplemental User’s Guide (Zheng, 2005)
+MT3DMS_v5_manual.pdf:  MT3DMS v5.x Supplemental User’s Guide (Zheng, 2006)
   OFR01-82(LMT6).pdf:  User’s Guide for Link-MT3DMS (LMT6) Package for MODFLOW-
 2000
    Readme_MT3DMS.pdf:  Readme file for MT3DMS latest version
@@ -277,27 +277,27 @@ Readme_Utilities.pdf:  Readme file for MT3DMS utilities
  
 Subdirectory \src
  
- mt3dms5.for:   source file for MT3DMS main program
- mt_btn5.for:   source file for MT3DMS Basic Transport package
- mt_adv5.for:   source file for MT3DMS Advection package
- mt_dsp5.for:   source file for MT3DMS Dispersion package
- mt_ssm5.for:   source file for MT3DMS Sink &amp; Source Mixing package
- mt_rct5.for:   source file for MT3DMS Chemical Reaction package
- mt_gcg5.for:   source file for MT3DMS GCG Solver package
- mt_tob5.for:   source file for MT3DMS Transport Observation package
- mt_fmi5.for:   source file for MT3DMS Flow Model Interface package
- mt_utl5.for:   source file for MT3DMS Utility package
-filespec.inc:   ‘include’ file with file specifiers
-automake.fig:   LF95 compiler options
+ mt3dms5.for:  source file for MT3DMS main program
+ mt_btn5.for:  source file for MT3DMS Basic Transport package
+ mt_adv5.for:  source file for MT3DMS Advection package
+ mt_dsp5.for:  source file for MT3DMS Dispersion package
+ mt_ssm5.for:  source file for MT3DMS Sink &amp; Source Mixing package
+ mt_rct5.for:  source file for MT3DMS Chemical Reaction package
+ mt_gcg5.for:  source file for MT3DMS GCG Solver package
+ mt_tob5.for:  source file for MT3DMS Transport Observation package
+ mt_fmi5.for:  source file for MT3DMS Flow Model Interface package
+ mt_utl5.for:  source file for MT3DMS Utility package
+filespec.inc:  ‘include’ file with file specifiers
+automake.fig:  LF95 compiler options
  
 Subdirectory \examples
  
-    xxmt.nam:   MT3DMS Name file for benchmark test problem xx.
-    xxmf.nam:   MODFLOW-96 Name file for benchmark test problem xx.
+    xxmt.nam:  MT3DMS Name file for benchmark test problem xx.
+    xxmf.nam:  MODFLOW-96 Name file for benchmark test problem xx.
   xxmf2k.nam:  MODFLOW-2000 Name file for benchmark test problem xx.
  
 Subdirectory \utility
  
-      pm.for:   source file for PostMT3DMS utility
-savelast.for:   source file for SaveLast utility
+      pm.for:  source file for PostMT3DMS utility
+savelast.for:  source file for SaveLast utility
  

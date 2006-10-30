@@ -58,7 +58,7 @@
   o SSM   ON UNIT  4
   o GCG   ON UNIT  9
 
- BTN5 -- BASIC TRANSPORT PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  1
+ BTN5 -- BASIC TRANSPORT PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  1
      469650 ELEMENTS OF THE  X ARRAY USED BY THE BTN PACKAGE
       30606 ELEMENTS OF THE IX ARRAY USED BY THE BTN PACKAGE
 
@@ -72,11 +72,11 @@
           0 ELEMENTS OF THE  X ARRAY USED BY THE ADV PACKAGE
           0 ELEMENTS OF THE IX ARRAY USED BY THE ADV PACKAGE
 
- DSP5 -- DISPERSION PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  3
-     306039 ELEMENTS OF THE  X ARRAY USED BY THE DSP PACKAGE
+ DSP5 -- DISPERSION PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  3
+     336639 ELEMENTS OF THE  X ARRAY USED BY THE DSP PACKAGE
           0 ELEMENTS OF THE IX ARRAY USED BY THE DSP PACKAGE
 
- SSM5 -- SINK & SOURCE MIXING PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  4
+ SSM5 -- SINK & SOURCE MIXING PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  4
  HEADER LINE OF THE SSM PACKAGE INPUT FILE:
   F F F F F F                                                                                                                                                                                            
  MAJOR STRESS COMPONENTS PRESENT IN THE FLOW MODEL:
@@ -95,7 +95,7 @@
         600 ELEMENTS OF THE IX ARRAY USED BY THE GCG PACKAGE
 
  ..........................................
- ELEMENTS OF THE  X ARRAY USED =   1462156
+ ELEMENTS OF THE  X ARRAY USED =   1492756
  ELEMENTS OF THE IX ARRAY USED =     31207
  ..........................................
 
@@ -1341,8 +1341,8 @@
  COURANT NUMBER ALLOWED IN SOLVING THE ADVECTION TERM =  1.00    
 
 
- DISPERSION PARAMETERS
- ---------------------
+ DISPERSION INPUT PARAMETERS
+ ---------------------------
 
                                        LONG. DISPERSIVITY (AL)  =   10.00000     FOR LAYER  1
                                        LONG. DISPERSIVITY (AL)  =   10.00000     FOR LAYER  2
@@ -1454,7 +1454,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1051     (  3, 51, 51)  0.1292E-03 (  3, 52, 50)  0.1584E-07 (  3, 49, 53)
+   0.1051     (  3, 51, 51)  0.1292E-03 (  3, 52, 50)  0.1584E-07 (  3, 53, 49)
 
 
                                           ================================================
@@ -1507,7 +1507,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.7733E-01 (  3, 51, 51)  0.9668E-04 (  3, 50, 52)  0.1246E-07 (  3, 49, 53)
+   0.7734E-01 (  3, 51, 51)  0.9668E-04 (  3, 50, 52)  0.1246E-07 (  3, 49, 53)
 
 
                                           ================================================
@@ -1533,7 +1533,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3078E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.3078E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -1560,7 +1560,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.5971E-01 (  3, 51, 51)  0.8144E-04 (  3, 50, 52)  0.1209E-07 (  3, 49, 53)
+   0.5971E-01 (  3, 51, 51)  0.8144E-04 (  3, 52, 50)  0.1209E-07 (  3, 49, 53)
 
 
                                           ================================================
@@ -1586,7 +1586,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3157E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.3157E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -1655,7 +1655,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  5028.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  5027.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  2864.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -1666,7 +1666,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.3834E-01 (  3, 51, 51)  0.6230E-04 (  3, 50, 52)  0.1740E-07 (  3, 50, 53)
+   0.3834E-01 (  3, 51, 51)  0.6231E-04 (  3, 50, 52)  0.1740E-07 (  3, 50, 53)
 
 
                                           ================================================
@@ -1692,7 +1692,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3273E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.3273E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -1745,7 +1745,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3318E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.3318E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -1825,7 +1825,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2446E-01 (  3, 51, 52)  0.4307E-04 (  3, 52, 50)  0.1602E-06 (  3, 50, 52)
+   0.2446E-01 (  3, 51, 52)  0.4307E-04 (  3, 50, 52)  0.1602E-06 (  3, 50, 52)
 
 
                                           ================================================
@@ -1851,7 +1851,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.3395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -1957,7 +1957,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3461E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.3461E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -1984,7 +1984,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2420E-01 (  3, 52, 51)  0.2405E-04 (  3, 50, 52)  0.1341E-06 (  3, 50, 53)
+   0.2420E-01 (  3, 51, 52)  0.2404E-04 (  3, 50, 52)  0.1341E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -2010,7 +2010,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3490E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
+ = 0.3490E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2063,7 +2063,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3519E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3519E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2116,7 +2116,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3547E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3547E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2169,7 +2169,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3574E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3574E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2196,7 +2196,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2220E-01 (  3, 51, 52)  0.2667E-04 (  3, 50, 53)  0.2272E-06 (  3, 50, 53)
+   0.2220E-01 (  3, 52, 51)  0.2667E-04 (  3, 50, 53)  0.2272E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -2222,7 +2222,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3599E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
+ = 0.3599E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2249,7 +2249,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2164E-01 (  3, 51, 52)  0.3728E-04 (  3, 50, 52)  0.2794E-06 (  3, 50, 53)
+   0.2164E-01 (  3, 52, 51)  0.3728E-04 (  3, 50, 52)  0.2794E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -2291,7 +2291,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  5663.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  5662.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3224.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -2302,7 +2302,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2110E-01 (  3, 52, 51)  0.5646E-04 (  3, 50, 52)  0.3316E-06 (  3, 50, 53)
+   0.2109E-01 (  3, 51, 52)  0.5664E-04 (  3, 50, 52)  0.3316E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -2355,7 +2355,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2141E-01 (  3, 52, 50)  0.7835E-04 (  3, 50, 52)  0.3651E-06 (  3, 50, 53)
+   0.2140E-01 (  3, 50, 52)  0.7847E-04 (  3, 50, 52)  0.3651E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -2381,7 +2381,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3673E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3673E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2408,7 +2408,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2202E-01 (  3, 50, 52)  0.1028E-03 (  3, 50, 52)  0.3874E-06 (  3, 50, 53)
+   0.2202E-01 (  3, 52, 50)  0.1028E-03 (  3, 50, 52)  0.3874E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -2434,7 +2434,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3697E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
+ = 0.3697E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2461,7 +2461,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2249E-01 (  3, 52, 50)  0.1296E-03 (  3, 50, 52)  0.3818E-06 (  3, 49, 53)
+   0.2249E-01 (  3, 50, 52)  0.1295E-03 (  3, 50, 52)  0.3818E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -2487,7 +2487,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3720E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3720E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2514,7 +2514,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2282E-01 (  3, 50, 52)  0.1585E-03 (  3, 50, 52)  0.4135E-06 (  3, 49, 53)
+   0.2282E-01 (  3, 52, 50)  0.1584E-03 (  3, 50, 52)  0.4135E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -2540,7 +2540,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3742E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3742E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2567,7 +2567,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2304E-01 (  3, 52, 50)  0.1897E-03 (  3, 50, 52)  0.4917E-06 (  3, 49, 54)
+   0.2304E-01 (  3, 52, 50)  0.1895E-03 (  3, 50, 52)  0.4917E-06 (  3, 49, 54)
 
 
                                           ================================================
@@ -2620,7 +2620,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2316E-01 (  3, 50, 52)  0.2228E-03 (  3, 50, 52)  0.6529E-06 (  3, 49, 54)
+   0.2316E-01 (  3, 50, 52)  0.2227E-03 (  3, 50, 52)  0.6529E-06 (  3, 49, 54)
 
 
                                           ================================================
@@ -2673,7 +2673,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2321E-01 (  3, 50, 52)  0.2581E-03 (  3, 50, 52)  0.8391E-06 (  3, 49, 54)
+   0.2320E-01 (  3, 50, 52)  0.2580E-03 (  3, 50, 52)  0.8391E-06 (  3, 49, 54)
 
 
                                           ================================================
@@ -2726,7 +2726,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2319E-01 (  3, 50, 52)  0.2956E-03 (  3, 50, 52)  0.1069E-05 (  3, 49, 54)  0.7451E-08 (  3, 49, 54)
+   0.2319E-01 (  3, 52, 50)  0.2955E-03 (  3, 50, 52)  0.1069E-05 (  3, 49, 54)  0.7451E-08 (  3, 49, 54)
 
 
                                           ================================================
@@ -2779,7 +2779,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2313E-01 (  3, 52, 50)  0.3355E-03 (  3, 50, 52)  0.1321E-05 (  3, 49, 54)  0.9313E-08 (  3, 49, 54)
+   0.2312E-01 (  3, 50, 52)  0.3354E-03 (  3, 50, 52)  0.1321E-05 (  3, 49, 54)  0.9313E-08 (  3, 49, 54)
 
 
                                           ================================================
@@ -2805,7 +2805,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3851E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3852E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2821,7 +2821,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6017.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6018.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3426.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -2832,7 +2832,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2301E-01 (  3, 50, 52)  0.3772E-03 (  3, 50, 52)  0.1576E-05 (  3, 49, 54)  0.1118E-07 (  3, 48, 53)
+   0.2304E-01 (  3, 52, 50)  0.3821E-03 (  3, 52, 50)  0.1576E-05 (  3, 49, 54)  0.1118E-07 (  3, 48, 53)
 
 
                                           ================================================
@@ -2858,7 +2858,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3873E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3873E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2885,7 +2885,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2355E-01 (  3, 50, 53)  0.4231E-03 (  3, 52, 50)  0.1885E-05 (  3, 49, 53)  0.1490E-07 (  3, 48, 53)
+   0.2355E-01 (  3, 50, 53)  0.4198E-03 (  3, 50, 52)  0.1863E-05 (  3, 49, 53)  0.1490E-07 (  3, 48, 53)
 
 
                                           ================================================
@@ -2911,7 +2911,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3894E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.3894E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2930,7 +2930,7 @@
  =  6083.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3463.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3464.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  29 STRESS PERIOD   1
@@ -2938,7 +2938,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2418E-01 (  3, 50, 53)  0.4689E-03 (  3, 50, 52)  0.3144E-05 (  3, 49, 53)  0.1770E-07 (  3, 48, 54)
+   0.2422E-01 (  3, 50, 53)  0.4703E-03 (  3, 50, 52)  0.3129E-05 (  3, 49, 53)  0.1770E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -2964,7 +2964,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3915E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3915E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -2980,7 +2980,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6116.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6117.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3482.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -2991,7 +2991,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2477E-01 (  3, 53, 50)  0.5221E-03 (  3, 50, 52)  0.4813E-05 (  3, 49, 53)  0.2980E-07 (  3, 49, 52)
+   0.2477E-01 (  3, 53, 50)  0.5278E-03 (  3, 50, 52)  0.4873E-05 (  3, 49, 53)  0.2980E-07 (  3, 49, 52)
 
 
                                           ================================================
@@ -3017,7 +3017,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3936E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.3936E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3036,7 +3036,7 @@
  =  6148.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3500.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3501.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  31 STRESS PERIOD   1
@@ -3044,7 +3044,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2515E-01 (  3, 50, 53)  0.5732E-03 (  3, 50, 52)  0.7048E-05 (  3, 49, 53)  0.3166E-07 (  3, 49, 55)
+   0.2515E-01 (  3, 50, 53)  0.5669E-03 (  3, 50, 52)  0.6989E-05 (  3, 49, 53)  0.3166E-07 (  3, 49, 55)
 
 
                                           ================================================
@@ -3070,11 +3070,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.3957E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.3957E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1236E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1235E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 32, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -3097,7 +3097,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2552E-01 (  3, 50, 53)  0.6327E-03 (  3, 50, 52)  0.9850E-05 (  3, 49, 53)  0.5960E-07 (  3, 50, 53)
+   0.2551E-01 (  3, 50, 53)  0.6303E-03 (  3, 50, 52)  0.9835E-05 (  3, 49, 53)  0.5960E-07 (  3, 50, 53)
 
 
                                           ================================================
@@ -3139,7 +3139,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6213.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6214.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3537.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -3150,7 +3150,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2570E-01 (  3, 50, 53)  0.6880E-03 (  3, 50, 52)  0.1341E-04 (  3, 49, 53)  0.8941E-07 (  3, 50, 53)
+   0.2575E-01 (  3, 50, 53)  0.7016E-03 (  3, 50, 52)  0.1353E-04 (  3, 49, 53)  0.8941E-07 (  3, 50, 53)
 
 
                                           ================================================
@@ -3203,7 +3203,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2589E-01 (  3, 53, 50)  0.7529E-03 (  3, 52, 50)  0.1770E-04 (  3, 49, 53)  0.1490E-06 (  3, 50, 53)
+   0.2588E-01 (  3, 53, 50)  0.7436E-03 (  3, 50, 52)  0.1761E-04 (  3, 49, 53)  0.1490E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -3229,7 +3229,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4019E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.4018E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3245,7 +3245,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6277.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6276.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3574.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -3256,7 +3256,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2647E-01 (  3, 49, 53)  0.8367E-03 (  3, 50, 52)  0.2322E-04 (  3, 49, 53)  0.2086E-06 (  3, 50, 53)
+   0.2647E-01 (  3, 49, 53)  0.8134E-03 (  3, 50, 52)  0.2298E-04 (  3, 49, 53)  0.2086E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -3282,7 +3282,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4038E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4038E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3301,7 +3301,7 @@
  =  6308.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3592.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3591.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  36 STRESS PERIOD   1
@@ -3309,7 +3309,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2719E-01 (  3, 53, 49)  0.8616E-03 (  3, 50, 52)  0.2897E-04 (  3, 49, 53)  0.2682E-06 (  3, 50, 53)
+   0.2717E-01 (  3, 49, 53)  0.8756E-03 (  3, 50, 52)  0.2912E-04 (  3, 49, 53)  0.2682E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -3335,7 +3335,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4058E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.4058E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3362,7 +3362,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2773E-01 (  3, 49, 53)  0.9421E-03 (  3, 50, 52)  0.3627E-04 (  3, 49, 53)  0.3874E-06 (  3, 50, 53)
+   0.2773E-01 (  3, 49, 53)  0.9468E-03 (  3, 50, 52)  0.3636E-04 (  3, 49, 53)  0.3874E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -3388,11 +3388,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4079E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
+ = 0.4078E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1274E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1273E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 38, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -3404,10 +3404,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6372.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6371.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3628.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3627.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  38 STRESS PERIOD   1
@@ -3415,7 +3415,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2815E-01 (  3, 49, 53)  0.1043E-02 (  3, 50, 52)  0.4521E-04 (  3, 49, 53)  0.5364E-06 (  3, 50, 53)
+   0.2814E-01 (  3, 53, 49)  0.1005E-02 (  3, 50, 52)  0.4458E-04 (  3, 49, 53)  0.5364E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -3468,7 +3468,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2847E-01 (  3, 49, 53)  0.1062E-02 (  3, 50, 52)  0.5367E-04 (  3, 49, 53)  0.7153E-06 (  3, 50, 53)
+   0.2843E-01 (  3, 53, 49)  0.1083E-02 (  3, 50, 52)  0.5403E-04 (  3, 49, 53)  0.7153E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -3494,7 +3494,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4118E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4118E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3510,10 +3510,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6432.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6434.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3662.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3663.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  40 STRESS PERIOD   1
@@ -3521,7 +3521,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2872E-01 (  3, 54, 50)  0.1133E-02 (  3, 50, 52)  0.6440E-04 (  3, 49, 53)  0.8941E-06 (  3, 50, 53)
+   0.2876E-01 (  3, 54, 50)  0.1192E-02 (  3, 50, 52)  0.6574E-04 (  3, 49, 53)  0.9537E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -3547,7 +3547,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4137E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
+ = 0.4138E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3574,7 +3574,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2914E-01 (  3, 49, 54)  0.1220E-02 (  3, 50, 52)  0.7626E-04 (  3, 49, 53)  0.1267E-05 (  3, 48, 54)  0.2980E-07 (  3, 48, 54)
+   0.2916E-01 (  3, 49, 54)  0.1189E-02 (  3, 50, 52)  0.7555E-04 (  3, 49, 53)  0.1267E-05 (  3, 48, 54)  0.2980E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -3600,7 +3600,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4156E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4156E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3627,7 +3627,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.3001E-01 (  3, 49, 54)  0.1279E-02 (  3, 50, 52)  0.8896E-04 (  3, 49, 53)  0.1848E-05 (  3, 48, 54)  0.5960E-07 (  3, 50, 53)
+   0.3002E-01 (  3, 49, 54)  0.1280E-02 (  3, 50, 52)  0.8908E-04 (  3, 49, 53)  0.1848E-05 (  3, 48, 54)  0.5960E-07 (  3, 50, 53)
 
 
                                           ================================================
@@ -3653,7 +3653,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4175E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4175E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3669,10 +3669,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6522.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6524.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3713.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3714.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  43 STRESS PERIOD   1
@@ -3680,7 +3680,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.3067E-01 (  3, 49, 54)  0.1342E-02 (  3, 50, 52)  0.1025E-03 (  3, 49, 53)  0.2578E-05 (  3, 48, 54)  0.5960E-07 (  3, 49, 53)
+   0.3067E-01 (  3, 54, 49)  0.1387E-02 (  3, 50, 52)  0.1045E-03 (  3, 49, 53)  0.2608E-05 (  3, 48, 54)  0.5960E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -3706,7 +3706,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4194E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4194E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3725,7 +3725,7 @@
  =  6551.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3730.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3731.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  44 STRESS PERIOD   1
@@ -3733,7 +3733,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.3116E-01 (  3, 54, 49)  0.1432E-02 (  3, 50, 52)  0.1181E-03 (  3, 49, 53)  0.3487E-05 (  3, 48, 54)  0.5960E-07 (  3, 48, 54)
+   0.3119E-01 (  3, 54, 49)  0.1384E-02 (  3, 50, 52)  0.1161E-03 (  3, 49, 53)  0.3457E-05 (  3, 48, 54)  0.5960E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -3759,7 +3759,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4213E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
+ = 0.4212E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3775,7 +3775,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6582.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6580.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3747.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -3786,7 +3786,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.3147E-01 (  3, 54, 49)  0.1564E-02 (  3, 50, 52)  0.1372E-03 (  3, 49, 53)  0.4709E-05 (  3, 48, 54)  0.1192E-06 (  3, 49, 54)
+   0.3151E-01 (  3, 49, 54)  0.1487E-02 (  3, 50, 52)  0.1336E-03 (  3, 49, 53)  0.4619E-05 (  3, 48, 54)  0.1192E-06 (  3, 49, 54)
 
 
                                           ================================================
@@ -3812,7 +3812,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4231E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
+ = 0.4230E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3828,7 +3828,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6608.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6610.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3763.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -3841,7 +3841,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2336E-02 (  3, 47, 50)  0.3695E-05 (  3, 50, 52)  0.9313E-09 (  3, 46, 56)
+   0.2339E-02 (  3, 48, 48)  0.3338E-05 (  3, 50, 52)  0.9313E-09 (  3, 46, 56)
 
 
                                           ================================================
@@ -3867,7 +3867,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4248E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4249E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3886,7 +3886,7 @@
  =  6636.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3778.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3779.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  47 STRESS PERIOD   1
@@ -3896,7 +3896,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.4986E-02 (  3, 54, 54)  0.2575E-04 (  3, 50, 52)  0.4172E-06 (  3, 49, 53)
+   0.4983E-02 (  3, 54, 54)  0.2760E-04 (  3, 50, 52)  0.4172E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -3922,7 +3922,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4266E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4265E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -3951,7 +3951,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.7488E-02 (  3, 47, 49)  0.7379E-04 (  3, 50, 52)  0.2205E-05 (  3, 49, 53)  0.1863E-08 (  3, 45, 55)
+   0.7489E-02 (  3, 47, 49)  0.7242E-04 (  3, 50, 52)  0.2205E-05 (  3, 49, 53)  0.1863E-08 (  3, 45, 55)
 
 
                                           ================================================
@@ -3996,7 +3996,7 @@
  =  6689.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3808.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3809.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  49 STRESS PERIOD   1
@@ -4006,7 +4006,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.9885E-02 (  3, 53, 55)  0.1447E-03 (  3, 50, 52)  0.6378E-05 (  3, 49, 53)  0.8941E-07 (  3, 48, 54)
+   0.9880E-02 (  3, 53, 55)  0.1487E-03 (  3, 50, 52)  0.6437E-05 (  3, 49, 53)  0.8941E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -4051,7 +4051,7 @@
  =  6715.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3823.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3824.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  50 STRESS PERIOD   1
@@ -4061,7 +4061,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1213E-01 (  3, 54, 55)  0.2384E-03 (  3, 50, 52)  0.1377E-04 (  3, 49, 53)  0.2384E-06 (  3, 48, 54)
+   0.1212E-01 (  3, 54, 55)  0.2360E-03 (  3, 50, 52)  0.1371E-04 (  3, 49, 53)  0.2384E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -4087,7 +4087,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4315E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4315E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -4116,7 +4116,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1445E-01 (  3, 55, 54)  0.3427E-03 (  3, 50, 52)  0.2450E-04 (  3, 49, 53)  0.6258E-06 (  3, 48, 54)
+   0.1445E-01 (  3, 48, 55)  0.3380E-03 (  3, 50, 52)  0.2432E-04 (  3, 49, 53)  0.6258E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -4158,7 +4158,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6764.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6765.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3852.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -4171,7 +4171,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1658E-01 (  3, 55, 48)  0.4638E-03 (  3, 50, 52)  0.3898E-04 (  3, 49, 53)  0.1311E-05 (  3, 48, 54)  0.5960E-07 (  3, 49, 54)
+   0.1658E-01 (  3, 48, 55)  0.4554E-03 (  3, 50, 52)  0.3850E-04 (  3, 49, 53)  0.1252E-05 (  3, 48, 54)  0.5960E-07 (  3, 49, 54)
 
 
                                           ================================================
@@ -4197,7 +4197,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4346E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4346E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -4226,7 +4226,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1850E-01 (  3, 48, 55)  0.5633E-03 (  3, 50, 53)  0.5454E-04 (  3, 49, 53)  0.2265E-05 (  3, 48, 54)  0.5960E-07 (  3, 47, 55)
+   0.1849E-01 (  3, 48, 55)  0.5695E-03 (  3, 50, 53)  0.5496E-04 (  3, 49, 53)  0.2265E-05 (  3, 48, 54)  0.5960E-07 (  3, 47, 55)
 
 
                                           ================================================
@@ -4252,7 +4252,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4360E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4360E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -4296,13 +4296,13 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.1153134E+08              -0.1153135E+08
-                                MASS STORAGE (SOLUTE):   0.1547466E+08              -0.1547572E+08
+                                      MULTI-NODE WELL:   0.1153124E+08              -0.1153124E+08
+                                MASS STORAGE (SOLUTE):   0.1547443E+08              -0.1547549E+08
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.2700705E+08 UNDF         -0.2700710E+08 UNDF
+                                              [TOTAL]:   0.2700672E+08 UNDF         -0.2700675E+08 UNDF
 
-                                                          NET (IN - OUT):   -48.00000    
-                                                   DISCREPANCY (PERCENT):  -0.1777312E-03
+                                                          NET (IN - OUT):   -30.00000    
+                                                   DISCREPANCY (PERCENT):  -0.1110834E-03
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  54 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  54 STRESS PERIOD   1
@@ -4310,7 +4310,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.8816E-02 (  3, 55, 55)  0.1225E-03 (  3, 50, 52)  0.7033E-05 (  3, 49, 53)  0.1192E-06 (  3, 48, 54)
+   0.8817E-02 (  3, 55, 55)  0.1226E-03 (  3, 50, 52)  0.7033E-05 (  3, 49, 53)  0.1192E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -4367,7 +4367,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.5558E-02 (  3, 55, 55)  0.4405E-04 (  3, 50, 52)  0.1729E-05 (  3, 49, 53)  0.1863E-08 (  3, 46, 58)
+   0.5556E-02 (  3, 55, 55)  0.4435E-04 (  3, 50, 52)  0.1729E-05 (  3, 49, 53)  0.1863E-08 (  3, 46, 58)
 
 
                                           ================================================
@@ -4409,7 +4409,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6853.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6852.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3902.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -4424,7 +4424,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.8543E-02 (  3, 54, 56)  0.1171E-03 (  3, 52, 50)  0.7451E-05 (  3, 49, 53)  0.1788E-06 (  3, 48, 54)
+   0.8541E-02 (  3, 54, 56)  0.1172E-03 (  3, 50, 52)  0.7451E-05 (  3, 49, 53)  0.1788E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -4450,7 +4450,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4399E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4399E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -4466,10 +4466,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6872.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6871.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3912.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3913.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  57 STRESS PERIOD   1
@@ -4481,7 +4481,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1134E-01 (  3, 55, 56)  0.2106E-03 (  3, 50, 52)  0.1788E-04 (  3, 49, 53)  0.5960E-06 (  3, 48, 54)
+   0.1133E-01 (  3, 56, 55)  0.2126E-03 (  3, 50, 52)  0.1806E-04 (  3, 49, 53)  0.5960E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -4507,7 +4507,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4410E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4411E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -4538,7 +4538,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1422E-01 (  3, 55, 56)  0.3334E-03 (  3, 50, 53)  0.3397E-04 (  3, 49, 54)  0.1729E-05 (  3, 49, 53)  0.5960E-07 (  3, 47, 55)
+   0.1421E-01 (  3, 55, 56)  0.3365E-03 (  3, 50, 53)  0.3415E-04 (  3, 49, 54)  0.1729E-05 (  3, 49, 53)  0.5960E-07 (  3, 47, 55)
 
 
                                           ================================================
@@ -4564,7 +4564,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4421E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4421E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -4597,7 +4597,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2951E-02 (  3, 55, 56)  0.1466E-04 (  3, 50, 52)  0.3576E-06 (  3, 49, 53)
+   0.2948E-02 (  3, 55, 56)  0.1448E-04 (  3, 50, 52)  0.3576E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -4656,7 +4656,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.6435E-02 (  3, 54, 57)  0.7391E-04 (  3, 50, 52)  0.4530E-05 (  3, 49, 53)  0.1192E-06 (  3, 48, 54)
+   0.6433E-02 (  3, 48, 45)  0.7325E-04 (  3, 50, 52)  0.4470E-05 (  3, 49, 53)  0.1192E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -4715,7 +4715,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.9858E-02 (  3, 56, 56)  0.1612E-03 (  3, 50, 52)  0.1448E-04 (  3, 49, 53)  0.6557E-06 (  3, 49, 53)
+   0.9853E-02 (  3, 46, 46)  0.1606E-03 (  3, 50, 52)  0.1442E-04 (  3, 49, 53)  0.6557E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -4776,7 +4776,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.7691E-03 (  3, 55, 57)  0.2325E-05 (  3, 50, 52)   0.000     (  1,  1,  1)
+   0.7687E-03 (  3, 55, 57)  0.2325E-05 (  3, 50, 52)   0.000     (  1,  1,  1)
 
 
                                           ================================================
@@ -4802,7 +4802,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4450E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4451E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -4837,7 +4837,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.4677E-02 (  3, 45, 46)  0.6211E-04 (  3, 50, 52)  0.2801E-05 (  3, 49, 53)  0.5960E-07 (  3, 48, 54)
+   0.4676E-02 (  3, 46, 45)  0.6211E-04 (  3, 50, 52)  0.2801E-05 (  3, 49, 53)  0.5960E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -4863,7 +4863,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4456E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4455E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -4898,7 +4898,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.8514E-02 (  3, 45, 46)  0.1459E-03 (  3, 50, 52)  0.1144E-04 (  3, 49, 54)  0.6557E-06 (  3, 49, 53)
+   0.8516E-02 (  3, 56, 57)  0.1457E-03 (  3, 50, 52)  0.1144E-04 (  3, 49, 54)  0.6557E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -4924,11 +4924,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4461E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4460E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1393E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1393E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 65, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -4940,10 +4940,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6952.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6980.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3967.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3967.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  65 STRESS PERIOD   1
@@ -4951,7 +4951,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  65 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  65 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  65 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  65 STRESS PERIOD   1
@@ -4961,7 +4961,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1194E-02 (  3, 46, 45)  0.1609E-04 (  3, 50, 52)  0.1192E-06 (  3, 49, 53)
+   0.1201E-02 (  3, 45, 46)  0.1526E-04 (  3, 50, 52)  0.5960E-07 (  3, 49, 53)
 
 
                                           ================================================
@@ -4987,11 +4987,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4462E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4464E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1393E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1394E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 66, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5003,14 +5003,14 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6970.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6968.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3968.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3971.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  66 STRESS PERIOD   1
-     6 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  66 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  66 STRESS PERIOD   1
@@ -5024,7 +5024,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.5468E-02 (  3, 57, 57)  0.8869E-04 (  3, 50, 52)  0.2247E-04 (  3, 50, 52)  0.2384E-06 (  3, 50, 52)
+   0.5451E-02 (  3, 45, 45)  0.1000E-03 (  3, 50, 52)  0.2050E-04 (  3, 50, 52)  0.2384E-06 (  3, 50, 53)
 
 
                                           ================================================
@@ -5050,11 +5050,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4464E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
+ = 0.4465E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1394E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1394E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 67, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5066,18 +5066,18 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  7000.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6974.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3971.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3971.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  67 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  67 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  67 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  67 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  67 STRESS PERIOD   1
@@ -5087,7 +5087,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.9601E-02 (  3, 45, 45)  0.1429E-03 (  3, 50, 53)  0.4625E-04 (  3, 49, 53)  0.1252E-05 (  3, 49, 53)  0.1788E-06 (  3, 49, 53)
+   0.9564E-02 (  3, 45, 57)  0.1398E-03 (  3, 50, 53)  0.4488E-04 (  3, 49, 53)  0.1192E-05 (  3, 49, 53)  0.1788E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -5113,11 +5113,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4467E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
+ = 0.4468E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 68, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5129,10 +5129,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6975.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6955.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3974.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3974.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  68 STRESS PERIOD   1
@@ -5140,9 +5140,9 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  68 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  68 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  68 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  68 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  68 STRESS PERIOD   1
@@ -5152,7 +5152,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.3700E-02 (  3, 44, 45)  0.1367E-03 (  3, 50, 52)  0.6318E-05 (  3, 49, 53)  0.1788E-06 (  3, 49, 53)
+   0.3687E-02 (  3, 57, 58)  0.1352E-03 (  3, 50, 52)  0.6318E-05 (  3, 49, 53)  0.2384E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -5178,11 +5178,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
+ = 0.4467E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 69, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5194,20 +5194,20 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6976.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6978.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3975.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3973.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  69 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  69 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  69 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  69 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  69 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  69 STRESS PERIOD   1
@@ -5217,8 +5217,8 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.8280E-02 (  3, 44, 45)  0.1778E-03 (  3, 50, 53)  0.2843E-04 (  3, 49, 53)  0.2027E-05 (  3, 48, 54)  0.4292E-05 (  3, 49, 53)
-   0.3469E-17 (  3, 37, 65)
+   0.8280E-02 (  3, 45, 58)  0.1705E-03 (  3, 50, 53)  0.2277E-04 (  3, 49, 53)  0.5901E-05 (  3, 49, 54)  0.4470E-05 (  3, 49, 53)
+   0.6776E-20 (  3, 37, 67)
 
 
                                           ================================================
@@ -5244,11 +5244,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 70, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5260,10 +5260,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6950.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3975.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  70 STRESS PERIOD   1
@@ -5275,7 +5275,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  70 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  70 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  70 STRESS PERIOD   1
      6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   7 IN FLOW TIME STEP  70 STRESS PERIOD   1
@@ -5285,7 +5285,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.3144E-02 (  3, 43, 46)  0.1803E-03 (  3, 50, 52)  0.6855E-05 (  3, 49, 53)  0.5960E-07 (  3, 48, 54)
+   0.3162E-02 (  3, 51, 51)  0.1834E-03 (  3, 50, 52)  0.6974E-05 (  3, 49, 53)  0.5960E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -5311,11 +5311,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
+ = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 71, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5327,10 +5327,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6963.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6980.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3976.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3975.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  71 STRESS PERIOD   1
@@ -5357,17 +5357,17 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.5320695E+08              -0.5320701E+08
-                                MASS STORAGE (SOLUTE):   0.6059269E+08              -0.6066247E+08
+                                      MULTI-NODE WELL:   0.5321017E+08              -0.5321017E+08
+                                MASS STORAGE (SOLUTE):   0.6059633E+08              -0.6066628E+08
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.1138007E+09 UNDF         -0.1138696E+09 UNDF
+                                              [TOTAL]:   0.1138076E+09 UNDF         -0.1138765E+09 UNDF
 
-                                                          NET (IN - OUT):   -68848.00    
-                                                   DISCREPANCY (PERCENT):  -0.6048045E-01
+                                                          NET (IN - OUT):   -68960.00    
+                                                   DISCREPANCY (PERCENT):  -0.6057516E-01
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  71 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  71 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  71 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  71 STRESS PERIOD   1
@@ -5381,7 +5381,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.3685E-02 (  3, 51, 51)  0.2081E-03 (  3, 50, 52)  0.6557E-05 (  3, 49, 53)  0.5960E-07 (  3, 48, 54)
+   0.3627E-02 (  3, 51, 51)  0.2052E-03 (  3, 50, 52)  0.6497E-05 (  3, 49, 53)  0.5960E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -5407,11 +5407,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4468E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 72, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5426,21 +5426,21 @@
  =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3974.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3975.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  72 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  72 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  72 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  72 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  72 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  72 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   7 IN FLOW TIME STEP  72 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   8 IN FLOW TIME STEP  72 STRESS PERIOD   1
@@ -5450,7 +5450,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.4597E-02 (  3, 51, 51)  0.2770E-03 (  3, 50, 52)  0.1359E-04 (  3, 49, 53)  0.2980E-06 (  3, 48, 54)
+   0.4608E-02 (  3, 51, 51)  0.2792E-03 (  3, 50, 52)  0.1371E-04 (  3, 49, 53)  0.2980E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -5476,11 +5476,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 73, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5492,10 +5492,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6981.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3974.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  73 STRESS PERIOD   1
@@ -5503,13 +5503,13 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  73 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  73 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  73 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  73 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  73 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   7 IN FLOW TIME STEP  73 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   8 IN FLOW TIME STEP  73 STRESS PERIOD   1
@@ -5519,7 +5519,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.8998E-02 (  3, 59, 58)  0.1713E-03 (  3, 50, 53)  0.2736E-04 (  3, 49, 54)  0.5364E-06 (  3, 48, 55)
+   0.8996E-02 (  3, 58, 59)  0.1736E-03 (  3, 50, 53)  0.2766E-04 (  3, 49, 54)  0.2980E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -5545,11 +5545,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  52
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 74, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5561,10 +5561,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  74 STRESS PERIOD   1
@@ -5590,7 +5590,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.6571E-02 (  3, 51, 51)  0.3772E-03 (  3, 50, 52)  0.2843E-04 (  3, 49, 53)  0.1013E-05 (  3, 48, 54)  0.6939E-17 (  3, 35, 65)
+   0.6564E-02 (  3, 51, 51)  0.3750E-03 (  3, 50, 52)  0.2819E-04 (  3, 49, 53)  0.1013E-05 (  3, 48, 54)  0.6939E-17 (  3, 35, 65)
 
 
                                           ================================================
@@ -5616,11 +5616,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 75, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5632,10 +5632,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6980.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  75 STRESS PERIOD   1
@@ -5663,7 +5663,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.4278E-02 (  3, 51, 51)  0.1647E-03 (  3, 50, 52)  0.1907E-05 (  3, 49, 53)   0.000     (  1,  1,  1)
+   0.4291E-02 (  3, 51, 51)  0.1662E-03 (  3, 50, 52)  0.1967E-05 (  3, 49, 53)   0.000     (  1,  1,  1)
 
 
                                           ================================================
@@ -5689,11 +5689,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  52
+ = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 76, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5705,10 +5705,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6967.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6970.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3977.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  76 STRESS PERIOD   1
@@ -5736,7 +5736,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.8640E-02 (  3, 51, 51)  0.3154E-03 (  3, 50, 53)  0.3147E-04 (  3, 49, 54)  0.1788E-05 (  3, 48, 54)  0.1192E-06 (  3, 47, 55)
+   0.8637E-02 (  3, 51, 51)  0.3158E-03 (  3, 50, 53)  0.3153E-04 (  3, 49, 54)  0.1788E-05 (  3, 48, 54)  0.1192E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -5762,11 +5762,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 77, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5795,7 +5795,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  77 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  77 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   7 IN FLOW TIME STEP  77 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   8 IN FLOW TIME STEP  77 STRESS PERIOD   1
@@ -5805,13 +5805,13 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  10 IN FLOW TIME STEP  77 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  11 IN FLOW TIME STEP  77 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  12 IN FLOW TIME STEP  77 STRESS PERIOD   1
      5 TOTAL ITERATIONS
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.7740E-02 (  3, 51, 51)  0.5031E-03 (  3, 50, 52)  0.3362E-04 (  3, 53, 49)  0.1013E-05 (  3, 48, 54)  0.5960E-07 (  3, 48, 54)
+   0.7740E-02 (  3, 51, 51)  0.5037E-03 (  3, 50, 52)  0.3362E-04 (  3, 49, 53)  0.1013E-05 (  3, 48, 54)  0.5960E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -5837,11 +5837,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 78, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -5893,13 +5893,13 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.9176026E+08              -0.9176038E+08
-                                MASS STORAGE (SOLUTE):   0.1050756E+09              -0.1054047E+09
+                                      MULTI-NODE WELL:   0.9176040E+08              -0.9176040E+08
+                                MASS STORAGE (SOLUTE):   0.1050786E+09              -0.1054080E+09
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.1968369E+09 UNDF         -0.1971651E+09 UNDF
+                                              [TOTAL]:   0.1968401E+09 UNDF         -0.1971684E+09 UNDF
 
-                                                          NET (IN - OUT):   -328208.0    
-                                                   DISCREPANCY (PERCENT):  -0.1666022    
+                                                          NET (IN - OUT):   -328352.0    
+                                                   DISCREPANCY (PERCENT):  -0.1666726    
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   8 IN FLOW TIME STEP  78 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   9 IN FLOW TIME STEP  78 STRESS PERIOD   1
@@ -5915,7 +5915,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.9330E-02 (  3, 51, 51)  0.5215E-03 (  3, 50, 53)  0.4816E-04 (  3, 49, 53)  0.2384E-05 (  3, 48, 54)  0.1192E-06 (  3, 47, 55)
+   0.9328E-02 (  3, 51, 51)  0.5215E-03 (  3, 50, 53)  0.4816E-04 (  3, 49, 53)  0.2384E-05 (  3, 48, 54)  0.1192E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -5968,7 +5968,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  79 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  79 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  79 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  79 STRESS PERIOD   1
@@ -5992,7 +5992,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.9761E-02 (  3, 51, 51)  0.3179E-03 (  3, 50, 53)  0.3082E-04 (  3, 49, 54)  0.1729E-05 (  3, 48, 54)  0.1192E-06 (  3, 47, 55)
+   0.9760E-02 (  3, 51, 51)  0.3175E-03 (  3, 50, 53)  0.3070E-04 (  3, 49, 54)  0.1729E-05 (  3, 48, 54)  0.1192E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -6018,7 +6018,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
+ = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -6071,7 +6071,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.8748E-02 (  3, 51, 51)  0.5570E-03 (  3, 50, 52)  0.4864E-04 (  3, 49, 53)  0.2146E-05 (  3, 48, 54)  0.5960E-07 (  3, 47, 54)
+   0.8748E-02 (  3, 51, 51)  0.5571E-03 (  3, 50, 52)  0.4864E-04 (  3, 49, 53)  0.2146E-05 (  3, 48, 54)  0.5960E-07 (  3, 47, 54)
 
 
                                           ================================================
@@ -6122,7 +6122,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  81 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  81 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  81 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  81 STRESS PERIOD   1
@@ -6152,7 +6152,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.6765E-02 (  3, 51, 51)  0.4969E-03 (  3, 50, 52)  0.2217E-04 (  3, 49, 53)  0.3576E-06 (  3, 48, 54)
+   0.6766E-02 (  3, 51, 51)  0.4970E-03 (  3, 50, 52)  0.2223E-04 (  3, 49, 53)  0.3576E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -6178,11 +6178,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 82, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -6194,10 +6194,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  82 STRESS PERIOD   1
@@ -6209,9 +6209,9 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  82 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  82 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  82 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   7 IN FLOW TIME STEP  82 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   8 IN FLOW TIME STEP  82 STRESS PERIOD   1
@@ -6233,7 +6233,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1227E-01 (  3, 46, 56)  0.1344E-03 (  3, 50, 53)  0.4488E-04 (  3, 49, 54)  0.5305E-05 (  1, 51, 53)  0.1073E-05 (  3, 47, 55)
+   0.1229E-01 (  3, 56, 46)  0.1350E-03 (  3, 50, 53)  0.4500E-04 (  3, 49, 54)  0.5275E-05 (  1, 51, 53)  0.1132E-05 (  3, 47, 55)
    0.5960E-07 (  1, 51, 51)
 
 
@@ -6260,7 +6260,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -6276,7 +6276,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6995.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -6317,7 +6317,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.9740E-02 (  3, 46, 57)  0.3330E-03 (  3, 50, 53)  0.3082E-04 (  3, 49, 54)  0.1699E-05 (  1, 51, 53)  0.1788E-06 (  3, 49, 54)
+   0.9730E-02 (  3, 46, 57)  0.3329E-03 (  3, 50, 53)  0.3093E-04 (  3, 49, 54)  0.1669E-05 (  1, 51, 53)  0.1788E-06 (  3, 49, 54)
 
 
                                           ================================================
@@ -6343,11 +6343,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4472E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1397E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 84, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -6359,10 +6359,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6981.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3978.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  84 STRESS PERIOD   1
@@ -6376,11 +6376,11 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP  84 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   6 IN FLOW TIME STEP  84 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   7 IN FLOW TIME STEP  84 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   8 IN FLOW TIME STEP  84 STRESS PERIOD   1
-     5 TOTAL ITERATIONS
+     6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   9 IN FLOW TIME STEP  84 STRESS PERIOD   1
      6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  10 IN FLOW TIME STEP  84 STRESS PERIOD   1
@@ -6402,7 +6402,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.7555E-02 (  3, 51, 51)  0.5639E-03 (  3, 50, 53)  0.5418E-04 (  3, 49, 54)  0.3189E-05 (  3, 48, 54)  0.1788E-06 (  3, 47, 55)
+   0.7545E-02 (  3, 51, 51)  0.5646E-03 (  3, 50, 53)  0.5415E-04 (  3, 49, 54)  0.3189E-05 (  3, 48, 54)  0.1788E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -6428,11 +6428,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
+ = 0.4472E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1397E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 85, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -6469,7 +6469,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   9 IN FLOW TIME STEP  85 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  10 IN FLOW TIME STEP  85 STRESS PERIOD   1
-     6 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  11 IN FLOW TIME STEP  85 STRESS PERIOD   1
      6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  12 IN FLOW TIME STEP  85 STRESS PERIOD   1
@@ -6498,15 +6498,15 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.1265536E+09              -0.1265538E+09
-                                MASS STORAGE (SOLUTE):   0.1703992E+09              -0.1711438E+09
+                                      MULTI-NODE WELL:   0.1265528E+09              -0.1265528E+09
+                                MASS STORAGE (SOLUTE):   0.1704030E+09              -0.1711480E+09
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.2969538E+09 UNDF         -0.2976976E+09 UNDF
+                                              [TOTAL]:   0.2969569E+09 UNDF         -0.2977008E+09 UNDF
 
-                                                          NET (IN - OUT):   -743808.0    
-                                                   DISCREPANCY (PERCENT):  -0.2501660    
+                                                          NET (IN - OUT):   -743936.0    
+                                                   DISCREPANCY (PERCENT):  -0.2502064    
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  15 IN FLOW TIME STEP  85 STRESS PERIOD   1
-     7 TOTAL ITERATIONS
+     6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  16 IN FLOW TIME STEP  85 STRESS PERIOD   1
      6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  17 IN FLOW TIME STEP  85 STRESS PERIOD   1
@@ -6516,7 +6516,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.7741E-02 (  3, 57, 58)  0.5594E-03 (  3, 50, 53)  0.5859E-04 (  3, 49, 54)  0.3517E-05 (  3, 48, 54)  0.2086E-06 (  3, 47, 55)
+   0.7734E-02 (  3, 45, 44)  0.5582E-03 (  3, 53, 50)  0.5841E-04 (  3, 49, 54)  0.3517E-05 (  3, 48, 54)  0.2086E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -6542,11 +6542,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  52, J=  51
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 86, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -6558,10 +6558,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  86 STRESS PERIOD   1
@@ -6605,7 +6605,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.4209E-02 (  3, 51, 51)  0.3335E-03 (  3, 50, 52)  0.1302E-04 (  3, 49, 53)  0.1788E-06 (  3, 48, 54)
+   0.4234E-02 (  3, 51, 51)  0.3384E-03 (  3, 50, 52)  0.1353E-04 (  3, 49, 53)  0.1788E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -6631,11 +6631,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  52, J=  51
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 87, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -6647,10 +6647,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  87 STRESS PERIOD   1
@@ -6694,7 +6694,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1396E-01 (  3, 44, 59)  0.1802E-03 (  3, 50, 53)  0.6592E-04 (  3, 48, 54)  0.1311E-04 (  3, 49, 54)  0.3532E-05 (  1, 53, 51)
+   0.1400E-01 (  3, 44, 59)  0.1823E-03 (  3, 50, 53)  0.6643E-04 (  3, 48, 54)  0.1314E-04 (  3, 49, 54)  0.3472E-05 (  1, 51, 53)
    0.2980E-06 (  3, 48, 55)
 
 
@@ -6721,11 +6721,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4472E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  52, J=  51
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 88, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -6737,10 +6737,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6960.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  88 STRESS PERIOD   1
@@ -6778,7 +6778,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  17 IN FLOW TIME STEP  88 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  18 IN FLOW TIME STEP  88 STRESS PERIOD   1
-     6 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  19 IN FLOW TIME STEP  88 STRESS PERIOD   1
      6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  20 IN FLOW TIME STEP  88 STRESS PERIOD   1
@@ -6786,7 +6786,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1200E-01 (  3, 43, 43)  0.1120E-03 (  3, 53, 50)  0.1737E-04 (  3, 47, 55)  0.1588E-04 (  3, 47, 56)  0.7749E-06 (  3, 47, 55)
+   0.1205E-01 (  3, 43, 59)  0.1086E-03 (  3, 53, 50)  0.1624E-04 (  3, 47, 55)  0.1746E-04 (  3, 47, 56)  0.7451E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -6828,10 +6828,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6993.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3975.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  89 STRESS PERIOD   1
@@ -6894,20 +6894,20 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.1374202E+09              -0.1374204E+09
-                                MASS STORAGE (SOLUTE):   0.2173453E+09              -0.2182699E+09
+                                      MULTI-NODE WELL:   0.1374203E+09              -0.1374203E+09
+                                MASS STORAGE (SOLUTE):   0.2173513E+09              -0.2182762E+09
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.3547666E+09 UNDF         -0.3556904E+09 UNDF
+                                              [TOTAL]:   0.3547727E+09 UNDF         -0.3556965E+09 UNDF
 
-                                                          NET (IN - OUT):   -923840.0    
-                                                   DISCREPANCY (PERCENT):  -0.2600693    
+                                                          NET (IN - OUT):   -923872.0    
+                                                   DISCREPANCY (PERCENT):  -0.2600738    
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  21 IN FLOW TIME STEP  89 STRESS PERIOD   1
      6 TOTAL ITERATIONS
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1464E-01 (  3, 43, 60)  0.7668E-03 (  3, 50, 53)  0.1549E-03 (  3, 49, 54)  0.2030E-04 (  3, 47, 55)  0.2056E-05 (  3, 48, 55)
-   0.1341E-06 (  3, 47, 55)
+   0.1464E-01 (  3, 60, 43)  0.7706E-03 (  3, 50, 53)  0.1553E-03 (  3, 49, 54)  0.2031E-04 (  3, 47, 55)  0.2041E-05 (  3, 48, 55)
+   0.5215E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -6933,11 +6933,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
+ = 0.4472E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ = 0.1397E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 90, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -6949,10 +6949,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3978.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  90 STRESS PERIOD   1
@@ -7002,7 +7002,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.8257E-02 (  3, 42, 60)  0.3368E-03 (  3, 50, 53)  0.4458E-04 (  3, 49, 54)  0.3099E-05 (  3, 48, 55)  0.2086E-06 (  3, 47, 55)
+   0.8194E-02 (  3, 60, 60)  0.3376E-03 (  3, 53, 50)  0.4464E-04 (  3, 49, 54)  0.3099E-05 (  3, 48, 55)  0.2086E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -7028,11 +7028,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
+ = 0.4472E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1397E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 91, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -7044,10 +7044,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6983.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6980.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3976.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3978.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  91 STRESS PERIOD   1
@@ -7089,7 +7089,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  19 IN FLOW TIME STEP  91 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  20 IN FLOW TIME STEP  91 STRESS PERIOD   1
-     7 TOTAL ITERATIONS
+     6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  21 IN FLOW TIME STEP  91 STRESS PERIOD   1
      6 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  22 IN FLOW TIME STEP  91 STRESS PERIOD   1
@@ -7099,7 +7099,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.6402E-02 (  3, 60, 41)  0.3229E-03 (  3, 50, 53)  0.4055E-04 (  3, 49, 54)  0.2682E-05 (  3, 48, 55)  0.1937E-06 (  3, 47, 55)
+   0.6347E-02 (  3, 41, 42)  0.3222E-03 (  3, 50, 53)  0.4030E-04 (  3, 49, 54)  0.2645E-05 (  3, 48, 55)  0.1937E-06 (  3, 47, 55)
 
 
                                           ================================================
@@ -7141,16 +7141,16 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6981.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6983.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
+ =  3975.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  92 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  92 STRESS PERIOD   1
-     3 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  92 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  92 STRESS PERIOD   1
@@ -7213,19 +7213,19 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.1412037E+09              -0.1412039E+09
-                                MASS STORAGE (SOLUTE):   0.2537865E+09              -0.2547804E+09
+                                      MULTI-NODE WELL:   0.1412039E+09              -0.1412039E+09
+                                MASS STORAGE (SOLUTE):   0.2537935E+09              -0.2547877E+09
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.3949912E+09 UNDF         -0.3959844E+09 UNDF
+                                              [TOTAL]:   0.3949984E+09 UNDF         -0.3959916E+09 UNDF
 
-                                                          NET (IN - OUT):   -993184.0    
-                                                   DISCREPANCY (PERCENT):  -0.2511289    
+                                                          NET (IN - OUT):   -993248.0    
+                                                   DISCREPANCY (PERCENT):  -0.2511404    
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  24 IN FLOW TIME STEP  92 STRESS PERIOD   1
      6 TOTAL ITERATIONS
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1303E-01 (  3, 41, 61)  0.5750E-03 (  3, 50, 53)  0.1048E-03 (  3, 49, 54)  0.1325E-04 (  3, 47, 55)  0.1267E-05 (  3, 46, 56)
+   0.1305E-01 (  3, 41, 41)  0.5726E-03 (  3, 53, 50)  0.1046E-03 (  3, 54, 49)  0.1323E-04 (  3, 47, 55)  0.1267E-05 (  3, 46, 56)
    0.2384E-06 (  3, 48, 55)
 
 
@@ -7252,7 +7252,7 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
@@ -7268,7 +7268,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6980.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
@@ -7277,7 +7277,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  93 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   2 IN FLOW TIME STEP  93 STRESS PERIOD   1
-     3 TOTAL ITERATIONS
+     4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   3 IN FLOW TIME STEP  93 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP  93 STRESS PERIOD   1
@@ -7327,7 +7327,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2981E-02 (  3, 60, 62)  0.1653E-03 (  3, 50, 53)  0.1570E-04 (  3, 49, 53)  0.7302E-06 (  3, 48, 54)
+   0.2977E-02 (  3, 40, 41)  0.1651E-03 (  3, 50, 53)  0.1568E-04 (  3, 49, 53)  0.7302E-06 (  3, 48, 54)
 
 
                                           ================================================
@@ -7353,11 +7353,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4472E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  50
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1397E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 94, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -7369,10 +7369,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6981.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3978.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  94 STRESS PERIOD   1
@@ -7430,7 +7430,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1343E-02 (  3, 62, 61)  0.8446E-04 (  3, 50, 52)  0.4288E-05 (  3, 49, 53)  0.7823E-07 (  3, 48, 54)
+   0.1383E-02 (  3, 40, 41)  0.8632E-04 (  3, 50, 52)  0.4523E-05 (  3, 49, 53)  0.8568E-07 (  3, 48, 54)
 
 
                                           ================================================
@@ -7456,11 +7456,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 95, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -7472,10 +7472,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6980.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  95 STRESS PERIOD   1
@@ -7526,13 +7526,13 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.1426870E+09              -0.1426872E+09
-                                MASS STORAGE (SOLUTE):   0.2834689E+09              -0.2844917E+09
+                                      MULTI-NODE WELL:   0.1426872E+09              -0.1426872E+09
+                                MASS STORAGE (SOLUTE):   0.2834730E+09              -0.2844960E+09
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.4261570E+09 UNDF         -0.4271790E+09 UNDF
+                                              [TOTAL]:   0.4261612E+09 UNDF         -0.4271832E+09 UNDF
 
-                                                          NET (IN - OUT):   -1022016.    
-                                                   DISCREPANCY (PERCENT):  -0.2395343    
+                                                          NET (IN - OUT):   -1021984.    
+                                                   DISCREPANCY (PERCENT):  -0.2395244    
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  15 IN FLOW TIME STEP  95 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  16 IN FLOW TIME STEP  95 STRESS PERIOD   1
@@ -7562,7 +7562,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.4965E-03 (  3, 62, 62)  0.2504E-04 (  3, 50, 52)  0.3614E-06 (  3, 49, 53)
+   0.5206E-03 (  3, 40, 40)  0.2657E-04 (  3, 50, 52)  0.4098E-06 (  3, 49, 53)
 
 
                                           ================================================
@@ -7588,11 +7588,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  50
+ = 0.4470E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 96, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -7604,10 +7604,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6981.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3976.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  96 STRESS PERIOD   1
@@ -7667,7 +7667,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1552E-01 (  3, 63, 40)  0.2214E-04 (  3, 43, 60)  0.1793E-04 (  3, 43, 60)  0.3383E-05 (  3, 43, 60)  0.6910E-06 (  3, 48, 55)
+   0.1554E-01 (  3, 40, 39)  0.2225E-04 (  3, 43, 60)  0.1799E-04 (  3, 43, 60)  0.3427E-05 (  3, 43, 60)  0.6966E-06 (  3, 48, 55)
 
 
                                           ================================================
@@ -7693,11 +7693,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
+ = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 97, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -7709,10 +7709,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6969.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3978.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3977.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  97 STRESS PERIOD   1
@@ -7761,13 +7761,13 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.1433281E+09              -0.1433283E+09
-                                MASS STORAGE (SOLUTE):   0.3085061E+09              -0.3095436E+09
+                                      MULTI-NODE WELL:   0.1433283E+09              -0.1433283E+09
+                                MASS STORAGE (SOLUTE):   0.3085078E+09              -0.3095453E+09
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.4518353E+09 UNDF         -0.4528720E+09 UNDF
+                                              [TOTAL]:   0.4518371E+09 UNDF         -0.4528737E+09 UNDF
 
-                                                          NET (IN - OUT):   -1036704.    
-                                                   DISCREPANCY (PERCENT):  -0.2291800    
+                                                          NET (IN - OUT):   -1036576.    
+                                                   DISCREPANCY (PERCENT):  -0.2291508    
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  14 IN FLOW TIME STEP  97 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  15 IN FLOW TIME STEP  97 STRESS PERIOD   1
@@ -7803,7 +7803,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.2226E-03 (  3, 63, 63)  0.5300E-05 (  3, 50, 52)  0.2608E-07 (  3, 49, 53)
+   0.2388E-03 (  3, 39, 39)  0.5919E-05 (  3, 50, 52)  0.3353E-07 (  3, 49, 53)
 
 
                                           ================================================
@@ -7829,11 +7829,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
+ = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  52, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1395E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 98, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -7845,10 +7845,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6980.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3975.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  98 STRESS PERIOD   1
@@ -7908,11 +7908,11 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  28 IN FLOW TIME STEP  98 STRESS PERIOD   1
      5 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  29 IN FLOW TIME STEP  98 STRESS PERIOD   1
-     3 TOTAL ITERATIONS
+     5 TOTAL ITERATIONS
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1319E-01 (  3, 64, 40)  0.1711E-04 (  3, 50, 53)  0.9090E-06 (  3, 41, 61)
+   0.1326E-01 (  3, 64, 40)  0.1683E-04 (  3, 50, 53)  0.4128E-05 (  3, 42, 61)  0.1822E-04 (  3, 42, 61)  0.2244E-06 (  3, 46, 56)
 
 
                                           ================================================
@@ -7938,11 +7938,11 @@
                     --------------------------------------------------------------------------------------------
 
  MAXIMUM STEPSIZE DURING WHICH ANY PARTICLE CANNOT MOVE MORE THAN ONE CELL
- = 0.4471E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  50, J=  51
+ = 0.4469E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  52
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE ADVECTION TERM
  (FOR PURE FINITE-DIFFERENCE OPTION, MIXELM=0) 
- = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ = 0.1396E+05(WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
                     "CNH             " FLOW TERMS FOR TIME STEP 99, STRESS PERIOD  1 READ UNFORMATTED ON UNIT 10
                     --------------------------------------------------------------------------------------------
@@ -7954,10 +7954,10 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6982.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  3975.    (WHEN MIN. R.F.=1)  AT K=   1, I=  51, J=  51
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP  99 STRESS PERIOD   1
@@ -7989,7 +7989,7 @@
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  14 IN FLOW TIME STEP  99 STRESS PERIOD   1
      3 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  15 IN FLOW TIME STEP  99 STRESS PERIOD   1
-     4 TOTAL ITERATIONS
+     3 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  16 IN FLOW TIME STEP  99 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  17 IN FLOW TIME STEP  99 STRESS PERIOD   1
@@ -8023,7 +8023,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1241E-01 (  3, 39, 64)  0.2055E-04 (  3, 50, 53)  0.6035E-05 (  3, 41, 62)  0.5230E-05 (  3, 41, 62)  0.9239E-06 (  3, 41, 62)
+   0.1248E-01 (  3, 64, 39)  0.2041E-04 (  3, 53, 50)  0.6080E-05 (  3, 41, 62)  0.5260E-05 (  3, 41, 62)  0.8345E-06 (  3, 41, 62)
 
 
                                           ================================================
@@ -8065,7 +8065,7 @@
  TOTAL NUMBER OF POINT SOURCES/SINKS PRESENT IN THE FLOW MODEL =   738
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
- =  6979.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
+ =  6980.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
 
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
  =  3977.    (WHEN MIN. R.F.=1)  AT K=   3, I=  51, J=  51
@@ -8136,7 +8136,7 @@
   MAXIMUM CONCENTRATION CHANGES FOR EACH ITERATION:
   MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL MAX. CHANGE LAYER,ROW,COL
  ------------------------------------------------------------------------------------------------------------------------------------
-   0.1174E-01 (  3, 38, 38)  0.1968E-04 (  3, 50, 53)  0.5111E-05 (  3, 40, 62)  0.1952E-05 (  3, 40, 62)  0.5811E-06 (  3, 40, 62)
+   0.1173E-01 (  3, 38, 64)  0.1967E-04 (  3, 53, 50)  0.5096E-05 (  3, 40, 62)  0.1952E-05 (  3, 40, 62)  0.5811E-06 (  3, 40, 62)
 
 
 
@@ -8157,13 +8157,13 @@
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
                                         CONSTANT HEAD:    0.000000                    0.000000    
-                                      MULTI-NODE WELL:   0.1438348E+09              -0.1438350E+09
-                                MASS STORAGE (SOLUTE):   0.3602705E+09              -0.3613200E+09
+                                      MULTI-NODE WELL:   0.1438349E+09              -0.1438349E+09
+                                MASS STORAGE (SOLUTE):   0.3602670E+09              -0.3613169E+09
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:   0.5041064E+09 UNDF         -0.5051551E+09 UNDF
+                                              [TOTAL]:   0.5041030E+09 UNDF         -0.5051519E+09 UNDF
 
-                                                          NET (IN - OUT):   -1048704.    
-                                                   DISCREPANCY (PERCENT):  -0.2078161    
+                                                          NET (IN - OUT):   -1048864.    
+                                                   DISCREPANCY (PERCENT):  -0.2078492    
   ----- 
  | M T |
  | 3 D | END OF MODEL OUTPUT

@@ -43,7 +43,7 @@
   o SSM   ON UNIT  4
   o GCG   ON UNIT  9
 
- BTN5 -- BASIC TRANSPORT PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  1
+ BTN5 -- BASIC TRANSPORT PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  1
       22970 ELEMENTS OF THE  X ARRAY USED BY THE BTN PACKAGE
        1427 ELEMENTS OF THE IX ARRAY USED BY THE BTN PACKAGE
 
@@ -57,11 +57,11 @@
           0 ELEMENTS OF THE  X ARRAY USED BY THE ADV PACKAGE
           0 ELEMENTS OF THE IX ARRAY USED BY THE ADV PACKAGE
 
- DSP5 -- DISPERSION PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  3
-      14263 ELEMENTS OF THE  X ARRAY USED BY THE DSP PACKAGE
+ DSP5 -- DISPERSION PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  3
+      15688 ELEMENTS OF THE  X ARRAY USED BY THE DSP PACKAGE
           0 ELEMENTS OF THE IX ARRAY USED BY THE DSP PACKAGE
 
- SSM5 -- SINK & SOURCE MIXING PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  4
+ SSM5 -- SINK & SOURCE MIXING PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  4
  HEADER LINE OF THE SSM PACKAGE INPUT FILE:
  T F F F F F                                                                                                                                                                                             
  MAJOR STRESS COMPONENTS PRESENT IN THE FLOW MODEL:
@@ -79,7 +79,7 @@
         600 ELEMENTS OF THE IX ARRAY USED BY THE GCG PACKAGE
 
  ..........................................
- ELEMENTS OF THE  X ARRAY USED =     70106
+ ELEMENTS OF THE  X ARRAY USED =     71531
  ELEMENTS OF THE IX ARRAY USED =      2028
  ..........................................
 
@@ -139,8 +139,8 @@
  COURANT NUMBER ALLOWED IN SOLVING THE ADVECTION TERM = 0.500    
 
 
- DISPERSION PARAMETERS
- ---------------------
+ DISPERSION INPUT PARAMETERS
+ ---------------------------
 
                                        LONG. DISPERSIVITY (AL)  =   10.00000     FOR LAYER  1
                                        H. TRANS./LONG. DISP.    =  0.3000000    
@@ -211,10 +211,9 @@
  MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE SINK & SOURCE TERM
  =  30.04    (WHEN MIN. R.F.=1)  AT K=   1, I=  24, J=   1
 
- MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
- =  11.32    (WHEN MIN. R.F.=1)  AT K=   1, I=  16, J=  16
+ PRINTED DISPERSION COEFFICIENTS ARE APPARENT Dij CALCULATED USING DARCY FLUX RATHER THAN SEEPAGE VELOCITY
 
-                                   APPARENT Dxx^    IN LAYER  1 FOR TIME STEP  1, STRESS PERIOD  1
+                                   Dxx^ Comp. # 001 IN LAYER  1 FOR TIME STEP  1, STRESS PERIOD  1
                                    ---------------------------------------------------------------
 
            1       2       3       4       5       6       7       8       9      10      11      12      13      14      15
@@ -347,7 +346,7 @@
          1.00    1.00    1.00    1.00    1.00    1.00    1.00    1.00    1.00    1.00    1.00    1.00    1.00    1.00    1.00
          0.00
 
-                                   APPARENT Dxy^    IN LAYER  1 FOR TIME STEP  1, STRESS PERIOD  1
+                                   Dxy^ Comp. ALL   IN LAYER  1 FOR TIME STEP  1, STRESS PERIOD  1
                                    ---------------------------------------------------------------
 
            1       2       3       4       5       6       7       8       9      10      11      12      13      14      15
@@ -480,7 +479,7 @@
          0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
          0.00
 
-                                   APPARENT Dyy^    IN LAYER  1 FOR TIME STEP  1, STRESS PERIOD  1
+                                   Dyy^ Comp. # 001 IN LAYER  1 FOR TIME STEP  1, STRESS PERIOD  1
                                    ---------------------------------------------------------------
 
            1       2       3       4       5       6       7       8       9      10      11      12      13      14      15
@@ -613,7 +612,7 @@
          0.30    0.30    0.30    0.30    0.30    0.30    0.30    0.30    0.30    0.30    0.30    0.30    0.30    0.30    0.30
          0.15
 
-                                   APPARENT Dyx^    IN LAYER  1 FOR TIME STEP  1, STRESS PERIOD  1
+                                   Dyx^ Comp. ALL   IN LAYER  1 FOR TIME STEP  1, STRESS PERIOD  1
                                    ---------------------------------------------------------------
 
            1       2       3       4       5       6       7       8       9      10      11      12      13      14      15
@@ -745,6 +744,9 @@
          0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
          0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
          0.00
+
+ MAXIMUM STEPSIZE WHICH MEETS STABILITY CRITERION OF THE DISPERSION TERM
+ =  11.32    (WHEN MIN. R.F.=1)  AT K=   1, I=  16, J=  16
 
 
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   1 IN FLOW TIME STEP   1 STRESS PERIOD   1

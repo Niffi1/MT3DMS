@@ -6,7 +6,7 @@ C **********************************************************************
 C THIS SUBROUTINE ALLOCATES SPACE FOR ARRAYS NEEDED IN THE SINK & SOURCE
 C MIXING (SSM) PACKAGE.
 C **********************************************************************
-C last modified: 02-15-2005
+C last modified: 10-30-2006
 C
       IMPLICIT  NONE
       INTEGER   INSSM,IOUT,ISSGOUT,ISUM,ISUM2,NCOL,NROW,NLAY,NCOMP,
@@ -22,7 +22,7 @@ C
 C--PRINT PACKAGE NAME AND VERSION NUMBER
       WRITE(IOUT,1000) INSSM
  1000 FORMAT(1X,'SSM5 -- SINK & SOURCE MIXING PACKAGE,',
-     & ' VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT',I3)
+     & ' VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT',I3)
 C
 C--READ AND PRINT FLAGS INDICATING WHICH SINK/SOURCE OPTIONS
 C--ARE USED IN FLOW MODEL
@@ -133,7 +133,7 @@ C ********************************************************************
 C THIS SUBROUTINE READS CONCENTRATIONS OF SOURCES OR SINKS NEEDED BY
 C THE SINK AND SOURCE MIXING (SSM) PACKAGE.
 C ********************************************************************
-C last modified: 02-15-2005
+C last modified: 10-30-2006
 C
       IMPLICIT  NONE
       INTEGER   IN,IOUT,KPER,NCOL,NROW,NLAY,NCOMP,ICBUND,
@@ -273,10 +273,16 @@ C
           ENDDO
         ELSEIF(IQ.EQ.15) THEN
           SS(5,NUM)=0.
+        ELSEIF(IQ.EQ.2.AND.CSS.LT.0) THEN
+          NTMP=-INT(CSS)
+          IF(NTMP.LT.1.OR.NTMP.GT.NCOL*NROW*NLAY) THEN
+            WRITE(*,79) 
+            CALL USTOP(' ')
+          ENDIF            
         ELSEIF(IQ.LT.1.OR.IQ.GT.100) THEN
           WRITE(*,80)
-          CALL USTOP(' ')
-        ENDIF
+          CALL USTOP(' ')          
+        ENDIF        
         SS(1,NUM)=KK
         SS(2,NUM)=II
         SS(3,NUM)=JJ
@@ -285,8 +291,10 @@ C
 C
         DO INDEX=1,NCOMP
           CSS=SSMC(INDEX,NUM)
-          IF(CSS.GT.0 .OR. ICBUND(JJ,II,KK,INDEX).LT.0)
+          IF(CSS.NE.0 .OR. ICBUND(JJ,II,KK,INDEX).LT.0)
      &     WRITE(IOUT,70) NUM,KK,II,JJ,CSS,TYPESS(IQ),INDEX
+          IF(CSS.LT.0 .AND. IQ.EQ.2) 
+     &     WRITE(IOUT,71) -INT(CSS)                
         ENDDO
 C
       ENDDO
@@ -299,8 +307,12 @@ C
    60 FORMAT(/5X,'  NO    LAYER   ROW   COLUMN   CONCENTRATION',
      & '       TYPE            COMPONENT')
    70 FORMAT(3X,4(I5,3X),1X,G15.7,5X,A15,I6)
+   71 FORMAT(8X,'>>RECIRCULATION WELL; INPUT CONCENTRATION',
+     & ' FROM NODE #',I10.8)
+   79 FORMAT(/1X,'ERROR: INVALID CELL LOCATION FOR RECIRCULATION',
+     &       /1X,'       WELL CONCENTRATION IN THE SSM INPUT FILE') 
    80 FORMAT(/1X,'ERROR: INVALID CODE FOR POINT SINK/SOURCE TYPE',
-     & /1X,'IN THE SSM INPUT FILE')
+     &       /1X,'       IN THE SSM INPUT FILE')
 C
 C--RETURN
       RETURN
@@ -314,7 +326,7 @@ C ******************************************************************
 C THIS SUBROUTINE FORMULATES MATRIX COEFFICIENTS FOR THE SINK/
 C SOURCE TERMS UNDER THE IMPLICIT FINITE-DIFFERENCE SCHEME.
 C ******************************************************************
-C last modified: 10-01-2005
+C last modified: 10-30-2006
 C
       IMPLICIT  NONE
       INTEGER   NCOL,NROW,NLAY,NCOMP,ICOMP,ICBUND,IRCH,IEVT,MXSS,
@@ -418,6 +430,15 @@ C--GET RETURN FLOW CONC FOR DRAINS WITH RETURN FLOW (IQ=28)
           IHOST=MOD((MHOST-1),NCOL*NROW)/NCOL + 1
           JHOST=MOD((MHOST-1),NCOL) + 1
           CTMP=CNEW(JHOST,IHOST,KHOST,ICOMP)
+C
+C--GET CONCENTRATION FOR RECIRCULATED INJECTION WELL
+C--(IF INPUT CONCENTRATION WAS SET TO A NEGATIVE INTEGER)
+        ELSEIF(IQ.EQ.2 .AND. CTMP.LT.0 .AND. QSS.GT.0)  THEN
+          MHOST=-INT(CTMP)
+          KHOST=(MHOST-1)/(NCOL*NROW) + 1
+          IHOST=MOD((MHOST-1),NCOL*NROW)/NCOL + 1
+          JHOST=MOD((MHOST-1),NCOL) + 1          
+          CTMP=CNEW(JHOST,IHOST,KHOST,ICOMP)                                      
         ENDIF
 C
 C--ADD CONTRIBUTIONS TO MATRICES [A] AND [RHS]        
@@ -509,6 +530,16 @@ C--RESET Q*C FOR DRAINS WITH RETURN FLOW (IQ=28)
           JHOST=MOD((MHOST-1),NCOL) + 1
           CTMP=CNEW(JHOST,IHOST,KHOST,ICOMP)
           QCTMP=QSS*CTMP
+C
+C--GET CONCENTRATION FOR RECIRCULATED INJECTION WELL 
+C--(IF INPUT CONCENTRATION WAS SET TO A NEGATIVE INTEGER)
+        ELSEIF(IQ.EQ.2 .AND. CTMP.LT.0 .AND. QSS.GT.0) THEN
+          MHOST=-INT(CTMP) 
+          KHOST=(MHOST-1)/(NCOL*NROW) + 1
+          IHOST=MOD((MHOST-1),NCOL*NROW)/NCOL + 1
+          JHOST=MOD((MHOST-1),NCOL) + 1
+          CTMP=CNEW(JHOST,IHOST,KHOST,ICOMP)   
+          QCTMP=QSS*CTMP                                    
         ENDIF
 C
 C--ADD CONTRIBUTIONS TO MATRICES [A] AND [RHS]
@@ -532,7 +563,7 @@ C ********************************************************************
 C THIS SUBROUTINE CALCULATES MASS BUDGETS ASSOCIATED WITH ALL SINK/
 C SOURCE TERMS.
 C ********************************************************************
-C last modified: 10-01-2005
+C last modified: 10-30-2006
 C
       IMPLICIT  NONE
       INTEGER   NCOL,NROW,NLAY,NCOMP,ICOMP,ICBUND,IRCH,IEVT,MXSS,
@@ -648,6 +679,15 @@ C--GET RETURN FLOW CONC FOR DRAINS WITH RETURN FLOW (IQ=28)
           IHOST=MOD((MHOST-1),NCOL*NROW)/NCOL + 1
           JHOST=MOD((MHOST-1),NCOL) + 1
           CTMP=CNEW(JHOST,IHOST,KHOST,ICOMP)
+C
+C--GET CONCENTRATION FOR RECIRCULATED INJECTION WELL
+C--(IF INPUT CONCENTRATION WAS SET TO A NEGATIVE INTEGER)
+        ELSEIF(IQ.EQ.2 .AND. CTMP.LT.0 .AND. QSS.GT.0) THEN
+          MHOST=-INT(CTMP) 
+          KHOST=(MHOST-1)/(NCOL*NROW) + 1
+          IHOST=MOD((MHOST-1),NCOL*NROW)/NCOL + 1
+          JHOST=MOD((MHOST-1),NCOL) + 1
+          CTMP=CNEW(JHOST,IHOST,KHOST,ICOMP)                                              
         ENDIF
 C        
         IF(QSS.LT.0) CTMP=CNEW(J,I,K,ICOMP)

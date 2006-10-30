@@ -24,7 +24,7 @@ C with the iterative solver routine by Tsun-Zee Mai.
 C Funding for MT3DMS development is provided, in part, by
 C U.S. Army Corps of Engineers, Research and Development Center.
 C
-C Copyright, 1998-2005, The University of Alabama. All rights reserved.
+C Copyright, 1998-2006, The University of Alabama. All rights reserved.
 C
 C This program is provided without any warranty.
 C No author or distributor accepts any responsibility
@@ -43,6 +43,7 @@ C                  08-12-2001 (4.00)
 C                  05-27-2003 (4.50)
 C                  02-15-2005 (5.00)   
 C                  10-25-2005 (5.10)
+C                  10-30-2006 (5.20)
 C
 C--SET MAXIMUM ARRAY DIMENSIONS
 C--MXTRNOP: MAXIMUM NUMBER OF TRANSPORT OPTIONS (PACKAGES)
@@ -53,7 +54,7 @@ C--MXCOMP:  MAXIMUM NUMBER OF CHEMICAL COMPONENTS
 C  =====================================================================
 C
       IMPLICIT  NONE
-      CHARACTER,PARAMETER :: VID*14='[Version 5.10]'
+      CHARACTER,PARAMETER :: VID*14='[Version 5.20]'
       INTEGER,PARAMETER :: MXTRNOP=50,MXCOMP=100,
      &                     MXPRS=1000,MXSTP=1000,MXOBS=200     
       INTEGER   IX,ISUMX,ISUMIX,ISUM,ISUM2,NCOL,NROW,NLAY,NCOMP,MCOMP,
@@ -193,7 +194,7 @@ C--ALLOCATE STORAGE SPACE FOR DATA ARRAYS
      & LCINDX,LCINDY,LCINDZ,LCCNPT,LCCHEK)
       IF(iUnitTRNOP(2).GT.0) 
      & CALL DSP5AL(iUnitTRNOP(2),IOUT,ISUM,ISUM2,NCOL,NROW,NLAY,
-     & LCAL,LCTRPT,LCTRPV,LCDM,LCDXX,LCDXY,LCDXZ,
+     & MCOMP,LCAL,LCTRPT,LCTRPV,LCDM,LCDXX,LCDXY,LCDXZ,
      & LCDYX,LCDYY,LCDYZ,LCDZX,LCDZY,LCDZZ)
       IF(iUnitTRNOP(3).GT.0) 
      & CALL SSM5AL(iUnitTRNOP(3),IOUT,ISSGOUT,ISUM,ISUM2,
@@ -220,8 +221,8 @@ C--ALLOCATE STORAGE SPACE FOR DATA ARRAYS
 C
 C--CHECK WHETHER ARRAYS X AND IX ARE DIMENSIONED LARGE ENOUGH.
 C--IF NOT STOP
-      ISUMX=ISUM                                  
-      ISUMIX=ISUM2                        
+      ISUMX=ISUM                         
+      ISUMIX=ISUM2                         
       WRITE(IOUT,20) ISUMX,ISUMIX
    20 FORMAT(1X,42('.')/1X,'ELEMENTS OF THE  X ARRAY USED =',I10,
      & /1X,'ELEMENTS OF THE IX ARRAY USED =',I10,
@@ -275,8 +276,8 @@ C--THE ENTIRE SIMULATION
      & CALL ADV5RP(iUnitTRNOP(1),IOUT,NCOL,NROW,NLAY,
      & MCOMP,MIXELM,MXPART,NADVFD,NCOUNT)
       IF(iUnitTRNOP(2).GT.0) 
-     & CALL DSP5RP(iUnitTRNOP(2),IOUT,NCOL,NROW,NLAY,
-     & X(LCAL),X(LCTRPT),X(LCTRPV),X(LCDM))
+     & CALL DSP5RP(iUnitTRNOP(2),IOUT,NCOL,NROW,NLAY,MCOMP,
+     & X(LCBUFF),X(LCAL),X(LCTRPT),X(LCTRPV),X(LCDM))
       IF(iUnitTRNOP(4).GT.0) 
      & CALL RCT5RP(iUnitTRNOP(4),IOUT,NCOL,NROW,NLAY,
      & NCOMP,IX(LCIB),X(LCCOLD),X(LCPR),ISOTHM,IREACT,IRCTOP,IGETSC,
@@ -352,7 +353,7 @@ C
 C
 C--CALCULATE COEFFICIENTS THAT VARY WITH FLOW-MODEL TIME STEP
           IF(iUnitTRNOP(2).GT.0) 
-     &     CALL DSP5CF(IOUT,KSTP,KPER,NCOL,NROW,NLAY,
+     &     CALL DSP5CF(IOUT,KSTP,KPER,NCOL,NROW,NLAY,MCOMP,
      &     IX(LCIB),X(LCPR),X(LCDELR),X(LCDELC),X(LCDH),
      &     X(LCQX),X(LCQY),X(LCQZ),X(LCAL),X(LCTRPT),X(LCTRPV),
      &     X(LCDM),DTDISP,X(LCDXX),X(LCDXY),X(LCDXZ),X(LCDYX),

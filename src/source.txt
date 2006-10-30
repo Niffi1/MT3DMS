@@ -1,8 +1,8 @@
 
-Subdirectory \standard contains the source code for MT3DMS 5.1 using 
+Subdirectory \standard contains the source code for MT3DMS 5.2 using 
 standard FORTRAN file specifiers for unformatted files.
 
-Subdirectory \true-binary contains the source code for MT3DMS 5.1 using 
+Subdirectory \true-binary contains the source code for MT3DMS 5.2 using 
 nonstandard FORTRAN file specifiers for unstructured binary files.
 
 The only difference between the two versions is in the include file
