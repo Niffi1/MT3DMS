@@ -1,4 +1,4 @@
-C
+C 
 C%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 C                                                                      %
 C                               MT3DMS                                 %
@@ -24,7 +24,7 @@ C with the iterative solver routine by Tsun-Zee Mai.
 C Funding for MT3DMS development is provided, in part, by
 C U.S. Army Corps of Engineers, Research and Development Center.
 C
-C Copyright, 1998-2006, The University of Alabama. All rights reserved.
+C Copyright, 1998-2010, The University of Alabama. All rights reserved.
 C
 C This program is provided without any warranty.
 C No author or distributor accepts any responsibility
@@ -44,6 +44,7 @@ C                  05-27-2003 (4.50)
 C                  02-15-2005 (5.00)   
 C                  10-25-2005 (5.10)
 C                  10-30-2006 (5.20)
+C                  02-20-2010 (5.30)
 C
 C--SET MAXIMUM ARRAY DIMENSIONS
 C--MXTRNOP: MAXIMUM NUMBER OF TRANSPORT OPTIONS (PACKAGES)
@@ -54,12 +55,12 @@ C--MXCOMP:  MAXIMUM NUMBER OF CHEMICAL COMPONENTS
 C  =====================================================================
 C
       IMPLICIT  NONE
-      CHARACTER,PARAMETER :: VID*14='[Version 5.20]'
+      CHARACTER,PARAMETER :: VID*14='[Version 5.30]'
       INTEGER,PARAMETER :: MXTRNOP=50,MXCOMP=100,
      &                     MXPRS=1000,MXSTP=1000,MXOBS=200     
       INTEGER   IX,ISUMX,ISUMIX,ISUM,ISUM2,NCOL,NROW,NLAY,NCOMP,MCOMP,
-     &          INBTN,INADV,INDSP,INSSM,INRCT,INGCG,INTOB,INFTL,IOUT,
-     &          ICNF,IUCN,IUCN2,IOBS,IMAS,ICBM,ISSGOUT,
+     &          INBTN,INADV,INDSP,INSSM,INRCT,INGCG,INTOB,INHSS,INFTL,
+     &          IOUT,ICNF,IUCN,IUCN2,IOBS,IMAS,ICBM,ISSGOUT,
      &          LCLAYC,LCDELR,LCDELC,LCDZ,LCPR,LCXBC,LCYBC,LCZBC,LCQX,
      &          LCQY,LCQZ,LCDH,LCIB,LCCOLD,LCCNEW,LCCADV,LCRETA,LCBUFF,
      &          MIXELM,MXPART,LCXP,LCYP,LCZP,LCCNPT,LCCHEK,
@@ -76,33 +77,37 @@ C
      &          MXITER,IPRGCG,NADVFD,ITP,NODES,ICNVG,ITER1,ITO,
      &          ISOLVE,LCA,LCQ,LCWK,LCCNCG,LCLRCH,LCRHS,
      &          IMPSOL,NCRS,ISPD,IGETSC,L,INDEX,ICOMP,NPERFL,IERR
-      INTEGER   iNameFile,iFLen,IC,iFTLfmt,iUnitTRNOP,MXTRNOP,
+      INTEGER   iNameFile,iFLen,IC,iFTLfmt,iUnitTRNOP,
      &          MaxConcObs,MaxFluxObs,MaxFluxCells,inSaveObs,
      &          LCMLAYER,LCCOBS,LCPRLAYER,LCTEMP,LCFLUXGROUP,
      &          LCGROUPDATA,InConcObs,nConcObs,iOutCobs,iConcLOG,
-     &          iConcINTP,inFluxObs,nFluxGroup,nFluxObs,iOutFlux     
+     &          iConcINTP,inFluxObs,nFluxGroup,nFluxObs,iOutFlux,
+     &          iSSTrans,MaxHSSSource,MaxHSSCells,MaxHSSStep,
+     &          LCHSSData,LCHSSLoc,iHSSLoc,nHSSSource,iRunHSSM
       REAL      X,TIMPRS,TSLNGH,PERCEL,HORIGN,XMAX,YMAX,ZMAX,CINACT,
      &          TMASIO,RMASIO,DCEPS,SRMULT,WD,DCHMOC,HT1,HT2,TIME1,
      &          TIME2,DT0,DELT,DTRACK,DTDISP,DTRANS,THKMIN,
      &          DTSSM,DTRCT,DTRACK2,RFMIN,TMASS,ACCL,CCLOSE,
      &          TTSMULT,TTSMAX,TMASIN,TMASOT,ERROR,ERROR2,
-     &          start_time,end_time,total_time,CScale,FScale
+     &          start_time,end_time,total_time,CScale,FScale,
+     &          faclength,factime,facmass
       LOGICAL   UNIDX,UNIDY,UNIDZ,SAVUCN,SAVCBM,CHKMAS,
      &          FWEL,FDRN,FRCH,FEVT,FRIV,FGHB,PRTOUT,UPDLHS,EXISTED,
-     &          FSTR,FRES,FFHB,FIBS,FTLK,FLAK,FMNW,FDRT,FETS,FUSR(3)
+     &          FSTR,FRES,FFHB,FIBS,FTLK,FLAK,FMNW,FDRT,FETS,
+     &          FSWT,FSFR,FUZF
       CHARACTER FLNAME*50,FINDEX*30,TUNIT*4,LUNIT*4,MUNIT*4,FPRT*1,
-     &          LINE*80,NameTRNOP*4,cobsnam*12,fobsnam*12
-      DIMENSION X(:),IX(:),cobsnam(:),fobsnam(:),
+     &          LINE*80,NameTRNOP*4,cobsnam*12,fobsnam*12,HSSNAM*12
+      DIMENSION X(:),IX(:),cobsnam(:),fobsnam(:),HSSNAM(:),
      &          TIMPRS(MXPRS),TSLNGH(MXSTP),LOCOBS(3,MXOBS),
      &          NCOUNT(MXCOMP),NPINS(MXCOMP),NRC(MXCOMP),
      &          TMASIO(122,2,MXCOMP),RMASIO(122,2,MXCOMP),
      &          TMASS(4,3,MXCOMP),TMASIN(MXCOMP),TMASOT(MXCOMP),
      &          ERROR(MXCOMP),ERROR2(MXCOMP),
      &          NameTRNOP(MXTRNOP),iUnitTRNOP(MXTRNOP)
-      ALLOCATABLE :: X,IX,cobsnam,fobsnam      
+      ALLOCATABLE :: X,IX,cobsnam,fobsnam,HSSNAM      
       COMMON   /PD/HORIGN,XMAX,YMAX,ZMAX,UNIDX,UNIDY,UNIDZ
-      COMMON   /FC/FWEL,FDRN,FRCH,FEVT,FRIV,FGHB,
-     &          FSTR,FRES,FFHB,FIBS,FTLK,FLAK,FMNW,FDRT,FETS,FUSR
+      COMMON   /FC/FWEL,FDRN,FRCH,FEVT,FRIV,FGHB,FSTR,FRES,FFHB,
+     &             FIBS,FTLK,FLAK,FMNW,FDRT,FETS,FSWT,FSFR,FUZF
       COMMON   /OC/IFMTCN,IFMTNP,IFMTRF,IFMTDP,SAVUCN,
      &             SAVCBM,CHKMAS,NPRMAS
       COMMON   /AD/PERCEL,ITRACK,WD,ISEED,DCEPS,NPLANE,NPL,NPH,
@@ -111,12 +116,12 @@ C
       COMMON   /FTL/iFTLfmt            
       DATA NameTRNOP/'ADV ', 'DSP ', 'SSM ', 'RCT ', 'GCG ',
      &               '    ', '    ', '    ', '    ', '    ',               
-     &               'TOB ', '    ', '    ', '    ', '    ',
+     &               'TOB ', '    ', 'HSS ', '    ', '    ',
      &               '    ', '    ', '    ', '    ', '    ',
      &            30*'    '/
       DATA INBTN/1/,  INFTL/10/, IOUT/16/,
      &     INADV/2/,  INDSP/3/,  INSSM/4/,  INRCT/8/,  INGCG/9/,  
-     &     INTOB/12/, ICNF/17/, 
+     &     INTOB/12/, INHSS/13/, ICNF/17/, 
      &     IUCN/200/, IUCN2/300/,IOBS/400/, IMAS/600/, ICBM/800/
 C
 C--Get CPU time at the start of simulation
@@ -162,7 +167,7 @@ C-Open files using the Name File method as in MODFLOW-2000
       iNameFile=99
       OPEN(iNameFile,file=flname,status='old')
       CALL BTN5OPEN(iNameFile,IOUT,INBTN,INADV,INDSP,INSSM,INRCT,
-     & INGCG,INTOB,INFTL,FPRT,MXTRNOP,iUnitTRNOP,NameTRNOP)
+     & INGCG,INTOB,INHSS,INFTL,FPRT,MXTRNOP,iUnitTRNOP,NameTRNOP)
       CLOSE (iNameFile)      
 C
 C--WRITE PROGRAM TITLE TO OUTPUT FILE
@@ -217,12 +222,23 @@ C--ALLOCATE STORAGE SPACE FOR DATA ARRAYS
   105     FORMAT(1X,'ERROR ALLOCATING MEMORY FOR COBSNAM/FOBSNAM')
           CALL USTOP(' ')
         ENDIF  
-      ENDIF                  
+      ENDIF     
+      IF(iUnitTRNOP(13).GT.0) THEN
+        CALL HSS5AL(iUnitTRNOP(13),IOUT,ISUM,ISUM2,NCOL,NROW,NLAY,
+     &   MaxHSSSource,MaxHSSCells,MaxHSSStep,
+     &   LCHSSData,LCHSSLoc,iRunHSSM)
+        ALLOCATE (HSSNAM(MaxHSSSource),stat=ierr)
+        IF(IERR.NE.0) THEN
+          WRITE(*,205)
+  205     FORMAT(1X,'ERROR ALLOCATING MEMORY FOR HSSNAM')
+          CALL USTOP(' ')
+        ENDIF
+      ENDIF                              
 C
 C--CHECK WHETHER ARRAYS X AND IX ARE DIMENSIONED LARGE ENOUGH.
 C--IF NOT STOP
-      ISUMX=ISUM                         
-      ISUMIX=ISUM2                         
+      ISUMX=ISUM                        
+      ISUMIX=ISUM2         
       WRITE(IOUT,20) ISUMX,ISUMIX
    20 FORMAT(1X,42('.')/1X,'ELEMENTS OF THE  X ARRAY USED =',I10,
      & /1X,'ELEMENTS OF THE IX ARRAY USED =',I10,
@@ -293,6 +309,11 @@ C--THE ENTIRE SIMULATION
      & X(LCCOBS),IX(LCMLAYER),X(LCPRLAYER),X(LCTEMP),
      & inFluxObs,nFluxGroup,nFluxObs,FScale,
      & iOutFlux,inSaveObs,FOBSNAM,X(LCFLUXGROUP),X(LCGROUPDATA))
+      IF(iUnitTRNOP(13).GT.0) 
+     & CALL HSS5RP(iUnitTRNOP(13),IOUT,NCOL,NROW,NLAY,NCOMP,
+     & IX(LCIB),X(LCDELR),X(LCDELC),X(LCXBC),X(LCYBC),MaxHSSSource,
+     & MaxHSSCells,MaxHSSStep,nHSSSource,faclength,factime,facmass,
+     & X(LCHSSData),IX(LCHSSLoc),HSSNAM,iRunHSSM)               
 C
 C--FOR EACH STRESS PERIOD***********************************************
       HT1=0.
@@ -310,7 +331,7 @@ C--WRITE AN INDENTIFYING MESSAGE
 C
 C--GET STRESS TIMING INFORMATION
         CALL BTN5ST(INBTN,IOUT,NSTP,MXSTP,TSLNGH,DT0,MXSTRN,TTSMULT,
-     &   TTSMAX,TUNIT)
+     &   TTSMAX,TUNIT,iSSTrans)
 C
 C--READ AND PREPARE INPUT INFORMATION WHICH IS CONSTANT
 C--WITHIN EACH STRESS PERIOD
@@ -366,7 +387,8 @@ C--FOR EACH TRANSPORT STEP..............................................
           DO N=1,MXSTRN
 C
 C--ADVANCE ONE TRANSPORT STEP
-            CALL BTN5AD(N,MXTRNOP,iUnitTRNOP,TIME1,TIME2,HT2,DELT,
+            CALL BTN5AD(IOUT,N,MXTRNOP,iUnitTRNOP,iSSTrans,
+     &       TIME1,TIME2,HT2,DELT,
      &       KSTP,NSTP,MXPRS,TIMPRS,DT0,MXSTRN,MIXELM,DTRACK,DTRACK2,
      &       PERCEL,DTDISP,DTSSM,DTRCT,RFMIN,NPRS,NPS,DTRANS,PRTOUT,
      &       NCOL,NROW,NLAY,NCOMP,IX(LCIB),X(LCCNEW),X(LCCOLD),
@@ -419,7 +441,7 @@ C--FORMULATE MATRIX COEFFICIENTS
                 CALL BTN5FM(NCOL,NROW,NLAY,NCOMP,ICOMP,IX(LCIB),
      &           X(LCCADV),X(LCCOLD),X(LCRETA),X(LCPR),X(LCDELR),
      &           X(LCDELC),X(LCDH),DTRANS,
-     &           X(LCA),X(LCRHS),NODES,UPDLHS,NCRS,MIXELM)
+     &           X(LCA),X(LCRHS),NODES,UPDLHS,NCRS,MIXELM,iSSTrans)
                 IF(iUnitTRNOP(1).GT.0.AND.MIXELM.EQ.0 
      &           .AND. ICOMP.LE.MCOMP)
      &           CALL ADV5FM(NCOL,NROW,NLAY,MCOMP,ICOMP,IX(LCIB),
@@ -437,6 +459,11 @@ C--FORMULATE MATRIX COEFFICIENTS
      &           X(LCCRCH),IX(LCIEVT),X(LCEVTR),X(LCCEVT),MXSS,NTSS,
      &           X(LCSS),X(LCSSMC),X(LCSSG),X(LCQSTO),X(LCCNEW),ISS,
      &           X(LCA),X(LCRHS),NODES,UPDLHS,MIXELM)
+                IF(iUnitTRNOP(13).GT.0 .AND. ICOMP.LE.MCOMP)
+     &           CALL HSS5FM(NCOL,NROW,NLAY,NCOMP,ICOMP,MIXELM,UPDLHS,
+     &           MaxHSSSource,MaxHSSStep,MaxHSSCells,nHSSSource,
+     &           TIME1,TIME2,IX(LCIB),X(LCA),X(LCRHS),NODES,
+     &           X(LCHSSData),IX(LCHSSLoc))
                 IF(iUnitTRNOP(4).GT.0) 
      &           CALL RCT5FM(NCOL,NROW,NLAY,NCOMP,ICOMP,
      &           IX(LCIB),X(LCPR),X(LCDELR),X(LCDELC),X(LCDH),ISOTHM,
@@ -482,6 +509,10 @@ C
      &         X(LCCRCH),IX(LCIEVT),X(LCEVTR),X(LCCEVT),MXSS,NTSS,
      &         X(LCSS),X(LCSSMC),X(LCSSG),X(LCQSTO),X(LCCNEW),X(LCRETA),
      &         DTRANS,ISS,RMASIO)
+              IF(iUnitTRNOP(13).GT.0 .AND. ICOMP.LE.MCOMP) 
+     &         CALL HSS5BD(NCOL,NROW,NLAY,NCOMP,ICOMP,NODES,IX(LCIB),
+     &         MaxHSSSource,MaxHSSStep,MaxHSSCells,nHSSSource,50,
+     &         TIME1,TIME2,X(LCHSSData),IX(LCHSSLoc),RMASIO,DTRANS)     
               IF(iUnitTRNOP(4).GT.0) 
      &         CALL RCT5BD(NCOL,NROW,NLAY,NCOMP,ICOMP,
      &         IX(LCIB),X(LCPR),X(LCDELR),X(LCDELC),X(LCDH),DTRANS,
@@ -490,10 +521,10 @@ C
      &         X(LCCNEW),X(LCRETA),RFMIN,RMASIO)
 C
 C--CALCULATE GLOBAL MASS BUDGETS AND CHECK MASS BALANCE
-              CALL BTN5BD(KPER,KSTP,N,NCOL,NROW,NLAY,NCOMP,ICOMP,ISS,
-     &         IX(LCIB),X(LCDELR),X(LCDELC),X(LCDH),X(LCPR),X(LCRETA),
-     &         X(LCCNEW),X(LCCOLD),X(LCRHOB),X(LCSR),X(LCPRSITY2),
-     &         X(LCRETA2),ISOTHM,
+              CALL BTN5BD(KPER,KSTP,N,NCOL,NROW,NLAY,NCOMP,ICOMP,
+     &         ISS,iSSTrans,IX(LCIB),X(LCDELR),X(LCDELC),X(LCDH),
+     &         X(LCPR),X(LCRETA),X(LCCNEW),X(LCCOLD),X(LCRHOB),
+     &         X(LCSR),X(LCPRSITY2),X(LCRETA2),ISOTHM,
      &         DTRANS,TMASIN,TMASOT,ERROR,ERROR2,TMASIO,RMASIO,TMASS)
 C
 C--SAVE OUTPUTS
@@ -554,7 +585,8 @@ C--END OF STRESS PERIOD LOOP
 C
 C--DEALLOCATE MEMORY
       DEALLOCATE (X,IX)
-      if(iUnitTRNOP(11).GT.0) deallocate (cobsnam,fobsnam)
+      if(iUnitTRNOP(11).GT.0) DEALLOCATE (COBSNAM,FOBSNAM)
+      if(iUnitTRNOP(13).GT.0) DEALLOCATE (HSSNAM)
 C
 C--PROGRAM COMPLETED
       WRITE(IOUT,1200)

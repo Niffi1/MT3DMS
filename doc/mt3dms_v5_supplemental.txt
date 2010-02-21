@@ -1,0 +1,2628 @@
+MT3DMS v5.3
+Supplemental User’s Guide
+Chunmiao Zheng
+Department of Geological Sciences
+The University of Alabama
+
+Technical Report
+February 2010
+
+MT3D MS v5.3
+a modular three-dimensional multispecies transport model
+for simulation of advection, dispersion and chemical reactions
+of contaminants in groundwater systems
+
+Supplemental User’s Guide
+By
+
+Chunmiao Zheng
+Department of Geological Sciences
+The University of Alabama
+Tuscaloosa, Alabama 35487
+
+Prepared for
+
+U.S. Army Corps of Engineers
+Washington, DC 20314
+
+Monitored by U.S. Army Engineer Research and Development Center
+Vicksburg, Mississippi 39187
+
+i
+
+COPYRIGHT NOTICE, DISCLAIMER
+AND CONTACT INFORMATION
+This program is copyrighted, 1998-2010, The University of Alabama.
+All rights reserved.
+This program is provided without any warranty.
+No author or distributor accepts any responsibility to anyone
+for the consequences of using it or for whether it serves
+any particular purpose.
+The program may be copied, modified and redistributed,
+but ONLY under the condition that this manual and above
+copyright notice remain intact with the distribution package.
+This program and the latest updates can be downloaded
+from the MT3D home page at:
+http://hydro.geo.ua.edu/mt3d
+For technical information or to report program errors,
+please contact:
+Chunmiao Zheng
+Department of Geological Sciences
+The University of Alabama
+202 Bevill Research Building
+Tuscaloosa, Alabama 35487, USA
+E-mail: czheng@ua.edu
+
+Cover image courtesy of Paul Hsieh of the U.S.
+Geological Survey, showing a trichloroethylene
+(TCE) plume in an aquifer at the Massachusetts
+Military Reservation in Cape Cod, Massachusetts.
+
+ii
+
+Preface
+This document describes the cumulative changes and enhancements made since
+Version 5.0 of the MT3DMS solute fate and transport model. It is intended as a
+supplement to the original MT3DMS Documentation and User’s Guide published by the
+U.S. Army Corps of Engineers (Zheng and Wang, 1999; available at
+http://hydro.geo.ua.edu/mt3d). Readers should refer to Zheng and Wang (1999) for
+complete information on the theoretical background, numerical implementation, input
+instructions, and application examples for the MT3DMS model.
+Funding for the development of MT3DMS was provided in part by the U.S. Army
+Engineer Research and Development Center of the U.S. Army Corps of Engineers
+(USACE) in Vicksburg, Mississippi. The author is deeply grateful to Mark Dortch of
+USACE for his continuing support for MT3DMS development and enhancement. The
+development of the Transport Observation Package benefited from numerous discussions
+with Norm Jones and John Doherty. Keith Halford and Mary Hill were instrumental in
+enabling the Multi-Node Well Package in MODFLOW-2000 to interface with MT3DMS.
+Finally, the author acknowledges the assistance from Chris Neville, Matt Tonkin,
+Henning Prommer, Chris Langevin, Ned Banta, Eileen Poeter, and Rui Ma in various
+aspects of MT3DMS development.
+
+iii
+
+Table of Contents
+Preface.......................................................................................................................... iii
+1. Introduction ................................................................................................................1
+2. Running MT3DMS Using the Name-File Method ....................................................3
+3. Using the New Transport Observation (TOB) Package ............................................8
+4. Simulating the Effect of Multi-Node Wells on Solute Transport ............................18
+5. Support for Additional MODFLOW-2000 Sink/Source Packages ..........................22
+6. Simulating Zeroth-Order Reactions in Single- and Dual-Domain Systems ............25
+7. Using the Component-Dependent Diffusion Option ...............................................31
+8. Simulating the Effect of a Recirculation Well .........................................................33
+9. Arbitrary Time-Varying Mass Loading Source or Boundary Condition* ...............35
+10. Running MT3DMS in Steady-State Mode ............................................................38
+11. Using MT3DMS for Heat Transport Simulation ...................................................41
+References ....................................................................................................................44
+Appendix A. Changes to the Input Instructions since MT3DMS v5.0 ........................46
+
+(*The blue color indicates new documentation added for Version 5.3.)
+
+iv
+
+1 Introduction
+This document describes the cumulative changes and enhancements made since
+Version 5.0 of the MT3DMS solute fate and transport model and discusses all the new
+features that have become available since Version 5.0. It is intended as a supplement to
+the original MT3DMS Documentation and User’s Guide (Zheng and Wang, 1999). For
+the most up-to-date information on MT3DMS, refer to the README file included with
+the distribution files.
+There are a couple of significant organizational changes to Version 5 compared to
+the previous Version 4. First, the Name-File procedure becomes the only method to start
+a MT3DMS simulation run since v5.0. A Name-File specifies the names of most input
+and output files used in a model simulation. In addition, it controls the parts of the model
+program that are active, i.e., the “packages” that are used in the current simulation.
+Second, the implicit matrix solver, the General Conjugate-Gradient (GCG) solver, must
+be used in every simulation since v5.0. In other words, the dispersion, sink/source and
+reaction terms are now always solved by the implicit finite-difference method, regardless
+of whether the advection term is solved by the implicit finite-difference method, the
+mixed Eulerian-Lagrangian methods, or the third-order TVD method.
+A major new feature for MT3DMS since v5.0 is the Transport Observation (TOB)
+Package to save the calculated concentration at any observation location within the model
+domain and the calculated mass flux at any sink/source location. The calculated values
+are saved to output files, and optionally, along with the statistics of residuals between the
+calculated and observed values at the observation locations. The calculated
+concentrations can be interpolated from the nodal values if the observation point does not
+coincide with a model node. The calculated mass flux can be defined over any arbitrary
+group of sink/source cells referred to as a mass flux object.
+Another important addition to MT3DMS since v5.0 is the support for the MultiNode Well (MNW) Package (Halford and Hanson, 2002) used by MODFLOW-2000
+(Harbaugh et al., 2000) and MODFLOW-2005 (Harbaugh, 2005) to simulate the flow to
+a well screened over multiple nodes (layers). The MNW Package automatically
+partitions the total flow prescribed for a MNW into individual nodes (layers) and
+determines a single head value in the wellbore. Accordingly, MT3DMS computes a
+single composite concentration for the same wellbore based on the flux-weighted
+concentrations of the injected fluid (if any) and the flow rates from different layers.
+Since Version 5.0, MT3DMS has also added support for more new MODFLOW
+sink/source packages, including Drain with Return Flow (DRT) and Evapotranspiration
+with a Segmented Function (ETS), both documented in Banta (2000). The DRT Package
+in MODFLOW-2000 simulates the re-injection of a portion of the outflow from a drain
+cell back into the aquifer. MT3DMS assigns the concentration at the outflow cell as that
+
+1
+
+of the re-injected source at the return drain-flow location. The ETS package is supported
+in a manner similar to the original EVT package.
+New since Version 5.1 is the capability to simulate zeroth-order reactions in both
+single- and dual-domain systems. The standard MT3DMS code prior to v5.1 includes
+only the first-order kinetic reactions in the Chemical Reaction (RCT) Package. However,
+zeroth-order reactions may be useful for describing certain types of biogeochemical
+decay or production. In addition, zeroth-order reactions are needed in direct simulation
+of groundwater ages (e.g., Goode, 1996) and calculation of parameter sensitivities (e.g.,
+Tsai et al., 2003). Thus starting with Version 5.1, zeroth-order reactions are available as
+a standard option through the RCT Package in either single- or dual-domain formulation.
+Version 5.2 introduces a new option to include component-dependent and/or
+three-dimensional diffusion coefficients in the transport simulation. Prior to v5.2, the
+molecular diffusion coefficient can only be specified on a layer-by-layer basis (i.e., one
+uniform diffusion coefficient per model layer). Moreover, all solute components are
+assumed to have the same diffusion coefficient. Starting with Version 5.2, users are
+permitted to specify different diffusion coefficients for different solute components on a
+cell-by-cell basis (i.e., one diffusion coefficient per model cell, if necessary).
+Another new feature since Version 5.2 is the capability to simulate a
+“recirculation well.” A recirculation well refers to an injection well whose input
+concentration is not user-specified, but set internally equal to that of extracted water from
+a pumping well. This option is convenient for modeling some commonly encountered
+field situations, such as a “dipole” tracer test.
+With MT3DMS Version 5.3, it is possible to specify an arbitrarily defined timevarying mass loading source or boundary condition. This new capability allows the
+complete mass loading distribution to be specified at a source or boundary without being
+restricted by the definition of stress periods. The new capability is accomplished through
+a new package called the Hydrocarbon Spill Source (HSS) Package that has been
+developed for MT3DMS v5.3 (Zheng et al., 2010).
+Another significant change to Version 5.3 is the addition of a steady-state
+transport simulation option. This steady-state transport option may be useful for longterm transport simulation runs in which the concentration field reaches an equilibrium
+state with the net change in total mass equal to zero. Also, direct groundwater age
+simulation usually requires a steady-state concentration solution.
+Finally, a new section is added to this documentation to describe the use of
+MT3DMS for heat transport modeling. Heat is increasingly being recognized as an
+excellent groundwater tracer because of its usefulness in identifying multiple hydrologic
+processes and recent availability of improved temperature sensors and measurement
+technologies. The mathematical equivalency between the heat and solute transport
+equations makes it possible to use MT3DMS directly and efficiently to simulate heat
+transport with simple variable conversion.
+
+2
+
+2. Running MT3DMS Using the
+Name-File Method
+2.1 BACKGROUND
+Starting with version 5.0, the only method to start a MT3DMS simulation is
+through a Name File that is similar to the Name File used by MODFLOW-96, -2000 and
+-2005. The Name-File method has been available in MT3DMS since version 4 as an
+optional method of starting a transport simulation (see Zheng et al., 2001). However, it
+has become the only method to initiate a transport run since MT3DMS v5.0. As a result,
+the Transport Option (TRNOP) array specified through the Basic Transport (BTN)
+Package of MT3DMS v5.1 no longer has any effect. However, the input line must still
+be specified in the BTN input file for backward compatibility reasons.
+2.2 INPUT INSTRUCTIONS
+The Name File contains the names of most input and output files used in a model
+simulation and controls the parts of the model program that are active. The Name File is
+read on unit 99, which is specified in the MT3DMS main program. The Name File is
+constructed as follows:
+FOR EACH SIMULATION
+1.
+
+Ftype
+
+Nunit
+
+Fname
+
+[options]
+
+The Name File contains one of the above records (item 1) for each file. All
+variables are free format. The length of each record must be 199 characters or
+less. The records can be in any order except for the record where Ftype (file type)
+is ‘LIST’ as described below.
+Comment records are indicated by the # character in column 1 and can be located
+anywhere in the file. Any text characters can follow the # character. Comment
+records have no effect on the simulation; their purpose is to allow users to provide
+documentation about a particular simulation. All comment records after the first
+item-1 record are written in the listing file.
+Explanation of Variables in the Name File
+Ftype - is the file type, which must be one of the following character values. Ftype may
+be entered in all uppercase, all lowercase, or any combination.
+
+3
+
+LIST for the standard MT3DMS output file – the Name File for MT3DMS must
+always include a record that specifies ‘LIST’ for Ftype and the LIST record
+must be the first non-comment record.
+BTN for the MT3DMS Basic Transport Package.
+FTL for the MODFLOW-produced flow-transport link file.
+ADV for the MT3DMS Advection Package.
+DSP for the MT3DMS Dispersion Package.
+SSM for the MT3DMS Sink/Source Mixing Package.
+RCT for the MT3DMS Reaction Package.
+GCG for the MT3DMS Generalized Conjugate-Gradient Solver Package.
+TOB for the MT3DMS Transport Observation Package.
+HSS for the MT3DMS HSS Time-Varying Source Package.
+DATA(BINARY) for binary (unformatted) files such as those used for input of
+concentrations saved in a previous simulation as the initial condition for a
+continuation run.
+DATA for formatted (text) files such as those used to save formatted
+concentrations at observation points and mass budget summaries or for input of
+data from files that are separate from the primary package input files.
+Various output control options of MT3DMS can be set up to save several optional
+output files: the unformatted (binary) concentration file, the formatted
+concentration observation file, the formatted mass budget summary file, and the
+model configuration file. MT3DMS always assigns default names to these files
+with the conventions listed below. These default names can be overridden, as
+explained in the next paragraph.
+ MT3Dnnn.UCN for the dissolved-phase unformatted concentration files
+where nnn is the species index number such as 001 for species 1, 002 for
+species 2, and so on;
+ MT3DnnnS.UCN for the sorbed-phase or immobile-liquid-phase
+unformatted concentration files where nnn is the species index number
+such as 001 for species 1, 002 for species 2, and so on;
+ MT3Dnnn.OBS for the formatted concentration observation files;
+ MT3Dnnn.MAS for the formatted mass budget summary files; and
+ MT3D.CNF for storing the model configuration (spatial discretization)
+information needed by post-processing programs. It is always saved along
+with the UCN files.
+Nunit - is the FORTRAN unit to be used when reading from or writing to the file. Any
+valid unit number on the computer being used can be specified except for the unit
+numbers that have been internally preserved by the MT3DMS program, as listed in Table
+2.1. To use the preserved unit number for a particular file, simply set Nunit associated
+with that file to 0. If a preserved unit is used for a file for which the unit is not intended,
+4
+
+an error may occur and the program execution will be terminated. To avoid potential
+errors, avoid using any units between 1 and 20, and any units above 100, when specifying
+units for those files that do not have a preserved unit (i.e., not listed in Table 2.1).
+As pointed out previously, MT3DMS assigns the default file names for ‘UCN’, ‘OBS’,
+‘MAS’ and ‘CNF’ files as MT3Dnnn.UCN, MT3DnnnS.UCN, MT3Dnnn.OBS,
+MT3Dnnn.MAS, and MT3D.CNF. To keep the results from a previous simulation, these
+files need to be renamed before starting a new simulation in the same directory.
+Otherwise, they will be overwritten by the files from the new simulation. It is possible to
+override these default names. To specify a different name for an unformatted ‘UCN’ file,
+for example, add a line as shown below into the MT3DMS Name File:
+DATA(BINARY)
+
+Nunit
+
+NewRun.UCN
+
+where Nunit must be a preserved unit for a particular species. For example, if the
+NewRun.UCN is intended for saving the unformatted concentration of species 1,
+then Nunit must be set to 201, i.e., the unit preserved for species 1 (see Table 2.1).
+Similarly, if the NewRun.UCN is intended for species 2, then Nunit must be set to
+202.
+To specify a different name for the formatted ‘OBS’, ‘MAS’ and ‘CNF’ files,
+insert a line as shown below into the MT3DMS Name File
+DATA
+
+Nunit
+
+NewRun.OBS
+
+where again Nunit must be a preserved unit for a particular species. For example,
+if NewRun.OBS is intended for saving the species 1 concentrations at the
+observation points, then Nunit must be set to 401, the unit preserved for species 1
+(see Table 2.1). Similarly, if the NewRun.OBS is intended for species 2, then
+Nunit must be set to 402.
+Fname - is the name of the input/output file, which is a character value. Pathnames may
+be specified as part of Fname.
+[Options] – optional keywords that may be used for the corresponding input/output file.
+Currently, only two such keywords, FREE and PRINT, may be specified in conjunction
+with the flow-transport link (FTL) file. If the keyword FREE is specified, it indicates that
+the FTL input file for MT3DMS is in list-directed (free) format, i.e., produced by the
+LMT6 Package with the option OUTPUT_FILE_FORMAT set to formatted. If the
+keyword PRINT is specified, the content of the flow-transport link file is printed to the
+standard output file for checking and debugging purposes. Note that if no keyword is
+specified after the FTL file name, the FTL file is assumed to be unformatted (binary) by
+default.
+
+5
+
+Table 2.1. Preserved unit numbers for various file types in MT3DMS.
+
+MT3DMS Input/Output Files
+
+File Type
+
+Preserved Unit
+
+Output Listing File*
+
+LIST
+
+16
+
+BTN
+FTL
+ADV
+DSP
+SSM
+RCT
+GCG
+TOB
+HSS
+
+1
+10
+2
+3
+4
+8
+9
+7
+13
+
+CNF
+UCN
+
+17
+200+species index
+
+UCN
+
+300+species index
+
+OBS
+MAS
+
+400+species index
+600+species index
+
+Package Options
+Basic Transport*
+Flow-Transport Link*
+Advection
+Dispersion
+Sink/Source Mixing
+Reaction
+Generalized Conjugate Gradient
+Transport Observation
+HSS Time-Varying Source
+Output Files
+Model Configuration File
+Unformatted Concentration File
+(dissolved phase)
+Unformatted Concentration File
+(sorbed/immobile phase)
+Concentrations Observation File
+Mass Budget Summary File
+
+*Note: these files are always required for every simulation.
+
+An example of the MT3DMS Name File is shown below:
+#
+# MT3DMS Name File for a test problem
+#
+# Standard output
+list
+0 test1.m3d
+#
+# Input files
+btn
+0 test1.btn
+adv
+0 test1.adv
+dsp
+0 test1.dsp
+ssm
+0 test1.ssm
+rct
+0 test1.rct
+gcg
+0 test1.gcg
+ftl
+0 test1.ftl
+
+6
+
+In the example above, the FTL file ‘test1.ftl’ is treated as an unformatted (binary)
+file by default. If ‘test1.ftl’ is an ascii text file in free format, the last line should be
+modified as
+ftl
+
+0
+
+test1.ftl
+
+Free
+
+Moreover, if the option print is specified as follows,
+ftl
+
+0
+
+test1.ftl
+
+print
+
+Then the contents of the flow-transport link file read by MT3DMS will be echoed in the
+standard text output file generated by MT3DMS.
+Further note that in the example above, no names are given for the unformatted
+concentration, formatted concentration observation, mass budget summary, and model
+configuration files. As a result, these files will be named, by default, MT3D001.UCN,
+MT3D001S.UCN, MT3D001.OBS, MT3D001.MAS, MT3D.CNF. To associate these
+files with different names, the Name File shown above can be modified by adding the
+following lines:
+data(binary)
+data(binary)
+data
+data
+data
+
+201
+301
+401
+601
+17
+
+test1.ucn
+test1s.ucn
+test1.obs
+test1.mas
+test1.cnf
+
+2.3 PROGRAM EXECUTION
+To use the Name File method to start an MT3DMS simulation, the Name File
+must be created first. The name of the Name File can then be passed to MT3DMS
+through the command line argument as follows:
+C:\MT3DMS5\Bin\MT3DMS5x Name-File
+where MT3DMS5x is the name of the MT3DMS v5 executable program (where x denotes
+either s for the executable program using the standard unformatted files; and b for the
+executable program using the true binary files), and Name-File is the name of the
+MT3DMS Name File for a particular simulation. If no command line argument is
+specified, the user will be prompted to provide the name of the Name File interactively
+from the keyboard. The name of a Name File is assumed to have the 3-letter extension
+“.nam” by default if no extension is given when the Name File is specified from the
+command-line or interactively.
+
+7
+
+3 Using the New Transport
+Observation Package
+3.1 BACKGROUND
+In previous versions of MT3DMS, the user can specify the layer, row and column
+indices of any model nodes of interest where the calculated concentration values will be
+saved to one or more optional concentration observation (OBS) output files. If the user
+needs to obtain the calculated concentration at an observation point that does not coincide
+with a model nodal point, neighboring nodal concentrations must be saved and an
+interpolation performed outside the MT3DMS code. This can be quite cumbersome.
+Moreover, there is no capability in previous versions to save the calculated mass fluxes at
+any sink/source locations.
+A new Transport Observation (abbreviated as “TOB”) Package has been added to
+MT3DMS since v5 to save the calculated concentration at any observation point and the
+calculated mass flux at any sink/source location. The calculated values can be saved to
+output files along with the statistics of residuals between the calculated and observed
+values at the specified locations. The calculated concentrations can be interpolated from
+the neighboring nodal values if the observation point does not coincide with a model
+node. The calculated mass flux can be defined over any arbitrary group of sink/source
+cells referred to as a mass flux object.
+3.2 IMPLEMENTING AND ACTIVATING THE TOB PACKAGE
+The TOB Package is implemented in MT3DMS v5 by inserting the package name
+“TOB” into any unused slot of the “NameTRNOP” array in the MT3DMS main program,
+as illustrated below:
+&
+&
+&
+
+DATA NameTRNOP/'ADV
+'
+'TOB
+'
+
+',
+',
+',
+',
+
+'DSP
+'
+'
+'
+
+',
+',
+',
+',
+
+'SSM
+'
+'
+'
+
+',
+',
+',
+',
+
+'RCT
+'
+'
+'
+
+',
+',
+',
+',
+
+'GCG
+'
+'
+'
+
+',
+',
+',
+'
+
+To activate the TOB Package in a MT3DMS run, insert a line to the Name File of
+MT3DMS as shown below:
+TOB
+
+0
+
+[project.tob]
+
+8
+
+where TOB is the input file type for the TOB Package; integer 0 is the default input unit
+number for the TOB Package (which is preset to 7 internally by MT3DMS); and
+project.tob is the name of the input file for the TOB Package.
+An example of the MT3DMS Name File including the TOB Package:
+#
+# MT3DMS 5 Name File for test case P7
+#
+# Standard output file
+LIST 0 p7.out
+# Transport package input files
+BTN
+0 p7.btn
+ADV
+0 p7.adv
+DSP
+0 p7.dsp
+SSM
+0 p7.ssm
+GCG
+0 p7.gcg
+# Transport observation input file
+TOB
+0 p7.tob
+# Flow-Transport Link input file
+FTL
+0 p7.ftl free noprint
+
+3.3 INPUT INSTRUCTIONS
+Input for the TOB Package is read from a file listed in the Name File with the
+keyword “TOB” as the file type. The input data are arranged and read sequentially in
+free format.
+
+For Each Simulation
+0.
+
+[#Text]
+Item 0 is optional and can include as many lines as desired. Each line needs to
+begin with the “#” character in the first column.
+
+1.
+
+MaxConcObs, MaxFluxObs, MaxFluxCells
+
+2.
+
+OUTNAM, inConcObs, inFluxObs, inSaveObs
+
+9
+
+Read items 3, 4, and 5 if [inConcObs] > 0
+3.
+
+nConcObs, CScale, iOutCobs, iConcLOG, iConcINTP
+
+Read items 4 and 5 for [nConcObs] times
+4.
+COBSNAM, Layer, Row, Column, iComp, TimeObs, Roff,
+Coff, weight, COBS
+Read item 5 if [Layer] < 0
+5.
+mLayer(1), prLayer(1), mLayer(2), prLayer(2), …,
+mLayer(|Layer|), prLayer(|Layer|)
+Read items 6, 7, 8 and 9 if [inFluxObs] > 0
+6.
+
+nFluxGroup, FScale, iOutFlux
+
+Read items 7, 8 and 9 for [nFluxGroup] times
+7.
+nFluxTimeObs, nCells, iSSType
+Read item 8 [nFluxTimeObs] times
+8.
+FOBSNAM, iComp, FluxTimeObs, weight_fobs, FluxObs
+Read item 9 [nCells] times for current mass flux object
+9.
+kcell, icell, jcell, factor
+Text—is a character string (maximum of 79 characters) that starts in column 2. Any
+characters can be included in Text. The “#” character needs to be in column 1. Text is
+printed when the file is read and provides an opportunity for the user to include
+information about the model both in the input file and the associated output file.
+MaxConcObs—is the maximum number of concentration observations allowed in the
+current simulation. This value is used for memory allocation purposes.
+MaxFluxObs—is the maximum number of mass-flux observations. It should be set large
+enough to accommodate all mass-flux observations at different mass-flux objects and
+observation times. This value is used for memory allocation purposes.
+MaxFluxCells—is the maximum number of model cells that makes up a mass-flux
+object. This value is used for memory allocation purposes.
+OUTNAM—a string of one to 78 nonblank characters. OUTNAM specifies the base
+(root) name for three optional output files. The complete file names are composed of
+this base name followed by a period and a three-character extension listed below. The
+specification of lower and upper cases in OUTNAM is preserved in generating the
+file-name base. OUTNAM can include a path; constraints imposed by a particular
+computer operating system regarding file names and paths should be considered when
+specifying OUTNAM.
+
+10
+
+Output File
+
+Content
+
+[OUTNAM].OCN
+
+Output file containing calculated
+concentrations, and optionally, residuals
+between the calculated and observed
+values, at user-defined observation points
+that are screened either in a single layer or
+across multiple layers. This text file is
+generated only if the flag [inConcObs]
+is greater than zero.
+
+[OUTNAM].MFX
+
+Output file containing calculated mass
+fluxes into or out of user-defined mass flux
+objects, and optionally, residuals between
+the calculated and observed values. Each
+mass flux object is defined by a group of
+model cells containing external
+sinks/sources such as wells, rivers, drains,
+recharge, and general-head boundaries.
+This text file is generated only if the flag
+[inFluxObs] is greater than zero.
+
+[OUTNAM].PST
+
+Output file containing calculated
+concentrations and mass fluxes at userdefined observation points and mass-flux
+objects. This output file, in binary form, is
+intended for post-processing purposes or
+for linkage with other modeling programs.
+This file is generated only if the flag
+[inSaveObs] is greater than zero.
+
+inConcObs—is an integer flag indicating whether the calculated concentrations at the
+observation locations should be obtained and saved to the output file
+[OUTNAM].OCN. It also serves as the unit number for the output file
+[OUTNAM].OCN.
+inFluxObs—is an integer flag indicating whether the calculated mass fluxes at the massflux objects should be obtained and saved to the output file [OUTNAME].MFX. It
+also serves as the unit number for the output file [OUTNAM].MFX.
+inSaveObs—is an integer flag indicating whether the calculated concentrations and mass
+fluxes at the user-defined observation points and mass-flux objects should be saved to
+an unformatted (binary) output file [OUTNAM].PST. It also serves as the unit
+number for the output file [OUTNAM].PST.
+
+11
+
+nConcObs—is the number of concentration observations. Observations made at the same
+location but different times are considered multiple observations.
+CScale—is the multiplier (scaling factor) for the observed concentrations. It is used to
+convert the unit of observed concentrations to the unit of calculated concentrations
+used internally in MT3DMS for computing appropriate residuals.
+iOutCobs—is an integer flag indicating what type of output should be computed and
+saved:
+iOutCobs = 0, calculated concentrations at the observation locations are saved to
+the output file [OUTNAM].OCN;
+iOutCobs > 0, both calculated concentrations and residual errors between the
+calculated and observed values are saved to the output file
+[OUTNAM].OCN. The statistics of the residual errors is also
+computed and saved.
+iConcLOG—is an integer flag indicating whether the calculated and observed
+concentrations should be converted to the common logarithm before computing the
+residual error and related statistics:
+iConcLOG = 0, no conversion is done (residual error = calculated – observed);
+iConcLOG > 0, convert the calculated and observed concentration values to the
+common logarithmic scale before computing the residual error and
+related statistics (residual error = log10Calculated log10Observed).
+iConcINTP—is an integer flag indicating whether the calculated concentration at an
+observation location should be interpolated from its neighboring nodal points, if the
+observation location does not coincide with a nodal point:
+iConcINTP = 0, no interpolation is done (the calculated concentration value at the
+nearest nodal point is used for comparison with the observed value);
+iConcINTP > 0, perform bilinear interpolation using four neighboring nodal
+concentrations in the same model layer.
+COBSNAM—is a string of 1 to 12 nonblank characters used to identify the observation.
+The identifier need not be unique; however, identification of observations in the
+output files is facilitated if each observation is given a unique COBSNAM.
+LAYER—is the layer index of the cell in which the concentration observation is located.
+If LAYER is less than zero, solute concentrations from multiple layers are combined
+to calculate a simulated value. The number of layers equals the absolute value of
+LAYER, or |LAYER|.
+ROW—is the row index of the cell in which the concentration observation is located.
+COLUMN—is the column index of the cell in which the concentration observation is
+located.
+
+12
+
+iComp—is an integer indicating the solute species for which the concentration
+observation is made. Integer 1 indicates the first species, 2 the second species, and so
+on.
+TimeObs—is the time since the beginning of simulation to the time of the current
+observation. [TimeObs] should be included in the BTN input file as part of the input
+array [TIMPRS], i.e., the time to save simulation results. Otherwise, the calculated
+concentration is obtained from a time specified in [TIMPRS] or the end of a stress
+period that is closest to [TimeObs]. Note that if [TimeObs] is specified as a negative
+integer, the calculated concentration is saved whenever the number of transport steps
+is an even multiple of |TimeObs|.
+Roff—is the row offset used to locate the observation within a finite-difference cell. The
+convention is the same as that used by MODFLOW-2000 (see Figure 3.1).
+Coff—is the column offset used to locate the observation within a finite-difference cell.
+The convention is the same as that used by MODFLOW-2000 (see Figure 3.1).
+weight—is the user-specified weighting factor for computing the residual error at the
+current observation, i.e., residual error = (calculated-observed)*weight. If [weight] is
+assigned a negative value, the observed concentration at the target observation point
+is not used and only the calculated concentration is saved.
+COBS—is the concentration observation for the species defined by [iComp]. This input
+item is required regardless of whether the preceding input item [weight] has been
+given a positive or negative value.
+mLayer(i)—is the ith layer number for a multilayer concentration observation.
+prLayer(i)—is the proportion of the simulated solute concentration in layer mLayer(i)
+that is used to calculate a simulated multilayer concentration. The sum of all
+prLayer(i) values for a given observation needs to equal 1.0. The convention is the
+same as that used by MODFLOW-2000 (see Hill et al., 2000, p. 35). Note that if the
+concentration observation is made at a multi-node well (MNW), the flux-averaged
+composite concentration for the MNW wellbore can be computed and saved through
+the SSM Package for MT3DMS v5.
+nFluxGroup—is the total number of mass flux objects. A mass flux object is defined as a
+group of model cells needed to represent one mass flux measurement.
+FScale—is the multiplier (scaling factor) for the observed mass flux. It is used to convert
+the unit of observed mass flux to the unit of calculated mass flux observation used
+internally in MT3DMS for computing appropriate residuals.
+
+13
+
+Figure 3.1. Locating points within a finite-difference cell using ROFF and COFF (after Hill et al.,
+2000).
+
+14
+
+iOutFlux—is an integer flag indicating what type of output should be computed and
+saved:
+iOutFlux = 0, calculated mass fluxes are saved to the output file [OUTNAM].MFX;
+iOutFlux > 0, both calculated mass fluxes and residual errors between the calculated
+and observed values are saved to the output file [OUTNAM].MFX.
+The statistics of the residual errors is also computed and saved.
+nFluxTimeObs—is the number of times at which mass fluxes are observed for the current
+mass-flux object.
+nCells—is the total number of cells in the current mass-flux object.
+iSSType—is an integer code indicating the type of sinks/sources constituting the current
+mass flux object. The [iSSType] codes used here are the same as those defined for
+the MT3DMS SSM Package:
+
+iSSType Code
+1
+2
+3
+4
+5
+6
+7
+8
+9-14
+15
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30-49
+50
+51
+52
+53
+
+Type of Sink/Source
+Constant-head
+Well
+Drain
+River
+Head-dependent boundary
+(Reserved)
+Recharge
+Evapotranspiration
+(Reserved)
+Mass loading
+Stream-routing
+Reservoir
+Specified flow and head boundary
+Inter-bed storage
+Transient leakage
+Lake
+Multi-node well
+Drain with return flow
+Segmented evapotranspiration
+(Reserved)
+HSS Mass Loading
+(Reserved)
+(Reserved)
+(Reserved)
+
+15
+
+FOBSNAM—is a string of 1 to 12 nonblank characters used to identify the mass flux
+observation. The convention is the same as that for COBSNAM. The first part of
+FOBSNAM can be used to identify a common group name, while the rest to
+distinguish different observations for the same group.
+FluxTimeObs—is the time since the beginning of simulation to the time of the current
+mass flux observation. [FluxTimeObs] should be included in the BTN input file as
+part of the input array [TIMPRS], i.e., the time to save simulation results. Otherwise,
+the calculated mass flux is obtained from a time specified in [TIMPRS] or the end of
+a stress period that is closest to [FluxTimeObs]. Note that if [FluxTimeObs] is
+specified as a negative integer, the calculated mass flux is saved whenever the
+number of transport steps is an even multiple of |FluxTimeObs|.
+weight_fobs— is the user-specified weighting factor for computing the residual error at
+the current mass-flux object, i.e., residual error = (calculated-observed)*weight. If
+[weight_fobs] is assigned a negative value, the observed mass flux at the target massflux object is not used and only the calculated mass flux is saved.
+FluxObs—is the observed solute mass flux, QC [dimension, MT-1], for the user-specified
+species [iComp]. The mass flux observation is negative when the mass is leaving the
+groundwater system, and positive when the mass is entering the groundwater system.
+This input item is required regardless of whether the preceding input item
+[weight_fobs] has been given a positive or negative value.
+kcell—is the layer index of a sink/source cell included in the current mass flux object.
+icell—is the row index of a sink/source cell included in the current mass flux object.
+jcell—is the column index of a sink/source cell included in the current mass flux object.
+factor—is the weighting factor for the mass flux calculated at the specified cell location
+(jcell, icell, kcell). [factor] = 1.0 under most circumstances, i.e., the specified cell
+belongs to a single mass-flux object. However, the mass flux calculated at one
+specific cell can be assigned to one or more mass-flux objects that cover portions of
+the cell. In that case, [factor] can be less than 1.0. Regardless, the sum of [factor]
+values at a single cell for multiple mass-flux objects should add up to 1.0.
+3.4 OUTPUT INFORMATION
+As pointed out previously, three optional output files may be created depending
+on how the output options are specified in the input file to the TOB Package. These files
+are
+1) a text file with the 3-letter extension “.OCN” which contains the calculated
+concentrations, and if requested, the residuals between the calculated and
+
+16
+
+observed values, at the user-specified observation locations. This text file is
+generated only if the concentration observation flag [inConcObs] is specified
+in the TOB input file as greater than zero.
+2) a text file with the 3-letter extension “.MFX” which contains the calculated mass
+fluxes into or out of user-defined mass flux objects, and if requested, the residuals
+between the calculated and observed values. Each mass flux object is defined by a
+group of model cells containing external sinks/sources such as wells, rivers,
+drains, recharge, and general-head boundaries. This text file is generated only if
+the mass flux observation flag [inFluxObs] is specified in the TOB input file
+as greater than zero.
+3) an unformatted (binary) file with the 3-letter extension “.PST” which contains the
+calculated concentrations and/or mass fluxes at user-defined observation points.
+The records in the PST binary output file are in the form of
+[cobsnam, TimeObs, CCal]
+for concentration observations where cobsnam is the name of the concentration
+observation as a string of 12 characters , and TimeObs and CCal are real
+numbers indicating the observation time and the calculated concentration value.
+The records in the PST binary output file are in the form of
+[fobsnam, TimeFluxObs, FluxCal]
+for mass-flux observations where fobsnam is the name of the mass-flux
+observation as a string of 12 characters , and TimeFluxObs and FluxCal are
+real numbers indicating the observation time and the calculated mass flux.
+This output file is intended for post-processing purposes or for linkage with other
+modeling programs. The file is generated only if the output flag [inSaveObs]
+is specified in the TOB input file as greater than zero.
+
+17
+
+4 Simulating the Effect of
+Multi-Node Wells
+on Solute Transport
+4.1 BACKGROUND
+Halford and Hanson (2002) developed the drawdown-limited, Multi-Node Well
+(MNW) Package for MODFLOW. The MNW Package allows MODFLOW users to
+simulate wells that are screened in multiple aquifers or multiple layers in a single aquifer,
+and multiple nodes in a horizontal well. A MNW dynamically distributes the total
+prescribed flow among different layers (or nodes) under either extraction or injection
+conditions. In addition, intra-wellbore flow between layers are computed under zeropumping conditions. A single hydraulic head value is determined for the entire wellbore.
+Although the MNW Package also has the ability to track potential mixes of a waterquality attribute, it is based on the prescribed constant concentrations and does not
+consider solute transport.
+MT3DMS v5 adds the capability to simulate the effect of multi-aquifer or multinode wells on solute transport. Compatible with the MNW Package, MT3DMS v5
+computes a single composite concentration for the entire well borehole based on the fluxweighted concentrations of the injected fluid (if any) and the flow rates from different
+layers. The average composite concentration at the wellbore at any time is computed
+from:
+N
+
+t
+C avg 
+
+t
+t
+Qw C w   Qit Cit
+i 1
+N
+
+(4.1)
+
+Q Q
+t
+w
+
+i 1
+
+t
+i
+
+where
+t
+C avg
+
+is the flux-averaged composite concentration inside the wellbore at time t;
+
+t
+Qw
+
+is the total prescribed flow into the multi-node well (i.e., source) at time t;
+
+C
+
+t
+w
+
+Qit
+
+t
+is the concentration of the injected source Qw at time t;
+
+is the flow rate at node (layer) i discharging into the multi-node well (i.e.,
+sink) at time t;
+
+18
+
+C it
+N
+
+is the concentration associated with the sink outflow Qit , i.e., the
+concentration in the aquifer at node (layer) i at time t; and
+is the total number of nodes (layers) that makes up the multi-node well.
+
+t
+It is noteworthy that the single composite concentration Cavg inside the wellbore
+
+is the actual concentration of the inflow that may go into individual nodes (layers) over
+t
+which the multi-node well is screened. Further note that even if the total prescribed Qw
+is zero, i.e., the multi-node well is under zero injection or pumping conditions, there is
+still potential intra-wellbore flow from layers (nodes) with higher heads to those with
+lower heads. Correspondingly, mass exchange may occur due to the intra-wellbore flow.
+4.2 INPUT INSTRUCTIONS
+To simulate the effect of multi-node wells on solute transport, the MNW Package
+must have been used with MODFLOW-2000 to save the sink/source information in the
+Flow-Transport link file that is produced after a MODFLOW-2000 run. Although the
+MNW Package can be used with both MODFLOW-96 and MODFLOW-2000, only
+version 6.2 or later of the Link-MT3DMS (LMT6) Package added to MODFLOW-2000
+since version 1.12 (dated 9/8/2003) has the capability to save the MNW flow term for use
+by MT3DMS v5.
+The input file for the LMT6 Package of MODFLOW-2000 must have the
+OUTPUT_FILE_HEADER option set to “EXTENDED”, as shown below:
+OUTPUT_FILE_NAME
+OUTPUT_FILE_UNIT
+OUTPUT_FILE_HEADER
+OUTPUT_FILE_FORMAT
+
+project.ftl
+333
+extended
+unformatted
+
+which instructs MODFLOW-2000 to save the MNW flow term correctly in the flowtransport line file. For more information on the LMT6 Package, refer to Zheng et al.
+(2001).
+If a MNW is a sink (extracting water from the well), it is not necessary to specify
+a concentration for the MNW. If assigned, it will be ignored anyway. A single
+composite concentration for all layers within a MNW is determined internally based on
+equation (1). If a MNW is a source (injecting water into the well), the user may specify
+any desired concentration for the MNW source. If it is not specified a concentration, the
+source is assumed, by default, to have a zero concentration. Also, regardless of how
+many layers (nodes) a MNW may be screened over, it is only necessary to assign the
+concentration for just one layer (node) within the wellbore of the MNW (all layers or
+nodes are equivalent). For a MNW under zero pumping or injection conditions, there is
+nothing to specify.
+
+19
+
+The input record for specifying the source concentration for a multi-node well in
+the SSM Package input file is as follows:
+For Single-Species Simulation:
+Record: K, I, J, CSS, iSSType
+Format: 3I10, F10.0, I10
+For Multi-Species Simulation:
+Record: K, I, J, CSS, iSSType, (CSS(index),index=1,ncomp)
+Format: 3I10, F10.0, I10, free
+where I and J are the horizontal locations (row and column) and K is the vertical location
+(layer) of the MNW over which the MNW is screened. CSS is the source concentration
+if only a single species is simulated. For multi-species simulations, specify one
+concentration for each of NCOMP species. iSSType is the sink/source type code for
+MNW. The integer code of iSSType is 27 for MNW.
+An example of the SSM input file with the MNW source:
+HEADER_LINE
+1000
+1
+1
+
+[dummy input, not used by MT3DMS v5]
+[MXSS: Max # of Sinks/Sources]
+[NSS: # of point sources with specified conc.]
+24
+24
+100.
+27
+[K,I,J,CSS,iSSType]
+
+In the above example, the multi-node well (iSSType=27) is located at two or more model
+cells, one of which must be at layer K=1, row I=24, and column J=24 with an input
+concentration of CSS=100. The total prescribed flow to the multi-node well is saved in
+the Flow-Transport link file produced by MODFLOW-2000.
+4.3 OUTPUT INFORMATION
+The location and the internally-determined composite concentration for each MNW is
+saved to the MT3DMS standard text output file generated after each run. The results are
+saved only at the end of each stress period or at the times specified by the user in the
+BTN input file. Alternatively, the user can specify a unit number for a MNW-specific
+output file. This unit can be specified in the second input record of the SSM input file as
+illustrated below:
+Record: MXSS, ISSGOUT
+Format: 2I10
+
+20
+
+where the input value ISSGOUT is the unit number for the MNW-specific output file.
+ISSGOUT must be a unique integer that has not be used elsewhere. After ISSGOUT is
+specified, a new line must be inserted to the Name File for the MT3DMS run, as follows:
+DATA
+
+ISSGOUT
+
+OuputFileName
+
+where DATA is the keyword not to be modified and OutputFileName is the userspecified name for the file to which the location and the internally-determined composite
+concentration of each MNW will be saved at every transport step.
+
+21
+
+5 Support for Additional
+MODFLOW-2000
+Sink/Source Packages
+In addition to the MNW Package, MT3DMS v5 provides the support for two
+more MODFLOW sink/source packages, i.e., the Drain with Return Flow (DRT) and
+Evapotranspiration with Segments (ETS), both documented in Banta (2000). Table 5.1 is
+an updated list of MODFLOW-2000 flow and sink/source packages and their support
+status in MT3DMS v5 (the bold typeface indicates those packages newly supported in
+this version). Interested users should refer to the README file distributed with other
+MT3DMS distribution files at the MT3D website for the most up-to-date information on
+the support status of other add-on packages to MODFLOW-2000.
+The DRT Package simulates the re-injection of all or a portion of the outflow
+from a drain back into the aquifer. MT3DMS v5 automatically assigns the concentration
+at the outflow cell as that of the re-injected source at the return location. The user can
+specify the proportion of the return drain flow in the DRT input file to MODFLOW, but
+cannot alter the concentration of the return drain flow, which is controlled by the
+concentration in the aquifer. The DRT Package is useful in some applications, such as
+the use of aquifer water discharged into certain drain features directly for agricultural
+irrigation without any alternation to the water quality.
+The ETS Package allows simulation of evapotranspiration with a user-defined
+relation between evapotranspiration rate and hydraulic head. The ETS provides additional
+capability and flexibility not available in the EVT Package, which has been available in
+MODFLOW since its initial release. In MT3DMS v5, the sink flow term produced by the
+ETS is handled exactly the same way as that produced by the EVT Package. Thus the
+input instructions for the EVT flow sink (Zheng and Wang, 1999) are directly applicable
+to the ETS flow sink.
+It is noteworthy that in an effort to maintain backward compatibility with previous
+versions of MT3DMS, the Flow-Transport Link file produced by MODFLOW-2000 has
+two header options, “standard” and “extended” (see Zheng et al., 2001). As
+pointed out previously for the MNW Package, the header option of the Flow-Transport
+Link file must be set to “extended” in the input file to the Link-MT3DMS (LMT6)
+Package of MODFLOW-2000 for the flow terms of the DRT and ETS Packages to be
+saved appropriately for use in MT3DMS v5. This is also true for any subsequent
+MODFLOW-2000 sink/source packages that will be supported in the future.
+
+22
+
+The structure and contents of the Flow-Transport Link file used by MT3DMS v5
+are specified in the Link-MT3DMS (LMT6) Package version 6.2 implemented in
+MODFLOW-2000 since version 1.12. Developers who wish to add support for a specific
+MODFLOW sink/source package should follow the same conventions and make
+appropriate changes to the Flow-Model-Interface (FMI) Package of MT3DMS. Use the
+pre-defined iSSType code if a sink/source type has been already defined in MT3DMS
+(Table 5.1). If not, use any unique integer code up to the maximum value of 100.
+
+23
+
+Table 5.1. List of MODFLOW packages and their support status by MT3DMS v5.
+MODFLOW Package Name
+(documented in Harbaugh and others,
+2000, or in references cited in that work)
+
+File Type of
+MODFLOW-2000
+Name File
+
+MT3DMS
+iSSType Code for
+Sinks/Sources
+
+Support Status in
+MT3DMS v5
+
+Basic
+
+BAS6
+
+n/a
+
+Yes
+
+Block-Centered Flow
+
+BCF6
+
+n/a
+
+Yes
+
+Layer Property Flow
+
+LPF1
+
+n/a
+
+Yes
+
+Hydrogeologic Unit Flow
+
+HUF2
+
+n/a
+
+Yes
+
+Horizontal Flow Barrier
+
+HFB
+
+n/a
+
+Yes
+
+Time-Variant Specified Head
+Boundary
+
+CHD
+
+1
+
+Yes
+
+Well
+
+WEL
+
+2
+
+Yes
+
+Drain
+
+DRN
+
+3
+
+Yes
+
+River
+
+RIV
+
+4
+
+Yes
+
+General Head Dependent Boundary
+
+GHB
+
+5
+
+Yes
+
+Recharge
+
+RCH
+
+7*
+
+Yes
+
+Evapotranspiration
+
+EVT
+
+8*
+
+Yes
+
+Streamflow-Routing
+
+STR
+
+21
+
+Yes
+
+Reservoir
+
+RES
+
+22
+
+Yes
+
+Specified Flow and Head Boundary
+
+FHB
+
+23
+
+Yes
+
+Interbed Storage
+
+IBS
+
+24
+
+No
+
+Transient Leakage
+
+TLK
+
+25
+
+No
+
+Lake
+
+LAK
+
+26
+
+No
+
+Multi-Node Well
+
+MNW
+
+27
+
+Yes
+
+Drain with Return Flow
+
+DRT
+
+28
+
+Yes
+
+Evapotranspiration with Segments
+
+ETS
+
+29
+
+Yes
+
+*Note: these codes are for identification purposes only. Recharge and Evapotranspiration are
+considered areally distributed sinks/sources rather than point sinks/sources.
+
+24
+
+6 Simulating Zeroth-Order
+Reactions in Single- and
+Dual-Domain Systems
+6.1 BACKGROUND
+The standard MT3DMS code prior to version 5 includes only the first-order
+kinetic reactions in the Chemical Reaction (RCT) Package. However, zeroth-order
+reactions may be useful for describing certain types of biogeochemical decay or
+production. In addition, zeroth-order reactions are needed in direct simulation of
+groundwater ages (e.g., Goode, 1996) and calculation of parameter sensitivities (e.g., Tsai
+et al., 2003). Thus since version 5.1, zeroth-order reactions have been added to the
+Chemical Reaction Package in both single- and dual-domain formulations.
+The governing solute transport equations incorporating the zeroth-order decay or
+production terms in both dissolved and sorbed phases can be written as
+For equilibrium-controlled sorption
+
+R
+
+
+ C 
+ 
+ Dij C    qi C   q s C s   1   2  b
+
+t
+xi 
+x j  xi
+
+
+
+(6.1)
+
+For rate-limited kinetic sorption
+
+ C    b C   
+ Dij C
+
+
+t
+t
+xi 
+x j
+
+
+  b C 
+C 
+   2b
+  C 
+
+Kd 
+t
+
+
+
+ 
+
+q C   q s C s   1   2  b
+ x i
+i
+
+
+(6.2a)
+(6.2b)
+
+where  1 and  2 are the zeroth-order rate coefficients for the dissolved phase [ML-3T-1],
+and the sorbed phase [MM-1T-1], respectively. The conventions for both  1 and  2 are
+positive values for decay and negative values for production. Other terms in equations
+(6.1) and (6.2) have been defined in Zheng and Wang (1999), i.e., C is the dissolved
+concentration [ML-3];  the porosity, dimensionless; Dij the hydrodynamic dispersion
+coefficient tensor [L2T-1]; qi the specific discharge (Darcy flux) [LT-1]; q s the
+volumetric flow rate per unit volume of aquifer representing fluid sources (positive) or
+sinks (negative) [T-1]; C s the concentration of the fluid source or sink [ML-3];  b the
+
+25
+
+bulk density of the subsurface medium [ML-1]; C the sorbed concentration [MM-1]; K d
+the distribution coefficient of linear sorption isotherm [L3M-1]; R the retardation factor
+[dimensionless]; and β the first-order rate coefficient between the dissolved and sorbed
+phases [T-1].
+In a dual-domain (dual-porosity) system, the governing transport equations
+incorporating linear equilibrium-controlled sorption and zeroth-order reactions can be
+written as
+
+Rm
+
+Rim
+
+
+  m C m 
+  im C im 
+ 
+  m Dij C m    qi C m   q s C s
+ Rim
+
+t
+t
+xi 
+x j  xi
+
+
+  1,m  m   1,im  im   2,m f b   2,im 1  f  b
+
+  im C im 
+  C m  C im    1,im  im   2,im 1  f  b
+t
+
+(6.3a)
+
+(6.3b)
+
+where C m and C im are the dissolved concentrations in the mobile and immobile domains,
+respectively [ML-3]; m and im are the porosities of the mobile and immobile domains,
+respectively [dimensionless];  1,m and  1,im are the zeroth-order rate coefficients for the
+mobile-liquid and immobile-liquid phases, respectively [ML-3T-1];  2,m and  2,im are the
+zeroth-order rate coefficients for the mobile-sorbed and immobile-sorbed phases,
+respectively [ML-3T-1]; f is the fraction of sorption sites in contact with the mobile fluid
+phase [dimensionless]; Rm  1  f b K d  m and Rim  1  1  f  b K d  im are the
+retardation factors for the mobile and immobile domains, respectively [dimensionless];
+and  is the first-order mass transfer rate coefficient between the mobile and immobile
+domains [T-1].
+6.2 IMPLEMENTATION AND INPUT INSTRUCTIONS
+
+The implementation of zero-order reactions in MT3DMS is done similar to that of
+first-order reactions. The contributions from the zero-order reactions are directly
+incorporated into the coefficient matrix [A] and the right-hand-side matrix [RHS] of the
+linear system of equations resulting from the various solution schemes for the transport
+model (Zheng and Wang, 1999). In addition, the formulation for the concentration of
+sorbed phase or immobile-liquid phase is updated to account for the effect of zero-order
+reactions.
+To invoke the zeroth-order reaction option, set the input variable IREACT = 100
+in the input file for the RCT Package (see Appendix A). Then, in the input records where
+the user would normally enter the first-order rate coefficients RC1 for the dissolved phase
+and RC2 for the sorbed phase, specify the zeroth-order rate coefficients. When sorption
+is not simulated, set the input variable RC2 to zero. Even though RC2 is not used when
+sorption is not present, it nevertheless must be specified in the input file.
+
+26
+
+6.3 BENCHMARK TEST PROBLEMS
+6.3.1. Zero-Order Production in a Uniform Flow Field
+
+This benchmark problem involves solute transport in a uniform flow field in the
+presence of zero-order production. The initial condition for the one-dimensional problem
+is defined by zero concentration everywhere in the flow field, i.e.,
+C  x ,0   0
+
+x0
+
+(6.4)
+
+and the boundary conditions are specified mass flux (third-type) on the left and specified
+concentration gradient on the right:
+qC  D
+C
+x
+
+C
+x
+
+x 0
+
+ 0,
+
+q C
+ 0 0
+ 0
+
+0  t  t0
+t  t0
+
+(6.5)
+
+t0
+
+x 
+
+A flow and transport model consisting of 101 columns, 1 row and 1 layer is set up
+to solve the test problem. Other parameters used for the test problem are listed below:
+Cell width along rows  x  = 0.16 m
+Cell width along columns  y  = 1 m
+Layer thickness  z  = 1 m
+Seepage velocity v  = 0.1 m/day
+Longitudinal dispersivity = 1.0 m
+Porosity  = 0.37
+Zeroth-order production rate  1  =  210-3 mg/L day-1
+Pulse source duration to  = 160 days
+Simulation time  t  = 1,000 days
+Observation location  x  = 8 m
+The numerical solution is obtained using the fully implicit finite-difference option
+for all transport terms. The transport step size is fixed at 1 day for ease of comparison.
+The relative concentration closure criterion for the GCG matrix solver is set at 10-6 and
+the MIC pre-conditioner is selected. It is noteworthy that in MT3DMS input
+conventions, decay coefficients are defined as positive while production rate coefficients
+as negative.
+Figure 6.1 shows the concentration breakthrough curve at the observation point as
+calculated by MT3DMS (symbols). A corresponding analytical solution is available from
+
+27
+
+Toride et al. (1995) (solid line). It is evident that the numerical solution by MT3DMS
+closely agrees with the analytical solution of Toride et al. (1995).
+1.2
+
+Legend
+Analytical
+MT3DMS
+
+C/Co
+
+0.8
+
+0.4
+
+0.0
+0
+
+400
+
+800
+
+1200
+
+1600
+
+Time (days)
+Figure 6.1. Comparison of analytical and numerical solutions for
+the test problem with zeroth-order reaction.
+
+6.3.2. Zero-Order Production in a Dual-Domain System
+
+This benchmark problem is designed to test the capabilities of MT3DMS to
+simulate solute transport in a dual-domain system in the presence of zero-order
+production with or without linear sorption. A general analytical solution for onedimensional solute transport in a dual-domain system, implemented in the computer code
+CXTFIT2, is available from Toride et al. (1995). The one-dimensional problem
+considered in this section involves the following initial condition for both mobile-liquid
+and immobile-liquid phases:
+C 0,0  C0
+C  x,0  0
+
+(6.6)
+
+x0
+
+and a first-type (constant-concentration) boundary condition on the left and a second-type
+(constant concentration gradient) on the right:
+C
+C 0, t    0
+0
+C , t 
+0
+x
+
+0  t  t0
+t  t0
+
+(6.7)
+
+t0
+
+28
+
+A numerical flow and transport model consisting of 401 columns, 1 row and 1
+layer is used to solve the problem for comparison with the analytical solution for the
+same initial and boundary conditions as described above. In the flow model, the first and
+last columns are constant-head boundaries. Arbitrary hydraulic heads are used to
+establish the required uniform hydraulic gradient. In the transport model, the first
+column is a constant-concentration boundary with a relative concentration of one. The
+last column is set sufficiently far away from the source to approximate an infinite onedimensional flow domain as assumed in the analytical solution. The model parameters
+used in the simulation are listed below:
+Cell width along rows  x  = 2.5 m
+Cell width along columns  y  = 1 m
+Layer thickness  z  = 1 m
+Specific discharge q  = 0.06 m/day
+Longitudinal dispersivity = 10 m
+Porosity of mobile domain  m  = 0.2
+
+Porosity of immobile domain  im  = 0.05
+Bulk density  b  = 4 g/mL
+
+Distribution coefficient K d  = 0.25 mL/g
+
+First-order mass transfer rate between
+the mobile and immobile domains   = 10-3 day-1
+Fraction of sorption sites
+in contact with mobile water  f  = 0.8
+Source duration t 0  = 1,000 days
+Simulation time  t  = 10,000 days
+Observation location  x  = 200 m
+Three cases are evaluated with the following zero-order production coefficients
+and retardation factors:
+Case 1:
+
+Rm  Rim  5,  1  0;  2  10 3 g/mL day-1;
+
+Case 2:
+
+Rm  Rim  5;  1   2  5  10 4 g/mL day-1;
+
+Case 3:
+
+Rm  Rim  1 K d  0;  1  10 3 g/mL day-1;  2  0.
+
+where Case 3 is equivalent to no sorption.
+By default it is assumed in MT3DMS that the fraction of sorption sites in contact
+with mobile water  f  is equal to the ratio of mobile to total porosities so that the
+retardation factor for the mobile domain is identical to that for the immobile domain. In
+
+29
+
+addition, it is assumed that the rate constant for the zero-order production is the same for
+both mobile and immobile domains, i.e.,  1   1,m   1,im and  2   2,m   2,im . However,
+different rate constants can be specified for the dissolved (liquid) and solid (sorbed)
+phases.
+All cases are solved using the third-order TVD scheme for the advection term and
+the fully implicit finite-different option for all other terms. The closure criterion for the
+GCG solver is set at 10-6 and the MIC pre-conditioner is selected. For ease of
+comparison, a fixed transport step size of 1 day is used for all cases.
+A close match between the analytical (solid lines) and numerical solutions
+(symbols) is obtained for all cases (Figure 6.2). Note that only the concentrations of the
+mobile-liquid phase are plotted. Other three phases, i.e., mobile-sorbed, immobile-liquid,
+and immobile-sorbed, are tracked internally by MT3DMS that also computes and
+maintains a global mass budget for all four phases. Negligible mass balance errors are
+obtained for all the cases considered in this example.
+16
+
+Legend
+Case 1
+Case 2
+Case 3
+
+C/Co
+
+12
+
+8
+
+4
+
+0
+0
+
+2000
+
+4000
+
+6000
+
+8000
+
+10000
+
+Time (days)
+
+Fig. 6.2. Comparison of the calculated concentrations with the analytical
+solutions for the one-dimensional dual-domain test problem. The analytical
+solutions are shown in solid lines with the numerical solutions in different
+symbols. The reaction parameters for the 3 cases are given in the text.
+
+30
+
+7 Using the ComponentDependent Diffusion Option
+7.1 BACKGROUND
+
+Prior to Version 5.2, the molecular diffusion coefficient can only be specified on a
+layer-by-layer basis (i.e., one uniform molecular diffusion coefficient for the entire model
+layer). Moreover, all solute components are assumed to have the same diffusion
+coefficient. However, in a multi-component simulation, it is possible that different ions
+and solutes may have noticeably different molecular diffusion coefficients. In addition,
+the molecular diffusion coefficient may also vary spatially in each layer of the model
+domain. Thus a new option has been added to Version 5.2 to allow the inclusion of
+three-dimensional component dependent diffusion coefficients in the transport
+simulation. The option is implemented through the Dispersion (DSP) Package and the
+modifications made to the MT3DMS code are limited to within the DSP Package only.
+7.2 INPUT INSTRUCTIONS
+
+To activate the component-dependent diffusion option, a keyword input record
+must be inserted to the beginning of the Dispersion (DSP) input file. The symbol $ in the
+first column of an input line signifies a keyword input record containing one or more
+predefined keywords. Above the keyword input record, comment lines marked by the
+symbol # in the first column are allowed. Comment lines are processed but have no
+effect on the simulation. Furthermore, blank lines are also acceptable above the keyword
+input record. Below the keyword input record, the format of the DSP input file must
+remain unchanged from the previous versions except for the diffusion coefficient as
+explained below. If no keyword input record is specified, the input file remains
+backward compatible with all previous versions of MT3DMS.
+The predefined keyword for the component-dependent diffusion option is
+MultiDiffusion. The keyword is case insensitive so “MultiDiffusion” is equivalent to
+either “Multidiffusion” or “multidiffusion”. If this keyword is specified in the keyword
+input record that has been inserted into the beginning of the DSP input file, the
+component-dependent diffusion option has been activated and the user needs to specify
+one diffusion coefficient for each mobile solute component and at each model cell. This
+is done by specifying one mobile component at a time, from the first component to the
+last component (MCOMP). For each mobile component, the real array reader utility
+(RARRAY) is used to input the 3-D diffusion coefficient array, one model layer at a
+time. Given below in Table 7.1 is an example of the Dispersion Package input file with
+the component-dependent diffusion option activated.
+31
+
+Table 7.1. An example DSP input file with the component-dependent diffusion option.
+#
+# DSP input file
+#
+$ MultiDiffusion
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+with keyword line indicated by $ sign in column 1
+
+10.
+10.
+10.
+10.
+10.
+10.
+10.
+10.
+.3
+.3
+1.0
+1.0
+1.0
+1.0
+1.0
+1.0
+1.0
+1.0
+.0
+.0
+.0
+.0
+.0
+.0
+.0
+.0
+.1
+.1
+.1
+.1
+.1
+.1
+.1
+.1
+
+AL-LAYER 1
+AL2
+AL3
+AL4
+AL5
+AL6
+AL7
+AL8
+TRPT
+TRPV
+DMCOEF L1 Comp-1
+DMCOEF L2
+DMCOEF L3
+DMCOEF L4
+DMCOEF L5
+DMCOEF L6
+DMCOEF L7
+DMCOEF L8
+DMCOEF L1 Comp-2
+DMCOEF L2
+DMCOEF L3
+DMCOEF L4
+DMCOEF L5
+DMCOEF L6
+DMCOEF L7
+DMCOEF L8
+DMCOEF L1 Comp-3
+DMCOEF L2
+DMCOEF L3
+DMCOEF L4
+DMCOEF L5
+DMCOEF L6
+DMCOEF L7
+DMCOEF L8
+
+32
+
+8 Simulating the Effect of a
+Recirculation Well
+8.1 INTRODUCTION
+
+A new option has been added to MT3DMS since Version 5.2 to simulate the
+effect of a recirculation well on solute transport. A recirculation well is defined as an
+injection well whose input concentration is equal to the output concentration of an
+extraction well. This option is implemented in the Sink/Source Mixing (SSM) Package
+for the type-2 point sources, i.e., injection wells.
+To use the recirculation well option, set the input concentration (CSS) of the
+injection well to an negative integer code (IC), i.e.,
+CSS   IC
+
+with the absolute value of the integer code (IC) given as
+IC  NCOL  NROW  K  1  NCOL  I  1  J
+
+where NCOL and NROW are the total numbers of columns and rows, respectively, in the
+model; and K, I, J are the layer, row, and column indexes of the model cell (extraction
+well) whose concentration is to be used as the input concentration of the recirculation
+well. For a multi-component transport simulation, the IC value must be specified for the
+concentrations of different components [CSSMS].
+8.2 ILLUSTRATIVE EXAMPLE
+
+As an example, let’s assume an extraction well at K = 1, I = 16, and J = 21 (see
+Figure 8.1). The total numbers of layers, rows and columns in the model are NLAY = 1,
+NROW = 31 and NCOL = 46. Now let’s specify two recirculation wells, one at (K, I, J)
+= (1, 5, 16) and the other at (K, I, J) = (1, 27, 16). The input concentration to both
+recirculation wells should be the same as that of the extraction well at (K, I, J) = (1, 16,
+21). The IC value for both recirculation wells is
+IC  46  31 1  1  46  16  1  21  711
+
+Thus to specify the two recirculation wells for the MT3DMS SSM Package, we have
+
+33
+
+K I J
+1 5 16
+1 27 16
+
+CSS
+-711
+-711
+
+ISSType
+2
+2
+
+where K, I, J are the location indexes of the recirculation wells and ISSType is the
+MT3DMS sink/source type code (ISSTYPE=2 for the well).
+Note that to obtain an accurate solution for the recirculation well option, it is
+suggested that the maximum outer iteration number of the GCG solver be set to greater
+than 1 to ensure the concentrations at the extraction and recirculation wells have
+converged during the iterations.
+
+Recirculation well #1
+
+Extraction well whose concentration
+is used as input concentration
+at the two recirculation wells
+Recirculation well #2
+
+Figure 8.1. Illustration of the recirculation well option.
+
+34
+
+9 Arbitrary Time-Varying Mass
+Loading Source or Boundary
+Condition
+9.1 INTRODUCTION
+
+With MT3DMS Version 5.3, it is possible to specify an arbitrarily defined timevarying mass loading source or boundary condition (see, for example, Figure 9.1). In all
+previous versions, an arbitrary mass loading curve like Figure 9.1 must be discretized
+into several stress periods, each of which is characterized by a single average mass
+loading rate. However, a new capability has been added to Version 5.3 to allow the
+complete mass loading distribution to be specified as a source or boundary condition
+without being restricted by the definition of stress periods. The new capability is
+accomplished through a new package called the Hydrocarbon Spill Source (HSS)
+Package as documented by Zheng et al. (2010).
+
+Mass Loading Rate (kg/day)
+
+60
+50
+40
+30
+20
+10
+0
+0
+
+20
+
+40
+
+60
+Time (day)
+
+80
+
+100
+
+120
+
+Figure 9.1. Illustration of an arbitrarily defined time-varying mass loading source
+or boundary condition.
+
+The HSS package was developed to provide a seamless linkage to MT3DMS for
+the Hydrocarbon Spill Screening Model (HSSM) (Weaver, 1996). HSSM is a computer
+code that simulates the vertical migration of a light non-aqueous phase liquid (LNAPL)
+contaminant through the unsaturated zone and the formation of an oil lens on the water
+table. It also determines the rate of contaminant mass flux dissolved from the LNAPL
+
+35
+
+source into groundwater. Through the HSS package, the effect of one or more such
+LNAPL sources is incorporated into 3-D advective-dispersive-reactive transport
+simulation using MT3DMS Version 5.3 or later. Moreover, the HSS package can be
+used to accommodate any user-defined time-varying mass loading sources or boundary
+conditions in MT3DMS simulations. For more information on the HSS package and
+complete input instructions, refer to Zheng et al. (2010).
+9.2 ILLUSTRATIVE EXAMPLE
+
+As an example, consider an exponentially decaying mass loading source, given by
+C t   1000e 0.01t , as illustrated in Figure 9.2. The source is applied to a two-dimensional
+uniform flow field. Further assume the transport model contains only two stress periods:
+the first period (1-365 days) with the exponential source and the second period (365-730
+days) without any source. Without the HSS package, an average concentration must be
+calculated for Stress Period 1 and used in the simulation, which will lead to an inaccurate
+concentration solution (see the dashed line in Figure 9.3 for the concentration
+breakthrough at the source location). A fix would be to subdivide Stress Period 1 into
+smaller stress periods, which can improve the solution accuracy but is computationally
+inefficient (see the blue solid line in Figure 9.3 obtained with Stress Period 1 subdivided
+into 365 one-day stress periods). The HSS package provides a satisfactory solution to this
+dilemma by allowing the user to define arbitrary time-varying mass loading sources
+independent of the stress periods. The concentration solution with the use of the HSS
+package is also shown in Figure 9.3 as solid dots. It can be seen that the solution based on
+the HSS package only with one stress period for the first 365 days is as accurate as the
+reference solution without using the HSS package but under much smaller stress periods.
+
+Mass Loading Rate (kg/day)
+
+1200
+1000
+
+Stress Period 1
+
+Stress Period 2
+
+800
+600
+400
+200
+0
+0
+
+365
+
+730
+
+Time (day)
+Figure 9.2. An exponentially decaying mass loading source for the illustrative example.
+
+36
+
+40
+Legend
+Reference Solution
+Solution with HSS Package
+Solution without HSS Package
+
+Concentration (mg/L)
+
+30
+
+Stress Period 1
+
+Stress Period 2
+
+20
+
+10
+
+0
+0
+
+365
+
+730
+
+Time (days)
+Figure 9.3. Comparison of calculated concentration breakthrough curves for the illustrative example.
+
+The solution based on the HSS package is obtained with a “source definition file” as
+shown in Table 9.1. The first column of the file specifies the time, t, the second column the size,
+and the third column the mass loading rate at time t. The size can be adjusted to place a single
+source into multiple model cells. A default value of zero means that the mass loading source is
+placed at a single model cell, as specified in the input file to the HSS package. See Zheng et al.
+(2010) for complete input instructions.
+Table 9.1 Example of the “source definition file” used by the HSS package
+
+0 
+1 
+2 
+3 
+           …… 
+362 
+363 
+364 
+365 
+
+0  1000.00 
+0  990.05 
+0  980.20 
+0  970.45 
+0 
+0 
+0 
+0 
+
+26.78 
+26.52 
+26.25 
+25.99 
+
+37
+
+10 Running MT3DMS in SteadyState Mode
+10.1 INTRODUCTION
+
+A significant change to MT3DMS with Version 5.3 is the addition of a steadystate transport simulation option. This steady-state transport option may be useful for
+long-term transport simulation runs in which the concentration field reaches an
+equilibrium state with the net change in total mass equal to zero. For example,
+hydrocarbon contaminants from a constant source will initially create a growing plume in
+the contaminated aquifer. At some point, however, the mass released from the source
+may approach the mass consumed by the biodegradation process. When this happens, the
+plume might stop expanding and approach a steady state. Also, for the direct groundwater
+age simulation discussed in a previous section, it is usually the goal of the simulation to
+obtain a steady-state concentration solution under a zeorth-order production term. Such a
+steady-state concentration distribution can then be interpreted as the groundwater age
+distribution.
+A steady-state transport solution can be obtained by running the transient
+transport model for a sufficiently long period of time until the concentration distributions
+between two successive transport steps cease to change within a predetermined limit.
+This is simple and easy to do with MT3DMS and it does not require any changes to the
+computer code. However, it is not computationally efficient to run a transient transport
+simulation for a long time for the sake of obtaining a steady-state solution. This is
+especially true if tens of thousands of years are needed to reach the steady state, as in
+some groundwater age simulations. Thus, it is useful to have a steady-state option for
+transport simulation, even though under most circumstances transient solutions are the
+objective of transport modeling studies.
+It is noteworthy that the steady-state transport option is implemented in MT3DMS
+only with the fully implicit finite-difference solution option. This is because the particle
+tracking based Eulerian-Lagrangian techniques (MOC/MMOC/HMOC) and the thirdorder TVD scheme require the restriction of transport steps which are no longer used in
+the steady-state solution. Also, without the need for temporal discretization, the
+numerical dispersion error proportional to the transport step size is eliminated in a steadystate solution. However, the numerical dispersion error resulting from spatial
+discretization is still present in the steady-state solution. The magnitude of the numerical
+dispersion error depends on the Pelect number of the transport problem being simulated.
+Care should be taken to ensure that the steady-state solution meets the accuracy
+requirement. If not, it may be necessary to apply finer spatial discretization or run
+transient simulations with more accurate solution techniques such as TVD.
+38
+
+10.2 INPUT INSTRUCTIONS
+
+To run a steady-state transport simulation with MT3DMS since Version 5.3,
+follow these two steps:
+1. Select the fully implicit finite difference method as the solution option by setting the
+input variable MIXELM to zero in the input file to the ADV Package.
+2. In the input record #A21 of the input file to the BTN Package, insert the keyword
+SSTATE after column 31 of the input line as illustrated below.
+Standard transient transport simulation
+A21
+PERLEN
+NSTP
+TSMULT
+Format
+F10.0
+I10
+F10.0
+Steady-state transport simulation
+A21
+PERLEN
+NSTP
+Format
+F10.0
+I10
+
+TSMULT
+F10.0
+
+[SSflag]
+[free]
+
+where PERLEN is the transport simulation time for the current stress period; NSTP and
+TSMULT are the number of time steps and the time step multiplier used in the flow
+solution, respectively; and SSFlag is an optional flag for the steady-state transport option.
+If SSFlag is set to SSTATE (which can be any combination of lower or capital letters as
+it is case insensitive), the steady-state transport simulation is automatically activated.
+SSTATE can be inserted anywhere after column 31 of the input line. There must be a
+comma or space after the keyword to separate it from any label following the keyword.
+Normally, a steady-state transport solution is associated with a steady-state flow solution,
+i.e., NSTP=1. If so, PERLEN is the total simulation time assigned to the steady-state
+transport run. The total simulation time has no physical meaning in a steady-state run
+other than as a multiplier for mass budgets. For simplicity, PERLEN is best set to unity
+for a steady-state transport simulation run.
+Table 10.1. An example input file for the BTN Package with the state-state transport option activated
+3D TRANSPORT IN UNIFORM FLOW FIELD WITH CONTINUOUS POINT SOURCE
+A test problem for steady-state transport simulation
+8
+15
+21
+1
+1
+1
+DAY FT LB
+[transport options]
+0 0 0 0 0 0 0 0
+0
+10.
+0
+10.
+0
+80.
+……
+T
+1
+!CHKMAS,NPRMAS
+1.
+1
+1.
+SState
+!PERLEN,NSTP,TSMULT,[SSflag]
+0.
+10000
+1.
+3.5
+!DT0,MXSTRN,TTSMULT,TTSMAX
+
+39
+
+10.3 ILLUSTRATIVE EXAMPLE
+Using the benchmark problem #7 (p. 145-146) in the original MT3DMS manual
+(Zheng and Wang, 1999) as an illustrative example, we run the transient transport model
+for a sufficiently long time until the steady state is reached. The concentration
+distribution at the end of simulation is shown Figure 10.1(a). In a separate run, the
+steady-state transport option is activated and the transport solution is shown in Figure
+10.1(b). It can be seen that the two solutions are essentially identical. However, the
+steady-state option requires only a fraction of the runtime needed by the simulation in
+transient mode.
+
+Figure 10-1. Comparison of simulated concentration distributions by running the transient model for
+a sufficiently long time (a) and by running MT3DMS in the steady-state mode (b).
+
+40
+
+11 Using MT3DMS for Heat
+Transport Simulation1
+11.1 INTRODUCTION
+
+Heat is increasingly being recognized as an excellent groundwater tracer because
+of its usefulness in identifying multiple hydrologic processes and recent availability of
+improved temperature sensors and measurement technologies (Anderson, 2005). The
+mathematical equivalency between the heat and solute transport equations has been
+established in numerous studies (e.g., Healy and Ronan, 1996; Kim et al., 2005; Prommer
+and Stuyfzand, 2005; Thorne et al., 2006). As a result, MT3DMS can be used directly
+and efficiently to simulate heat transport with simple variable conversion. Figure 11.1
+shows a heat plume from an injection of cool water into warmer groundwater, as part of a
+pre-modeling exercise to guide the subsequent actual field heat tracer test.
+The use of MT3DMS for heat transport modeling is based on the assumption that
+the changes in fluid density and viscosity induced by temperature variation are negligible
+so that flow and transport simulations can be decoupled for greater computational
+efficiency. However, when the temperature causes significant changes in fluid density
+and viscosity, the SEAWAT code (Langevin et al., 2007) is more suitable because it can
+account for the effects of variable fluid density and viscosity during heat transport. Ma
+and Zheng (2010) have conducted a series of numerical experiments to quantify the
+conditions under which the effects of variable density and viscosity can be neglected
+without any significant loss of computational accuracy.
+11.2 ANALOGY BETWEEN SOLUTE AND HEAT TRANSORT
+
+The general form of solute transport equation solved by MT3DMS is as follows
+(see Zheng and Wang, 1999):
+1
+
+·
+
+·
+
+∑
+
+·
+
+(11.1)
+
+where C is the dissolved concentration; t is time; is the porosity of the subsurface
+medium;
+the is bulk density of the rock matrix,
+1
+), where is the
+density of solid; Kd is the distribution coefficient; is the specific discharge vector); D is
+the hydrodynamic dispersion coefficient tensor, D = Dmech + Dm, where Dmech is the
+mechanical dispersion coefficient tensor and Dm is the molecular diffusion coefficient; qs
+is the volumetric flow rate per unit volume of the aquifer representing fluid sources or
+1
+
+This section is adapted from Zheng (2009) and Ma and Zheng (2010).
+
+41
+
+sinks; Cs is the concentration of the source or sink flux; and ∑
+term.
+
+is the chemical reaction
+
+Heat transport in the aquifer is generally governed by heat convection along with
+the fluid phase, heat conduction and dispersion through the fluid and aquifer sediment,
+and heat exchange between the aqueous phase and the aquifer sediment. Assuming
+thermal equilibrium between the aquifer sediment and fluid, and neglecting the vapor
+phase in the aquifer, the general equation to describe the heat transport in the aquifer
+system can be expressed as (e.g., Healy and Ronan, 1996; Anderson, 2005; Thorn et al.,
+2006; Langevin et al., 2007):
+1
+
+·
+
+·
+
+·
+
+(11.2)
+
+is the specific
+where T is the temperature; is the specific heat capacity of the solid;
+heat capacity of the fluid; w is the density of the fluid; o is the bulk thermal
+conductivity of the rock matrix,
+ 
+1
+, where
+and are the fluid and
+solid phase thermal conductivities, respectively; and TS is the source temperature.
+The analogy between solute transport and heat transport equations is apparent
+from a comparison of equation (11.1) with equation (11.2). The first term on the right
+side in equation (11.2), representing transport of heat by conduction and thermal
+dispersion, is analogous to molecular diffusion and mechanical dispersion in solute
+transport equation (11.1). The second term in equation (11.2), which represents transport
+of heat by groundwater flow, is analogous to the advection term in solute transport
+equation (11.1). The third term in equation (11.2) represents thermal sinks/sources, and is
+analogous to fluid solute sinks/sources in equation (11.1).
+Based on the analogy between solute transport and heat transport equations,
+variables for the MT3DMS solute transport simulator can be re-interpreted for heat
+transport. The solute concentration becomes the temperature. The distribution coefficient
+( ) for solute transport is replaced by the thermal distribution factor which can be
+calculated for temperature using the following equation:
+(11.3)
+The molecular diffusion in solute transport can be represented by the thermal conduction
+in heat transport. Thus, the molecular diffusion coefficient reinterpreted for heat transport
+is:
+(11.4)
+This thermal conduction term is referred to as the bulk thermal diffusivity. Additional
+information on using solute transport simulation for heat transport modeling can be found
+in Kim et al. (2005) and Thorn et al. (2006).
+
+42
+
+Figure 11.1 Simulation of a heat plume following injection of cool water into warmer
+groundwater using MT3DMS at the Hanford 300A site in Washington State (after Ma
+and Zheng, 2010).
+
+43
+
+References
+Anderson, M.P. 2005. Heat as a ground water tracer. Ground Water, 43(6): 951–968.
+Banta, E. R. 2000. MODFLOW-2000, The U.S. Geological Survey Modular GroundWater Model—Documentation of Packages for Simulating Evapotranspiration with a
+Segmented Function (ETS1) and Drains with Return Flow (DRT1): U.S. Geological
+Survey Open-File Report 00–466, Reston, Virginia.
+Goode, D. J. 1996. Direct simulation of groundwater age, Water Resour. Res., 32(2):
+289-296.
+Halford, K. J. and R.T. Hanson. 2002. User Guide for the Drawdown-Limited, MultiNode Well (MNW) Package for the U.S. Geological Survey’s Modular ThreeDimensional Finite-Difference Ground-Water Flow Model, Versions MODFLOW-96
+and MODFLOW-2000: US Geological Survey Open-File Report 02-293, Reston,
+Virginia.
+Harbaugh, A.W., E.R. Banta, M.C. Hill, and M.G. McDonald. 2000, MODFLOW-2000,
+the U.S. Geological Survey Modular Ground-Water Model—User guide to
+modularization concepts and the ground-water flow processes: U.S. Geological
+Survey Open-File Report 00-92, 121 p.
+Harbaugh, A.W. 2005. MODFLOW-2005, the U.S. Geological Survey modular groundwater model – the Ground-Water Flow Process: U.S. Geological Survey Techniques
+and Methods 6-A16.
+Healy, R.W., and A.D. Ronan. 1996. Documentation of computer program VS2DH for
+simulation of energy transport in variably saturated porous media — modification of
+the U.S. Geological Survey’s computer program VS2DT. Water-Resources
+Investigations Report 96-4230. U.S. Geological Survey, Denver, Colorado.
+Hill, M.C., E.R. Banta, A.W. Harbaugh, and E.R. Anderman. 2000. MODFLOW-2000,
+the U.S. Geological Survey Modular Ground-Water Model—User guide to the
+observation, sensitivity, and parameter-estimation processes and three postprocessing programs: U.S. Geological Survey Open-File Report 00-184, 210 p.
+Kim J., Y. Park, and T.C. Harmon. 2005. Real-time model parameter estimation for
+analyzing transport in porous media. Ground Water Monitoring & Remediation,
+25(2): 78–86.
+Langevin, C.D., D.T. Thorne, A.M. Dausman, M.C. Sukop, and W. Guo. 2007.
+SEAWAT Version 4: A computer program for simulation of multi-species solute and
+heat transport: U.S. Geological Survey Techniques and Methods Book 6, Chapter
+A22, 39 p.
+Ma, R. and C. Zheng. 2010. Effects of density and viscosity in modeling heat as a
+groundwater tracer, Ground Water, doi: 10.1111/j.1745-6584.2009.00660.x.
+Prommer, H., and P.J. Stuyfzand. 2005. Identification of temperature-dependent water
+quality changes during a deep well injection experiment in a pyritic aquifer. Environ.
+Sci. Technol., 39(7): 2200-2209.
+44
+
+Thorne, D., C.D. Langevin, and M.C. Sukop. 2006. Addition of simultaneous heat and
+solute transport and variable fluid viscosity to SEAWAT. Computers & Geosciences,
+32: 1758–1768.
+Toride, E., F.J. Leij, and M. Th. Van Genuchten. 1995. The CXTFIT Code for Estimating
+Transport Parameters from Laboratory or Field Tracer Experiments, Version 2.0,
+Research Report 137, U.S. Salinity Laboratory, Riverside, California.
+Tsai, F. T.-C., N.-Z. Sun, and W. W.-G. Yeh. 2003. Global-local optimization for
+parameter structure identification in three-dimensional groundwater modeling, Water
+Resour. Res., 39(2), 1043, doi:10.1029/2001WR001135.
+Weaver, J. 1996. The Hydrocarbon Spill Screening Model (HSSM) Volume 1 User’s
+Guide (Version 1.1 Rev. October 1996). Athens, Georgia: U.S. Environmental
+Protection Agency, Office of Research and Development.
+Zheng, C. 2009. Recent developments and future directions for MT3DMS and related
+transport codes, Ground Water, 47(5): 620-625, doi: 10.1111/j.17456584.2009.00602.x.
+Zheng, C., and P.P. Wang. 1999. MT3DMS: A modular three-dimensional multi-species
+transport model for simulation of advection, dispersion and chemical reactions of
+contaminants in groundwater systems; Documentation and user’s guide: Contract
+report SERDP-99-1: U.S. Army Engineer Research and Development Center,
+Vicksburg, MS, 169 p.
+Zheng, C., M.C. Hill, and P.A. Hsieh. 2001. MODFLOW-2000, The U.S. Geological
+Survey Modular Ground-Water Model—User Guide to the LMT6 Package, the
+Linkage with MT3DMS for Multi-Species Mass Transport Modeling: US Geological
+Survey Open-File Report 01-82, Reston, Virginia.
+Zheng, C., J. Weaver, and M. Tonkin. 2010. MT3DMS, A Modular Three-dimensional
+Multispecies Transport Model—User Guide to the Hydrocarbon Spill Source (HSS)
+Package. Athens, Georgia: U.S. Environmental Protection Agency.
+
+45
+
+Appendix A
+Changes to the Input Instructions since MT3DMS v5.0
+I. CHANGES FOR THE BTN PACKAGE
+
+Prior to version 5.0
+A5
+
+Record: TRNOP(10)
+Format: 10L2
+ TRNOP contains logical flags (true or false) for major transport and
+solution options.
+
+Changes since version 5.0
+A5
+
+Record: Dummy input line
+Format: n/a
+ TRNOP is no longer used since MT3DMS v5.0. However, a dummy
+input line must still be specified in the input file. A blank line is
+acceptable.
+
+Prior to version 5.3
+A21 Record: PERLEN, NSTP, TSMULT
+Format: F10.0,
+I10, F10.0
+ PERLEN is the length of simulation time for the current stress period;
+NSTP and TSMULT are the number of time steps and the time step
+multiplier used in the flow solution, respectively.
+Changes since version 5.3
+A21 Record: PERLEN, NSTP, TSMULT, [SSFlag]
+[free]
+Format: F10.0,
+I10, F10.0,
+SSFlag is an optional flag to indicate whether the steady-state transport
+
+option should be activated. The option is activated if SSFlag is set to the
+keyword SSTATE, which can be any combination of lower or capital
+letters.
+
+46
+
+II. CHANGES FOR THE DSP PACKAGE
+
+Prior to version 5.2
+C1
+
+Array:
+AL(NCOL,NROW) (One array for each layer).
+Reader: RARRAY
+ AL is the longitudinal dispersivity,  L , for every cell of the model grid
+(unit: L).
+
+……
+C4 Array:
+DMCOEF(NLAY)
+Reader: RARRAY
+2 -1
+ DMCOEF is the effective molecular diffusion coefficient (unit: L T ).
+Set DMCOEF = 0 if the effect of molecular diffusion is considered
+unimportant. Each value in the array corresponds to one model layer.
+Changes since version 5.2
+C0
+
+Record: One or more optional keywords.
+Format: [Free]
+ The only keyword currently supported is MultiDiffusion, case
+insensitive. The keyword must be specified in an input line with the
+$ sign in the first column. The keyword input record is optional.
+
+C1
+
+Array:
+AL(NCOL,NROW) (One array for each layer).
+Reader: RARRAY
+ No change.
+
+……
+If no keyword is defined:
+C4 Array:
+DMCOEF(NLAY)
+Reader: RARRAY
+2 -1
+ DMCOEF is the effective molecular diffusion coefficient (unit: L T ).
+Set DMCOEF = 0 if the effect of molecular diffusion is considered
+unimportant. Each value in the array corresponds to one model layer.
+Enter one array for all solute components.
+If keyword [MultiDiffusion] is defined:
+C4 Array:
+DMCOEF(NCOL,NROW) (One array for each layer)
+Reader: RARRAY
+2 -1
+ DMCOEF is the effective molecular diffusion coefficient (unit: L T ).
+Set DMCOEF = 0 if the effect of molecular diffusion is considered
+unimportant. Each value in the array corresponds to one model cell.
+Repeat the input for each mobile component.
+
+47
+
+III. CHANGES FOR THE SSM PACKAGE
+
+Prior to version 5.0
+D1
+
+Record: FWEL, FDRN, FRCH, FEVT, FRIV, FGHB, (FNEW(n), n=1,4)
+Format: 10L2
+ These are logical flags (true or false) to indicate whether various
+MODFLOW sink/source packages are used in the flow simulation.
+
+Changes since version 5.0
+D1
+
+Record: Dummy input line
+Format: n/a
+ These logical flags are no longer needed as the status of various flow
+sink/source packages is obtained by MT3DMS through the FlowTransport Link File produced by MODFLOW. However, a dummy
+input line must still be specified in the input file. A blank line is
+acceptable.
+
+Prior to version 5.0
+D2
+
+Record: MXSS
+Format: I10
+ MXSS is the maximum allowed number of all point sinks and sources
+included in the flow model. This input value is used for the memory
+allocation purpose only.
+
+Changes since version 5.0
+D2
+
+Record: MXSS, ISSGOUT
+Format: 2I10
+ ISSGOUT is the unit number for an optional output file to save the
+calculated flux-averaged composite concentrations at multi-node wells.
+The name of the output file must be specified through the Name File as
+in “DATA ISSGOUT FileName”.
+
+Prior to version 5.0
+D8
+
+Record: KSS, ISS, JSS, CSS, ISSTYPE, [CSSMS(n), n=1, NCOMP]
+Format: 3I10, F10.0, I10, [free]
+ This record is used to specify the point sources of specified
+concentrations. Note that those fluid sources included in the
+MODFLOW simulation but not specified herein are assumed to have
+zero concentration by default.
+48
+
+Changes since version 5.0
+D8
+
+Record: KSS, ISS, JSS, CSS, ISSTYPE, [CSSMS(n), n=1, NCOMP]
+Format: 3I10, F10.0, I10, [free]
+ No changes in the meaning and number of the input variables as well as
+their input format; however, the range of allowed ISSTYPE codes has
+increased since the initial release of MT3DMS (see Table 5.1).
+Since version 5.2, users can specify the input concentration of an
+injection well (ISSTYPE=2), i.e., CSS or CSSMS, as a negative integer
+code (IC). The absolute value of the integer code is the single cell
+location indicator of the extraction well whose output concentration is
+used as the input concentration for the injection well. For an extraction
+well located at layer K, row I, and column J, IC is computed as,
+IC  NCOL  NROW  K  1  NCOL  I  1  J .
+where NCOL and NROW are the total numbers of columns and rows.
+
+49
+
+IV. CHANGES FOR THE RCT PACKAGE
+
+Prior to version 5.1
+E1
+
+Record: ISOTHM, IREACT, IRCTOP, IGETSC
+Format: 4I10
+ IREACT is an integer indicating the type of kinetic reaction simulated:
+IREACT =0, no kinetic rate reaction is simulated;
+=1, first-order irreversible reaction.
+
+Changes since version 5.1
+E1
+
+Record: ISOTHM, IREACT, IRCTOP, IGETSC
+Format: 4I10
+ IREACT is an integer indicating the type of kinetic reaction simulated:
+IREACT =0, no kinetic rate reaction is simulated;
+=1, first-order irreversible reaction;
+=100, zeroth-order reaction (decay or production).
+
+Prior to version 5.1
+E5
+
+Array:
+RC1(NCOL, NROW) (one array for each layer)
+Reader: RARRAY
+ RC1 is the first-order reaction rate coefficient for the dissolved (liquid)
+phase (unit: T-1). If a dual-domain system is simulated, the rate
+coefficients for the liquid phase in the mobile and immobile domains are
+assumed to be equal.
+
+Changes since version 5.1
+E5
+
+Array:
+RC1(NCOL, NROW) (one array for each layer)
+Reader: RARRAY
+ If IREACT=1 (first-order kinetic reactions),
+RC1 is the first-order rate coefficient for the dissolved (liquid) phase
+(T-1). If a dual-domain system is simulated, the rate coefficients for the
+liquid phase in the mobile and immobile domains are assumed equal.
+If IREACT=100 (zeroth-order decay or production),
+RC1 is the zeroth-order reaction rate coefficient for the dissolved
+(liquid) phase (ML-3T-1) (positive for decay and negative for
+production). If a dual-domain system is simulated, the rate coefficients
+for the liquid phase in the mobile and immobile domains are assumed
+equal.
+
+50
+
+Prior to version 5.1
+E6
+
+Array:
+RC2(NCOL, NROW) (one array for each layer)
+Reader: RARRAY
+ RC2 is the first-order reaction rate coefficient for the sorbed (solid)
+phase (T-1). If a dual-domain system is simulated, the rate coefficients
+for the sorbed phase in the mobile and immobile domains are assumed
+equal. Note that RC2 must be still specified although it is not used, if no
+sorption is included in the simulation.
+
+Changes since version 5.1
+E6
+
+Array:
+RC2(NCOL, NROW) (one array for each layer)
+Reader: RARRAY
+ If IREACT=1 (first-order kinetic reactions),
+RC2 is the first-order rate coefficient for the sorbed (solid) phase (T-1). If
+a dual-domain system is simulated, the rate coefficients for the sorbed
+phase in the mobile and immobile domains are assumed equal.
+If IREACT=100 (zeroth-order decay or production),
+RC2 is the zeroth-order reaction rate coefficient for the sorbed (solid)
+phase (MM-1T-1) (positive for decay and negative for production). If a
+dual-domain system is simulated, the rate coefficients for the liquid
+phase in the mobile and immobile domains are assumed equal.
+
+51
+
+

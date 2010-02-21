@@ -1,0 +1,534 @@
+Software Spotlight/
+
+Chunmiao Zheng, Software Editor
+
+Recent Developments and Future Directions for
+MT3DMS and Related Transport Codes
+reviewed by Chunmiao Zheng
+
+Introduction
+MT3DMS is a three-dimensional (3D) multispecies
+contaminant transport model with a modular structure to
+permit simulation of solute transport processes independently or jointly (Zheng and Wang 1999; Zheng 2009).
+MT3DMS interfaces directly with the U.S. Geological Survey’s ﬁnite-difference ground water ﬂow model,
+MODFLOW, for the ﬂow solution, and supports all
+the hydrologic and discretization features of MODFLOW (McDonald and Harbaugh 1988; Harbaugh et al.
+2000; Harbaugh 2005). MT3DMS is unique in that it
+contains several transport solution techniques in a single code, including the fully implicit ﬁnite-difference
+method (FDM), the particle-tracking based method of
+characteristics (MOC) and its variants, and a third-order
+total-variation-diminishing (TVD) scheme that conserves
+mass while limiting numerical dispersion and artiﬁcial
+oscillation.
+Since its ﬁrst release in 1990 as MT3D for singlespecies mass transport (Zheng 1990), MT3DMS has been
+widely used in research projects and practical ﬁeld applications. In recent years, continuing development efforts
+have signiﬁcantly expanded the simulation capabilities of
+MT3DMS through new extensions and related codes. This
+column provides a brief overview of the recent developments and future directions in the MT3DMS family of
+transport-modeling tools.
+
+Recent Developments
+Coupled Geochemical and Transport Modeling
+By itself, MT3DMS is primarily intended to simulate
+physical transport processes, that is, advection, dispersion, molecular diffusion, and various ﬂuid sinks/sources.
+Department of Geological Sciences, University of Alabama,
+Tuscaloosa, AL 35487; 205-348-0579; fax 205-348-0818;
+czheng@ua.edu
+Copyright © 2009 The Author(s)
+Journal compilation © 2009 National Ground Water Association.
+doi: 10.1111/j.1745-6584.2009.00602.x
+
+620
+
+Although it contains basic functionalities for modeling
+sorption and simple kinetic reactions, an add-on reaction
+module must be incorporated into MT3DMS for multispecies reactive transport modeling. A number of reactive
+modules have been developed for this purpose, including
+MT3D’99 (Zheng 1999), RT3D (Clement 1997, 2003),
+and SEAM3D (Waddill and Widdowson 1998; Widdowson 2002), among others. MT3D’99 is a special version of
+MT3DMS implemented with biodegradation kinetics and
+parent-daughter chair reactions. RT3D couples MT3DMS
+with several preprogrammed reaction modules for common biologically mediated reactions. In addition, the user
+has the option to program any arbitrary kinetic reactions.
+SEAM3D is similar to RT3D in concept but is more
+speciﬁcally focused on sequential electron acceptor-based
+biological reactions.
+The most comprehensive tool in this category is
+the PHT3D code (Prommer et al. 2003), which couples MT3DMS with the geochemical modeling program PHREEQC-2 (Parkhurst and Appelo 1999) for
+simulation of complex multicomponent reactive transport
+processes. Most of the geochemical modeling capabilities of PHREEQC-2 are retained in PHT3D, including
+equilibrium-controlled aqueous complexation/speciation,
+kinetic reactions of aqueous components such as biodegradation of organic compounds, mineral precipitation/
+dissolution, ion exchange, and surface complexation reactions. Recent applications of PHT3D to complex ﬁeldscale reactive transport systems include water-quality
+changes during managed aquifer recharge (Prommer and
+Stuyfzand 2005; Greskowiak et al. 2006), fate of oxidisable organic contaminants in ground water (Barry et al.
+2002), isotopic fractionation processes (Van Breukelen
+and Prommer 2008), and impact of mass transfer processes on uranium fate (Ma et al. unpublished data).
+Figure 1 shows the results of a modeling study that investigated microbial dynamics and geochemical changes in a
+metal bioprecipitation experiment (Prommer et al. 2007).
+Variable-Density Flow and Transport Modeling
+The use of MT3DMS with MODFLOW is based on
+the “decoupled” approach that allows ﬂow and transport
+
+Vol. 47, No. 5–GROUND WATER–September-October 2009
+
+NGWA.org
+
+× 10−3
+
+× 10−3
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+× 10−4
+
+Figure 1. Illustration of reactive transport modeling of in situ bioprecipitation of Zn and Cu using PHT3D. Reprinted with
+permission from Prommer et al. (2007). Copyright 2007 American Chemical Society.
+
+simulations to be completed independently of each other
+for greater computational efﬁciency. The intrinsic assumption is that solute concentrations are sufﬁciently small
+so that their effect on ﬂuid density is negligible. While
+this assumption is valid in many contaminant transportmodeling applications, it is not in situations where there
+is substantial variation in ﬂuid density, such as sea water
+intrusion or brine transport.
+An area that has seen rapid development in recent
+years is variable-density ﬂow and transport modeling
+through the SEAWAT series of codes (Guo and Bennett 1998; Guo and Langevin 2002; Langevin et al.
+2007). SEAWAT combines MODFLOW and MT3DMS
+into a single code for ﬂow and transport modeling under
+variable-density and variable-viscosity conditions. In the
+coupled approach, the ﬂow solution is initially obtained
+and then passed to the transport solver for the concentration solution. The concentration solution is next used
+by the ﬂow solver to update the ﬂuid density and obtain
+NGWA.org
+
+the new ﬂow solution. This iterative process continues
+until the end of the simulation period is reached. SEAWAT has found many real-world applications in sea water
+intrusion and other density-dependent ﬂow and transport
+problems (e.g., Langevin 2001; Langevin and Guo 2006;
+Bauer-Gottwein et al. 2007; Post and Prommer 2007;
+Lin et al. 2009).
+Direct Ground Water Age Simulation
+Goode (1996) derived the governing equation for
+modeling ground water ages (or mean resident times),
+which in the simplest form can be written as:
+∂A
+∂
+=
+∂t
+∂xi
+
+Dij
+
+∂A
+∂xj
+
+−
+
+∂
+(ν i A) + 1
+∂xi
+
+(1)
+
+where A represents the age of an ideal tracer through the
+ground water ﬂow system, Dij is the hydrodynamic dispersion tensor, and vi is the seepage velocity. Equation 1
+is mathematically equivalent to the solute transport
+
+Vol. 47, No. 5–GROUND WATER–September-October 2009
+
+621
+
+equation solved by MT3DMS,
+∂
+∂C
+=
+∂t
+∂xi
+
+Dij
+
+∂C
+∂xj
+
+−
+
+∂
+(ν i C) − γ
+∂xi
+
+(2)
+
+where C is the solute concentration, and γ is the zerothorder decay term. The zeroth-order decay term has been
+added to MT3DMS since version 5.2 released in 2006.
+Because of the mathematical equivalency between
+Equations 1 and 2, MT3DMS can be used to simulate the ground water age distribution directly by setting the zeroth-order decay constant to −1, that is, a
+unit production, and by setting appropriate initial and
+boundary conditions. In so doing, the values of concentration calculated by MT3DMS represent the mean
+ground water ages or resident times. The ages computed through Equations 1 or 2 account for advection
+as well as hydrodynamic mixing of waters of different
+ages, and thus are more representative of the actual ages
+in the aquifer than those computed by particle tracking,
+which considers advective transport only. The age simulation capability of MT3DMS has been applied to some
+ﬁeld problems (e.g., Zheng 2007; Konikow et al. 2008).
+It is expected that more applications will follow in the
+future as ground water age data become more widely
+available.
+Modeling Heat as a Ground Water Tracer
+Heat is increasingly being recognized as an excellent
+ground water tracer because of its usefulness in identifying multiple hydrologic processes and recent availability
+of improved temperature sensors and measurement technologies (Anderson 2005). The mathematical equivalency
+between the heat and solute transport equations has been
+established in numerous studies (e.g., Healy and Ronan
+1996; Kim et al. 2005; Prommer and Stuyfzand 2005;
+Greskowiak et al. 2006; Thorne et al. 2006; Bayer et al.
+
+2008). As a result, MT3DMS can be used directly and
+efﬁciently to simulate heat transport with simple variable
+conversion. Figure 2 shows a heat plume from injection
+of cool water into warmer ground water as part of a premodeling exercise to guide the subsequent actual ﬁeld
+heat tracer test.
+The use of MT3DMS for heat transport modeling
+is based on the assumption that the changes in ﬂuid
+density and viscosity induced by temperature variation
+are negligible so that ﬂow and transport simulations
+can be decoupled for greater computational efﬁciency.
+However, when temperature causes signiﬁcant changes
+in ﬂuid density and viscosity, the SEAWAT code is more
+suitable because it can account for the effects of variable
+ﬂuid density and viscosity during heat transport. Ma and
+Zheng (unpublished data) conducted a series of numerical
+experiments to quantify the conditions under which the
+effects of variable density and viscosity can be neglected
+without any signiﬁcant loss of computational accuracy.
+
+Future Directions
+Transport in Unsaturated Zones
+MT3DMS has already been linked with the hydrocarbon spill screening model (HSSM) (Weaver 1996) as
+part of its extension to the unsaturated zone. HSSM is
+a computer code that simulates the vertical migration of
+a light nonaqueous phase liquid (LNAPL) contaminant
+through the unsaturated zone and the formation of an
+oil lens on the water table. It also determines the rate
+of contaminant mass ﬂux dissolved from the LNAPL
+source into ground water. Through a new time-varying
+source package (Zheng et al. 2009), the effect of one or
+more such LNAPL sources can be incorporated into threedimensional (3D) advective-dispersive-reactive transport
+simulation using MT3DMS.
+
+Figure 2. Simulation of a heat plume following injection of cool water into warmer ground water using MT3DMS at the
+Hanford 300A site in Washington State.
+
+622
+
+Vol. 47, No. 5–GROUND WATER–September-October 2009
+
+NGWA.org
+
+New work is going on to link MT3DMS and related
+codes directly with an unsaturated ﬂow package for
+MODFLOW such as the unsaturated-zone ﬂow (UZF)
+package (Niswonger et al. 2006) or the variably saturated
+ﬂow (VSF) process (Thoms et al. 2006). The UZF Package simulates vertical one-dimensional (1D) unsaturated
+ﬂow using the computationally efﬁcient kinematic wave
+approximation, while the VSF process solves a fully 3D
+Richards’ equation for unsaturated ﬂow above the water
+table. The soil moisture contents and ﬂuxes solved by
+UZF or VSF will be saved for use by MT3DMS to
+simulate the solute transport and reactions through the
+unsaturated zone.
+Integrated Surface and Ground Water Modeling
+Another area expected to have signiﬁcant development activities is a closer integration with surface water
+modeling tools. This will build transport-modeling support in MT3DMS and related codes for newly developed
+or enhanced surface water packages such as stream routing and lakes. In addition, new ﬂow processes for MODFLOW such as the farm process (Schmid et al. 2006)
+and conduit ﬂow process (Shoemaker et al. 2007) can
+be supported to address water-quality issues during agriculture irrigation and ground water–conduit interaction.
+An example of the linkage between MT3DMS and a
+predecessor to the conduit ﬂow process was described
+by Spiessl et al. (2007).
+The long-term vision is to make MT3DMS a solute
+transport solver in fully integrated surface water–ground
+water modeling systems such as GSFLOW (Markstrom
+et al. 2008). This can only be accomplished through close
+collaboration and coordination between MT3DMS authors
+and other model developers, including those in the U.S.
+Geological Survey.
+Solving Nonideal Transport Processes
+MT3DMS is originally based on the classical
+advection-dispersion formulation for modeling solute
+transport through porous media. Since 1999, it has supported the dual-domain mass transfer formulation to
+accommodate preferential transport along highconductivity pathways and mass exchange between the
+preferential transport pathways and less permeable matrix
+(Zheng and Wang 1999; Feehley et al. 2000). In recent
+years, more conceptual and mathematical model formulations have been developed for simulating solute transport
+in highly heterogeneous aquifers, including dual-domain
+multirate mass transfer (e.g., Haggerty and Gorelick
+1995), fractional-order advection-dispersion (e.g., Benson
+et al. 2000), and continuous-time random walk (e.g.,
+Berkowitz et al. 2002). One or more of these formulations will be implemented in MT3DMS to provide a wider
+selection of conceptual models to describe nonideal transport processes under complex ﬁeld conditions.
+
+Summary
+MT3DMS and its predecessor MT3D were developed as the transport companion to the U.S. Geological
+NGWA.org
+
+Survey’s ground water ﬂow model, MODFLOW. Since
+the 1990s, MT3D and MT3DMS have been widely used
+in research projects and practical ﬁeld applications. In
+addition to solute transport, the MT3DMS code has also
+been applied to simulate ground water age distribution and
+heat transport. Continuing development efforts in recent
+years have signiﬁcantly expanded the simulation capabilities of MT3DMS through new extensions and related
+modeling tools, especially in the areas of reactive transport, variable-density ﬂow and transport, ground water
+age, and heat transport.
+Future developments of MT3DMS and related codes
+will focus on extension to the unsaturated zone, a closer
+integration with surface water modeling components,
+and implementation of new conceptual and mathematical model formulations. Other related activities to make
+transport modeling more efﬁcient and accurate will continue, including parameter estimation (e.g., Mehl and
+Hill 2001; Doherty 2004; Poeter et al. 2005), management optimization (e.g., Zheng and Wang 2002), local
+grid reﬁnement (e.g., Mehl and Hill 2005), and parallelization to take full advantage of modern computer
+architecture.
+
+Our Mission
+The goal of Software Spotlight is to help readers identify well-written, intuitive, and useful software.
+Independent reviewers from government, industry, and
+academia try out full working versions of software packages and provide readers with a concise summary of their
+experiences and opinions regarding the capability, stability, and ease of use of these packages.
+
+References
+Anderson, M.P. 2005. Heat as a ground water tracer. Ground
+Water 43, no. 6: 951–968.
+Bauer-Gottwein, P., T. Langer, H. Prommer, P. Wolski, and
+W. Kinzelbach. 2007. Okavango Delta Islands: Interaction between density-driven ﬂow and geochemical reactions under evapo-concentration. Journal of Hydrology 335,
+no. 3–4: 389–405. doi:10.1016/j.jhydrol.2006.12.010.
+Barry, D.A., H. Prommer, C.T. Miller, P. Engesgaard, A. Brun,
+and C. Zheng. 2002. Modeling the fate of oxidisable
+organic contaminants in groundwater. Advanced Water
+Resources 25, 945–983.
+Bayer, P., N.M. Giraldo, J.H. M´ ndez, P. Rasuoli, C. Zheng,
+e
+and P. Blum. 2008. Heat transport modeling using
+MODFLOW/MT3DMS. In Proceedings of MODFLOW
+and More 2008: Ground Water and Public Policy, ed.
+E.P. Poeter, M.C. Hill, and C. Zheng, 471–475. Golden,
+Colorado: Colorado School of Mines.
+Benson, D.A., S.W. Wheatcraft, and M.M. Meerschaert. 2000.
+Application of a fractional advection-dispersion equation.
+Water Resources Research 36, no. 6: 1403–1412.
+Berkowitz, B., J. Klafter, R. Metzler, and H. Scher. 2002.
+Physical pictures of transport in heterogeneous media:
+Advection-dispersion, random-walk, and fractional derivative formulations. Water Resources Research 38, no. 10:
+1191, doi:10.1029/2001WR001030.
+
+Vol. 47, No. 5–GROUND WATER–September-October 2009
+
+623
+
+Clement, T.P. 2003. RT3D v2.5 Updates to User’s Guide. Richland, Washington: Paciﬁc Northwest National Laboratory.
+Clement, T.P. 1997. A modular computer model for simulating reactive multi-species transport in three-dimensional
+ground water systems. Draft Report, PNNL-SA-28967.
+Richland, Washington: Paciﬁc Northwest National Laboratory.
+Doherty, J. 2004. PEST, Model-Independent Parameter Estimation, User’s Guide, 5th ed. Australia: Watermark Numerical
+Computing.
+Feehley C.E., C. Zheng, and F.J. Molz. 2000. A dual-domain
+mass transfer approach for modeling solute transport in
+heterogeneous porous media, application to the MADE site.
+Water Resources Research 36, no. 9: 2501–2515.
+Goode, D.J. 1996. Direct simulation of groundwater age. Water
+Resources Research 32, no. 2: 289–296.
+Greskowiak, J., H. Prommer, G. Massmann, and G. N¨ tzmann.
+u
+2006. Modeling the seasonally changing fate of the pharmaceutical residue phenazone during artiﬁcial recharge
+of groundwater. Environmental Science & Technology 40,
+6615–6621.
+Guo, W, and C.D. Langevin. 2002. User’s guide to SEAWAT:
+A computer program for simulation of three-dimensional
+variable-density ground-water ﬂow. U.S. Geological Survey
+Techniques of Water Resources Investigations, book 6, chap.
+A7. 77. Reston, Virginia: USGS.
+Guo, W, and G.D. Bennett. 1998. Simulation of saline/fresh
+water ﬂows using MODFLOW. In Proceedings of MODFLOW’98, Golden, Colorado, vol. 1, 267–274, Colorado
+School of Mines.
+Haggerty, R., and S.M. Gorelick. 1995. Multiple-rate mass
+transfer for modeling diffusion and surface reactions in
+media with pore-scale heterogeneity. Water Resources
+Research 31, no. 10: 2383–2400.
+Harbaugh, A.W. 2005. MODFLOW-2005, the U.S. Geological
+Survey modular ground-water model—the ground-water
+ﬂow process. U.S. Geological Survey Techniques and
+Methods 6-A16. Reston, Virginia: USGS.
+Harbaugh, A.W., E.R. Banta, M.C. Hill, and M.G. McDonald.
+2000. MODFLOW-2000, the U.S. Geological Survey modular ground-water model—User guide to modularization
+concepts and the ground-water ﬂow processes. U.S. Geological Survey Open-File Report 00-92, 121. Reston, Virginia: USGS.
+Healy, R.W., and A.D. Ronan. 1996. Documentation of computer program VS2DH for simulation of energy transport in variably saturated porous media—modiﬁcation of
+the U.S. Geological Survey’s computer program VS2DT.
+Water-Resources Investigations Report 96-4230. Denver,
+Colorado: USGS.
+Kim J., Y. Park, and T.C. Harmon. 2005. Real-time model
+parameter estimation for analyzing transport in porous
+media. Ground Water Monitoring & Remediation 25, no. 2:
+78–86.
+Konikow, L.F., G.Z. Hornberger, L.D. Putnam. A.M. Shapiro,
+and B.A. Zinn. 2008. The use of groundwater age as a
+calibration target. In Proceedings of ModelCARE 2007,
+An International Conference on Calibration and Reliability
+in Groundwater Modeling, Publication 320. Copenhagen,
+Denmark: IAHS.
+Langevin, C.D. 2001. Simulation of ground-water discharge to
+Biscayne Bay, southeastern Florida. USGS WRIR 00-4251.
+Miami, Florida: USGS.
+
+624
+
+Langevin, C.D., D.T. Thorne, A.M. Dausman, M.C. Sukop, and
+W. Guo. 2007. SEAWAT version 4: A computer program
+for simulation of multi-species solute and heat transport.
+U.S. Geological Survey Techniques and Methods Book 6,
+chap. A22, 39. Reston, Virginia: USGS.
+Langevin, C.D., and W. Guo. 2006. MODFLOW/MT3DMSbased simulation of variable density ground water ﬂow and
+transport. Ground Water 44, no. 3: 339–351.
+Lin, J., J.B. Snodsmith, C. Zheng, and J. Wu. 2009. A modeling
+study of seawater intrusion in Alabama Gulf Coast, USA.
+Environmental Geology 54, doi: 10.1007/s00254-0081288-y.
+Markstrom, S.L., R.G. Niswonger, R.S. Regan, D.E. Prudic,
+and P.M. Barlow. 2008. GSFLOW-coupled ground-water
+and surface-water FLOW model based on the integration of the precipitation-runoff modeling system (PRMS)
+and the modular ground-water ﬂow model (MODFLOW2005). U.S. Geological Survey Techniques and Methods
+6-D1, 240. Reston, Virginia: USGS.
+Mehl, S.W., and M.C. Hill. 2005. MODFLOW-2005, the
+U.S. Geological Survey modular ground-water model—
+Documentation of shared node local grid reﬁnement (LGR)
+and the boundary ﬂow and head (BFH) package. Chapter 12
+of Book 6, Modeling Techniques Section A, Ground Water,
+Boulder, Colorado: USGS.
+Mehl, S.W., and M.C. Hill. 2001. A comparison of solutetransport solution techniques and their effect on sensitivity
+analysis and inverse modeling results. Ground Water 39,
+no. 2: 300–307.
+McDonald, M.G., and A.W. Harbaugh. 1988. A modular threedimensional ﬁnite-difference ground-water ﬂow model.
+U.S. Geological Survey Techniques of Water-Resources
+Investigations, book 6, chap. A1. Reston, Virginia:
+USGS.
+Niswonger, R.G., D.E. Prudic, and R.S. Regan. 2006. Documentation of the unsaturated-zone ﬂow (UZF1) package for
+modeling unsaturated ﬂow between the land surface and
+the water table with MODFLOW-2005. U.S. Geological
+Survey Techniques and Methods 6-A19. Reston, Virginia:
+USGS.
+Parkhurst, D.L., and C.A.J. Appelo. 1999. User’s guide to
+PHREEQC (Version 2)—A computer program for speciation, batch-reaction, one-dimensional transport, and inverse
+geochemical calculations. U.S. Geological Survey WaterResources Investigations Report 99-4259. Reston, Virginia:
+USGS.
+Poeter, E.P.,
+M.C. Hill,
+E.R. Banta,
+S. Mehl,
+and
+S. Christensen. 2005. UCODE_2005 and six other
+computer codes for universal sensitivity analysis, calibration, and uncertainty evaluation. U.S. Geological
+Survey Techniques and Methods 6-A11. Reston, Virginia:
+USGS.
+Post, V.E.A., and H. Prommer. 2007. Reactive multicomponent
+transport simulation of the Elder problem: Effects of
+chemical reactions on salt plume development. Water
+Resources Research 43, no. 10: Art. No. W10404 OCT 2
+2007.
+Prommer, H., M. Grassi, A. Davis, and B.M. Patterson. 2007.
+Modeling of microbial dynamics and geochemical changes
+in a metal bioprecipitation experiment. Environmental Science & Technology 41, no. 24: 8433–8438.
+Prommer, H., and P.J. Stuyfzand. 2005. Identiﬁcation of
+temperature-dependent water quality changes during a deep
+
+Vol. 47, No. 5–GROUND WATER–September-October 2009
+
+NGWA.org
+
+well injection experiment in a pyritic aquifer. Environmental Science & Technology 39, no. 7: 2200–2209.
+Prommer H, D.A. Barry, and C. Zheng. 2003. MODFLOW/MT3DMS based reactive multi-component transport modeling. Ground Water 41, no. 2: 247–257.
+Schmid, W., R.T. Hanson, T. Maddock III, and S.A. Leake.
+2006. User guide for the farm process (FMP1) for the
+U.S. Geological Survey’s modular three-dimensional ﬁnitedifference ground-water ﬂow model, MODFLOW-2000.
+U.S. Geological Survey Techniques and Methods 6-A17.
+Reston, Virginia: USGS.
+Shoemaker, W.B., E.L. Kuniansky, S. Birk, S. Bauerand, and
+E.D. Swain. 2007. Documentation of a conduit ﬂow process
+(CFP) for MODFLOW-2005. In U.S. Geological Survey
+Techniques and Methods, Book 6, chap A24. Miami,
+Florida: USGS.
+Spiessl, S.M, H. Prommer, T. Licha, M. Sauter, and C. Zheng.
+2007. A process-based reactive hybrid transport model for
+coupled discrete conduit-continuum systems, Journal of
+Hydrology 347, 23–34.
+Thoms, R.B., R.L. Johnson, and R.W. Healy. 2006. User’s guide
+to the variably saturated ﬂow (VSF) process for MODFLOW. U.S. Geological Survey Techniques and Methods
+6–A18. Reston, Virginia: USGS.
+Thorne, D., C.D. Langevin, and M.C. Sukop. 2006. Addition
+of simultaneous heat and solute transport and variable
+ﬂuid viscosity to SEAWAT. Computers & Geosciences 32,
+1758–1768.
+Van Breukelen, B.M., and H. Prommer. 2008. Beyond the
+Rayleigh equation: Reactive transport modeling of isotope
+ffractionation effects to improve quantiﬁcation of biodegradation. Environmental Science & Technology 42, no. 7:
+2457–2463.
+Waddill, D.W., and M.A. Widdowson. 1998. A threedimensional model for subsurface transport and
+biodegradation. ASCE Journal of Environmental Engineering 124, no. 4: 336–344.
+Weaver, J. 1996. The Hydrocarbon Spill Screening Model
+(HSSM) Volume 1 User’s Guide (Version 1.1 Rev. October
+
+NGWA.org
+
+1996). Athens, Georgia: U.S. Environmental Protection
+Agency, Ofﬁce of Research and Development.
+Widdowson, M.A. 2002. SEAM3D, A numerical model for
+three-dimensional solute transport coupled to sequential
+electron acceptor-based biological reactions in groundwater. Documentation and user’s guide. Vicksburg, Mississippi: U.S. Army Engineer Research and Development
+Center.
+Zheng, C. 2009. MT3DMS v5.3 Supplemental User’s Guide.
+Department of Geological Sciences, University of Alabama,
+Tuscaloosa, Alabama.
+Zheng, C. 2007. Numerical simulation of groundwater ages in
+the Ordos Basin, China: Issues in model calibration and
+implications for groundwater management, paper presented
+at ModelCARE 2007. An International Conference on Calibration and Reliability in Groundwater Modeling, Copenhagen, Denmark.
+Zheng, C. 1999. MT3D’99, a modular 3D multispecies transport simulator. Bethesda, Maryland: S.S. Papadopulos &
+Associates, Inc.
+Zheng, C. 1990. MT3D: A modular 3-D transport model for
+simulation of advection, dispersion, and chemical reactions
+of contaminants in groundwater systems. Report to the Kerr
+Environmental Research Laboratory. Ada, Oklahoma: US
+Environmental Protection Agency.
+Zheng, C., J. Weaver, and M. Tonkin. 2009. MT3DMS, a
+modular three-dimensional multispecies transport model—
+user guide to the hydrocarbon spill source (HSS) package. Athens, Georgia: U.S. Environmental Protection
+Agency.
+Zheng C., and P.P. Wang. 2002. A ﬁeld demonstration of the
+simulation-optimization approach for remediation system
+design, Ground Water 40, no. 3: 258–265.
+Zheng, C., and P.P. Wang. 1999. MT3DMS: A modular 3-D
+multispecies model for simulation of advection, dispersion and chemical reactions of contaminants in groundwater systems. Documentation and user’s guide. Contract
+Report SERDP-99-1. Vicksburg, Mississippi: Army Engineer Research and Development Center.
+
+Vol. 47, No. 5–GROUND WATER–September-October 2009
+
+625
+
+

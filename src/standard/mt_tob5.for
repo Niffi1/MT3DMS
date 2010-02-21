@@ -6,7 +6,7 @@ C **********************************************************************
 C THIS SUBROUTINE ALLOCATES SPACE FOR ARRAYS NEEDED BY THE TRANSPORT
 C OBSERVATION (TOB) PACKAGE.
 C **********************************************************************
-C last modified: 10-30-2006
+C last modified: 02-20-2010
 C
       IMPLICIT  NONE
       INTEGER   INTOB,IOUT,ISUM,ISUM2,ISOLD,ISOLD2,ISUMX,ISUMIX,
@@ -19,7 +19,7 @@ C
 C--PRINT PACKAGE NAME AND VERSION NUMBER
       WRITE(IOUT,1030) INTOB
  1030 FORMAT(1X,'TOB5 -- TRANSPORT OBSERVATION PACKAGE,',
-     & ' VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT',I3)
+     & ' VERSION 5, FEBRUARY 2010, INPUT READ FROM UNIT',I3)
 C
 C--READ INPUT LINE AS A TEXT STRING
     2 READ(INTOB,'(A)') LINE
@@ -89,7 +89,7 @@ C
 C *********************************************************************
 C THIS SUBROUTINE READS INPUT DATA for THE TOB PACKAGE.
 C *********************************************************************
-C last modified: 02-15-2005
+C last modified: 02-20-2010
 C
       IMPLICIT  NONE
       INTEGER   INTOB,IOUT,LLOC,IFLEN,INAM1,INAM2,ISTART,ISTOP,N,
@@ -127,10 +127,10 @@ C--INITIALIZE
       TYPESS(27)='MULTI-NODE WELL'
       TYPESS(28)='DRN W RET FLOW '
       TYPESS(29)='SEGMENTED ET   '
-      TYPESS(50)='HSSM-KO LNAPL  '
-      TYPESS(51)='USER-DEFINED #1'
-      TYPESS(52)='USER-DEFINED #2'
-      TYPESS(53)='USER-DEFINED #3'
+      TYPESS(50)='HSS MAS LOADING'
+      TYPESS(51)='SUBSIDENCE-WT  '
+      TYPESS(52)='STREAM FL ROUT.'
+      TYPESS(53)='UNSAT ZONE FLOW'
 C
 C--READ INPUT LINE AS A TEXT STRING
     2 READ(INTOB,'(A)') LINE
@@ -579,7 +579,7 @@ C This subroutine gets calculated mass fluxes at user specified
 C locations and computes residual errors between calculated and
 C observed if necessary
 C **********************************************************************
-C last modified: 10-30-2006
+C last modified: 02-20-2010
 C
       IMPLICIT  NONE
       INTEGER   NCOL,NROW,NLAY,ntrans,inFluxObs,iout,n,iGroup,
@@ -594,8 +594,8 @@ C
      &          rech,crch,evtr,cevt,
      &          SKEW,AVE,ADEV,SDEV,VAR,CURT,R,PROB,Z,fraction
       CHARACTER fobsnam*12,ErrMsg*24
-      LOGICAL   FWEL,FDRN,FRCH,FEVT,FRIV,FGHB,
-     &          FSTR,FRES,FFHB,FIBS,FTLK,FLAK,FMNW,FDRT,FETS,FUSR        
+      LOGICAL   FWEL,FDRN,FRCH,FEVT,FRIV,FGHB,FSTR,FRES,FFHB,FIBS,
+     &          FTLK,FLAK,FMNW,FDRT,FETS,FSWT,FSFR,FUZF
       DIMENSION FluxGroup(3+2*MaxFluxCells,nFluxGroup),
      &          fobsnam(nFluxObs),GroupData(7,nFluxObs),
      &          GroupTmp(nFluxObs,3),cnew(ncol,nrow,nlay,ncomp),
@@ -604,8 +604,8 @@ C
      &          crch(ncol,nrow,ncomp),cevt(ncol,nrow,ncomp),
      &          irch(ncol,nrow),ievt(ncol,nrow),
      &          delr(ncol),delc(nrow),dh(ncol,nrow,nlay)
-      COMMON   /FC/FWEL,FDRN,FRCH,FEVT,FRIV,FGHB,
-     &          FSTR,FRES,FFHB,FIBS,FTLK,FLAK,FMNW,FDRT,FETS,FUSR     
+      COMMON   /FC/FWEL,FDRN,FRCH,FEVT,FRIV,FGHB,FSTR,FRES,FFHB,
+     &             FIBS,FTLK,FLAK,FMNW,FDRT,FETS,FSWT,FSFR,FUZF
 c
 c--print headers to output file
 c    

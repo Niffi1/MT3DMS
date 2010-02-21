@@ -59,34 +59,34 @@
   o GCG   ON UNIT  9
   o TOB   ON UNIT 12
 
- BTN5 -- BASIC TRANSPORT PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  1
+ BTN5 -- BASIC TRANSPORT PACKAGE, VERSION 5, FEBRUARY 2010, INPUT READ FROM UNIT  1
       38187 ELEMENTS OF THE  X ARRAY USED BY THE BTN PACKAGE
        2528 ELEMENTS OF THE IX ARRAY USED BY THE BTN PACKAGE
 
- FMI5 -- FLOW MODEL INTERFACE PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT 10
+ FMI5 -- FLOW MODEL INTERFACE PACKAGE, VERSION 5, FEBRUARY 2010, INPUT READ FROM UNIT 10
  FLOW MODEL IS STEADY-STATE
  FLOW MODEL CONTAINS CONSTANT-HEAD CELLS
 
- ADV5 -- ADVECTION PACKAGE, VERSION 5, FEBRUARY 2005, INPUT READ FROM UNIT  2
+ ADV5 -- ADVECTION PACKAGE, VERSION 5, FEBRUARY 2010, INPUT READ FROM UNIT  2
  ADVECTION IS SOLVED WITH THE ULTIMATE SCHEME
  COURANT NUMBER ALLOWED IN SOLVING THE ADVECTION TERM =  1.00    
           0 ELEMENTS OF THE  X ARRAY USED BY THE ADV PACKAGE
           0 ELEMENTS OF THE IX ARRAY USED BY THE ADV PACKAGE
 
- DSP5 -- DISPERSION PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  3
+ DSP5 -- DISPERSION PACKAGE, VERSION 5, FEBRUARY 2010, INPUT READ FROM UNIT  3
       27736 ELEMENTS OF THE  X ARRAY USED BY THE DSP PACKAGE
           0 ELEMENTS OF THE IX ARRAY USED BY THE DSP PACKAGE
 
- SSM5 -- SINK & SOURCE MIXING PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT  4
+ SSM5 -- SINK & SOURCE MIXING PACKAGE, VERSION 5, FEBRUARY 2010, INPUT READ FROM UNIT  4
  HEADER LINE OF THE SSM PACKAGE INPUT FILE:
   T F F F F F      FWEL,FDRN,FRCH,FEVT,FRIV,FGHB                                                                                                                                                         
  MAJOR STRESS COMPONENTS PRESENT IN THE FLOW MODEL:
-  o WELL
+  o WELL [WEL]
  MAXIMUM NUMBER OF POINT SINKS/SOURCES =    1000
       13000 ELEMENTS OF THE  X ARRAY USED BY THE SSM PACKAGE
           0 ELEMENTS OF THE IX ARRAY BY THE SSM PACKAGE
 
- GCG5 -- GENERALIZED CONJUGATE GRADIENT SOLVER PACKAGE, VERSION 5, FEBRUARY 2005 INPUT READ FROM UNIT  9
+ GCG5 -- GENERALIZED CONJUGATE GRADIENT SOLVER PACKAGE, VERSION 5, FEBRUARY 2010 INPUT READ FROM UNIT  9
  MAXIMUM OF    1 OUTER ITERATIONS
         AND  200 INNER ITERATIONS ALLOWED FOR CLOSURE
  THE PRECONDITIONING TYPE SELECTED IS MODIFIED INCOMPLETE CHOLESKY (MIC).
@@ -94,7 +94,7 @@
       55640 ELEMENTS OF THE  X ARRAY USED BY THE GCG PACKAGE
         600 ELEMENTS OF THE IX ARRAY USED BY THE GCG PACKAGE
 
- TOB5 -- TRANSPORT OBSERVATION PACKAGE, VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT 12
+ TOB5 -- TRANSPORT OBSERVATION PACKAGE, VERSION 5, FEBRUARY 2010, INPUT READ FROM UNIT 12
 #                                                                                                                                                                                                       
 # TOB package input file                                                                                                                                                                                
 #                                                                                                                                                                                                       
@@ -497,6 +497,9 @@
  LENGTH OF CURRENT STRESS PERIOD =   50.00000    
  NUMBER OF TIME STEPS FOR CURRENT STRESS PERIOD =    1
  TIME STEP MULTIPLIER USED IN FLOW SOLUTION =   1.000000    
+
+ ***Type of Transport Simulation is TRANSIENT
+
  USER-SPECIFIED TRANSPORT STEPSIZE =   0.000000     DAY
  MAXIMUM NUMBER OF TRANSPORT STEPS ALLOWED  IN ONE FLOW TIME STEP =     10000
  MULTIPLIER FOR SUCCESSIVE TRANSPORT STEPS  [USED IN IMPLICIT SCHEMES] =     1.000
@@ -586,8 +589,8 @@
    6   1.461E-09  2.161E-09  2.891E-09  2.598E-09  1.629E-09  7.792E-10  3.033E-10  1.007E-10  2.945E-11  7.794E-12  1.906E-12
        4.372E-13  9.533E-14  1.995E-14  4.027E-15  7.880E-16  1.500E-16  2.787E-17  5.066E-18  8.986E-19  1.316E-19
    7   6.559E-09  1.029E-08  1.451E-08  1.284E-08  7.666E-09  3.448E-09  1.261E-09  3.949E-10  1.095E-10  2.764E-11  6.475E-12
-       1.430E-12  3.015E-13  6.116E-14  1.199E-14  2.284E-15  4.239E-16  7.687E-17  1.366E-17  2.374E-18  3.486E-19
-   8   1.700E-08  2.846E-08  4.257E-08  3.689E-08  2.085E-08  8.783E-09  3.013E-09  8.896E-10  2.345E-10  5.661E-11  1.277E-11
+       1.430E-12  3.015E-13  6.116E-14  1.199E-14  2.284E-15  4.238E-16  7.687E-17  1.366E-17  2.374E-18  3.486E-19
+   8   1.700E-08  2.846E-08  4.257E-08  3.689E-08  2.085E-08  8.783E-09  3.013E-09  8.895E-10  2.345E-10  5.661E-11  1.277E-11
        2.730E-12  5.597E-13  1.107E-13  2.120E-14  3.953E-15  7.195E-16  1.282E-16  2.241E-17  3.839E-18  5.656E-19
    9   6.559E-09  1.029E-08  1.450E-08  1.283E-08  7.654E-09  3.433E-09  1.253E-09  3.926E-10  1.093E-10  2.778E-11  6.565E-12
        1.464E-12  3.116E-13  6.384E-14  1.265E-14  2.433E-15  4.560E-16  8.352E-17  1.498E-17  2.628E-18  3.918E-19
@@ -632,7 +635,7 @@
        3.918E-12  8.336E-13  1.707E-13  3.381E-14  6.500E-15  1.217E-15  2.227E-16  3.990E-17  6.992E-18  1.053E-18
   11   2.679E-09  3.976E-09  5.334E-09  4.780E-09  2.977E-09  1.412E-09  5.472E-10  1.821E-10  5.386E-11  1.451E-11  3.624E-12
        8.511E-13  1.899E-13  4.064E-14  8.393E-15  1.680E-15  3.271E-16  6.210E-17  1.153E-17  2.088E-18  3.185E-19
-  12   3.265E-10  4.602E-10  5.910E-10  5.358E-10  3.481E-10  1.744E-10  7.177E-11  2.537E-11  7.959E-12  2.268E-12  5.980E-13
+  12   3.265E-10  4.602E-10  5.910E-10  5.358E-10  3.481E-10  1.744E-10  7.177E-11  2.537E-11  7.959E-12  2.269E-12  5.980E-13
        1.477E-13  3.458E-14  7.732E-15  1.663E-15  3.462E-16  7.000E-17  1.378E-17  2.650E-18  4.962E-19  7.666E-20
   13   3.427E-11  4.630E-11  5.745E-11  5.256E-11  3.541E-11  1.864E-11  8.098E-12  3.026E-12  1.003E-12  3.014E-13  8.361E-14
        2.169E-14  5.317E-15  1.242E-15  2.782E-16  6.015E-17  1.261E-17  2.573E-18  5.118E-19  9.898E-20  1.548E-20
@@ -736,7 +739,7 @@
    7   1.471E-04  3.507E-04  7.468E-04  5.478E-04  2.263E-04  6.738E-05  1.662E-05  3.647E-06  7.412E-07  1.426E-07  2.624E-08
        4.657E-09  8.017E-10  1.345E-10  2.207E-11  3.553E-12  5.625E-13  8.777E-14  1.352E-14  2.057E-15  2.979E-16
    8   6.105E-04  1.719E-03  4.471E-03  2.909E-03  1.021E-03  2.594E-04  5.610E-05  1.111E-05  2.073E-06  3.693E-07  6.342E-08
-       1.057E-08  1.720E-09  2.742E-10  4.297E-11  6.633E-12  1.011E-12  1.524E-13  2.275E-14  3.365E-15  4.820E-16
+       1.057E-08  1.720E-09  2.742E-10  4.297E-11  6.633E-12  1.011E-12  1.524E-13  2.275E-14  3.364E-15  4.820E-16
    9   1.471E-04  3.507E-04  7.468E-04  5.478E-04  2.263E-04  6.737E-05  1.662E-05  3.646E-06  7.409E-07  1.425E-07  2.623E-08
        4.654E-09  8.010E-10  1.344E-10  2.205E-11  3.551E-12  5.626E-13  8.785E-14  1.355E-14  2.064E-15  2.994E-16
   10   2.109E-05  4.392E-05  8.090E-05  6.409E-05  3.000E-05  1.018E-05  2.829E-06  6.881E-07  1.525E-07  3.161E-08  6.236E-09
@@ -773,7 +776,7 @@
    7   1.194E-03  3.386E-03  8.858E-03  5.741E-03  2.004E-03  5.056E-04  1.085E-04  2.135E-05  3.953E-06  6.985E-07  1.190E-07
        1.966E-08  3.170E-09  5.006E-10  7.769E-11  1.188E-11  1.793E-12  2.676E-13  3.956E-14  5.796E-15  8.269E-16
    8   5.922E-03  2.103E-02  7.523E-02  3.937E-02  1.085E-02  2.224E-03  4.147E-04  7.262E-05  1.215E-05  1.963E-06  3.088E-07
-       4.755E-08  7.194E-09  1.073E-09  1.581E-10  2.306E-11  3.335E-12  4.789E-13  6.831E-14  9.691E-15  1.364E-15
+       4.755E-08  7.194E-09  1.073E-09  1.581E-10  2.306E-11  3.335E-12  4.789E-13  6.831E-14  9.692E-15  1.364E-15
    9   1.194E-03  3.387E-03  8.858E-03  5.741E-03  2.004E-03  5.056E-04  1.085E-04  2.135E-05  3.952E-06  6.985E-07  1.190E-07
        1.966E-08  3.170E-09  5.006E-10  7.769E-11  1.188E-11  1.793E-12  2.676E-13  3.956E-14  5.796E-15  8.270E-16
   10   1.472E-04  3.510E-04  7.471E-04  5.481E-04  2.265E-04  6.743E-05  1.664E-05  3.652E-06  7.425E-07  1.429E-07  2.631E-08
@@ -869,14 +872,14 @@
                                                              IN                           OUT
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
-                                        CONSTANT HEAD:    0.000000                  -0.6711604E-12
+                                        CONSTANT HEAD:    0.000000                  -0.6711608E-12
                                                 WELLS:    525.0001                    0.000000    
-                                MASS STORAGE (SOLUTE):    0.000000                   -524.9998    
+                                MASS STORAGE (SOLUTE):    0.000000                   -524.9999    
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:    525.0001       LB          -524.9998       LB
+                                              [TOTAL]:    525.0001       LB          -524.9999       LB
 
-                                                          NET (IN - OUT):   0.3051758E-03
-                                                   DISCREPANCY (PERCENT):   0.5812873E-04
+                                                          NET (IN - OUT):   0.1831055E-03
+                                                   DISCREPANCY (PERCENT):   0.3487723E-04
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   4 IN FLOW TIME STEP   1 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   5 IN FLOW TIME STEP   1 STRESS PERIOD   1
@@ -1191,7 +1194,7 @@
        3.764E-08  8.835E-09  1.982E-09  4.290E-10  9.025E-11  1.852E-11  3.713E-12  7.286E-13  1.400E-13  2.437E-14
   13   2.549E-06  4.046E-06  6.102E-06  6.646E-06  5.479E-06  3.377E-06  1.662E-06  6.813E-07  2.408E-07  7.555E-08  2.154E-08
        5.681E-09  1.407E-09  3.308E-10  7.466E-11  1.629E-11  3.458E-12  7.168E-13  1.453E-13  2.880E-14  5.061E-15
-  14   2.452E-07  3.732E-07  5.370E-07  5.836E-07  4.925E-07  3.168E-07  1.643E-07  7.135E-08  2.678E-08  8.920E-09  2.694E-09
+  14   2.452E-07  3.732E-07  5.370E-07  5.835E-07  4.925E-07  3.168E-07  1.643E-07  7.135E-08  2.678E-08  8.920E-09  2.694E-09
        7.511E-10  1.959E-10  4.834E-11  1.139E-11  2.583E-12  5.678E-13  1.215E-13  2.540E-14  5.187E-15  9.195E-16
   15   2.372E-08  3.478E-08  4.802E-08  5.192E-08  4.463E-08  2.982E-08  1.623E-08  7.442E-09  2.959E-09  1.045E-09  3.344E-10
        9.858E-11  2.712E-11  7.042E-12  1.740E-12  4.120E-13  9.423E-14  2.091E-14  4.521E-15  9.523E-16  1.702E-16
@@ -1202,14 +1205,14 @@
                                                              IN                           OUT
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
-                                        CONSTANT HEAD:    0.000000                  -0.5401734E-09
+                                        CONSTANT HEAD:    0.000000                  -0.5401737E-09
                                                 WELLS:    1250.000                    0.000000    
-                                MASS STORAGE (SOLUTE):    0.000000                   -1249.999    
+                                MASS STORAGE (SOLUTE):    0.000000                   -1250.000    
                             ---------------------------------------------------------------------------
-                                              [TOTAL]:    1250.000       LB          -1249.999       LB
+                                              [TOTAL]:    1250.000       LB          -1250.000       LB
 
-                                                          NET (IN - OUT):   0.7324219E-03
-                                                   DISCREPANCY (PERCENT):   0.5859376E-04
+                                                          NET (IN - OUT):   0.6103516E-03
+                                                   DISCREPANCY (PERCENT):   0.4882813E-04
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP   9 IN FLOW TIME STEP   1 STRESS PERIOD   1
      4 TOTAL ITERATIONS
      1 CALLS TO GCG PACKAGE FOR TRANSPORT TIME STEP  10 IN FLOW TIME STEP   1 STRESS PERIOD   1
@@ -1267,7 +1270,7 @@
        3.422E-07  1.213E-07  3.971E-08  1.214E-08  3.498E-09  9.564E-10  2.500E-10  6.281E-11  1.520E-11  3.258E-12
    9   3.708E-06  5.710E-06  8.526E-06  1.088E-05  1.145E-05  1.033E-05  7.775E-06  5.009E-06  2.802E-06  1.379E-06  6.049E-07
        2.395E-07  8.664E-08  2.893E-08  9.009E-09  2.638E-09  7.324E-10  1.940E-10  4.935E-11  1.207E-11  2.598E-12
-  10   1.458E-06  2.212E-06  3.242E-06  4.100E-06  4.338E-06  3.957E-06  3.036E-06  2.001E-06  1.149E-06  5.815E-07  2.627E-07
+  10   1.458E-06  2.212E-06  3.242E-06  4.100E-06  4.338E-06  3.957E-06  3.036E-06  2.001E-06  1.149E-06  5.814E-07  2.627E-07
        1.072E-07  3.995E-08  1.374E-08  4.402E-09  1.325E-09  3.775E-10  1.025E-10  2.665E-11  6.650E-12  1.442E-12
   11   4.251E-07  6.356E-07  9.151E-07  1.146E-06  1.216E-06  1.120E-06  8.739E-07  5.890E-07  3.469E-07  1.806E-07  8.407E-08
        3.539E-08  1.362E-08  4.835E-09  1.598E-09  4.960E-10  1.455E-10  4.063E-11  1.085E-11  2.774E-12  6.073E-13
@@ -1425,7 +1428,7 @@
        5.568E-07  1.989E-07  6.554E-08  2.013E-08  5.816E-09  1.593E-09  4.164E-10  1.045E-10  2.524E-11  5.411E-12
   14   1.306E-06  1.983E-06  2.912E-06  3.685E-06  3.898E-06  3.553E-06  2.721E-06  1.790E-06  1.025E-06  5.175E-07  2.331E-07
        9.486E-08  3.525E-08  1.209E-08  3.862E-09  1.159E-09  3.294E-10  8.921E-11  2.316E-11  5.767E-12  1.251E-12
-  15   1.932E-07  2.883E-07  4.142E-07  5.182E-07  5.500E-07  5.067E-07  3.962E-07  2.677E-07  1.582E-07  8.270E-08  3.868E-08
+  15   1.932E-07  2.883E-07  4.142E-07  5.183E-07  5.500E-07  5.067E-07  3.962E-07  2.677E-07  1.582E-07  8.270E-08  3.868E-08
        1.637E-08  6.336E-09  2.264E-09  7.535E-10  2.355E-10  6.963E-11  1.959E-11  5.275E-12  1.359E-12  2.986E-13
 
                      CONCENTRATIONS   IN LAYER  6 AT END OF TRANSPORT STEP   16, TIME STEP  1, STRESS PERIOD  1
@@ -1533,11 +1536,11 @@
   12   2.154E-04  3.467E-04  5.470E-04  7.093E-04  7.307E-04  6.319E-04  4.491E-04  2.710E-04  1.410E-04  6.425E-05  2.601E-05
        9.489E-06  3.160E-06  9.722E-07  2.794E-07  7.577E-08  1.955E-08  4.832E-09  1.152E-09  2.658E-10  5.612E-11
   13   3.301E-05  5.180E-05  7.916E-05  1.019E-04  1.064E-04  9.448E-05  6.943E-05  4.348E-05  2.356E-05  1.120E-05  4.741E-06
-       1.809E-06  6.300E-07  2.026E-07  6.079E-08  1.717E-08  4.604E-09  1.180E-09  2.909E-10  6.913E-11  1.473E-11
+       1.809E-06  6.301E-07  2.026E-07  6.079E-08  1.717E-08  4.604E-09  1.180E-09  2.909E-10  6.913E-11  1.473E-11
   14   4.580E-06  7.036E-06  1.048E-05  1.335E-05  1.406E-05  1.271E-05  9.596E-06  6.204E-06  3.483E-06  1.721E-06  7.584E-07
        3.016E-07  1.096E-07  3.675E-08  1.149E-08  3.377E-09  9.407E-10  2.500E-10  6.377E-11  1.563E-11  3.369E-12
   15   6.511E-07  9.812E-07  1.426E-06  1.796E-06  1.903E-06  1.743E-06  1.347E-06  8.971E-07  5.213E-07  2.675E-07  1.227E-07
-       5.088E-08  1.929E-08  6.756E-09  2.204E-09  6.758E-10  1.961E-10  5.422E-11  1.436E-11  3.643E-12  7.957E-13
+       5.088E-08  1.929E-08  6.756E-09  2.204E-09  6.759E-10  1.961E-10  5.422E-11  1.436E-11  3.643E-12  7.957E-13
 
                      CUMMULATIVE MASS BUDGETS AT END OF TRANSPORT STEP   16, TIME STEP    1, STRESS PERIOD    1
                      ------------------------------------------------------------------------------------------
@@ -1545,9 +1548,9 @@
                                                              IN                           OUT
                                                       ----------------             ----------------
                                CONSTANT CONCENTRATION:    0.000000                    0.000000    
-                                        CONSTANT HEAD:    0.000000                  -0.8578864E-06
+                                        CONSTANT HEAD:    0.000000                  -0.8578869E-06
                                                 WELLS:    2500.000                    0.000000    
-                                MASS STORAGE (SOLUTE):   0.2301276                   -2500.230    
+                                MASS STORAGE (SOLUTE):   0.2301216                   -2500.230    
                             ---------------------------------------------------------------------------
                                               [TOTAL]:    2500.230       LB          -2500.230       LB
 

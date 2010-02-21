@@ -6,7 +6,7 @@ C **********************************************************************
 C THIS SUBROUTINE ALLOCATES SPACE FOR ARRAYS NEEDED IN THE DISPERSION
 C (DSP) PACKAGE.
 C **********************************************************************
-C last modified: 10-30-2006
+C last modified: 02-20-2010
 C
       IMPLICIT  NONE
       INTEGER   INDSP,IOUT,ISUM,ISUM2,NCOL,NROW,NLAY,ISOLD,ISOLD2,
@@ -16,7 +16,7 @@ C
 C--PRINT PACKAGE NAME AND VERSION NUMBER
       WRITE(IOUT,1030) INDSP
  1030 FORMAT(1X,'DSP5 -- DISPERSION PACKAGE,',
-     & ' VERSION 5, OCTOBER 2006, INPUT READ FROM UNIT',I3)
+     & ' VERSION 5, FEBRUARY 2010, INPUT READ FROM UNIT',I3)
 C
 C--ALLOCATE SPACE FOR ARRAYS
       ISOLD=ISUM
@@ -72,7 +72,7 @@ C*********************************************************************
 C last modified: 10-30-2006
 C
       IMPLICIT  NONE
-      INTEGER   IN,IOUT,NCOL,NROW,NLAY,K,MCOMP,ICOMP,IMSD,J,I,K,
+      INTEGER   IN,IOUT,NCOL,NROW,NLAY,MCOMP,ICOMP,IMSD,J,I,K,
      &          IFLEN,LLOC,INAM1,INAM2,N
       REAL      AL,TRPT,TRPV,DMCOEF,BUFF,R
       CHARACTER ANAME*24,LINE*200,KEYWORD*200
